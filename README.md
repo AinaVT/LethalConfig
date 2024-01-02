@@ -79,7 +79,7 @@ LethalConfigManager.AddConfigItem(exampleSlider);
 And that's it, you now have created your first component!
 ![Slider example](https://i.imgur.com/c212ZMV.png)
 
-LethalConfig automatically picks up some of your mod info, and it automatically creates sections based on the section of the provided ConfigEntry, so you do not have to worry about any extra setup in terms on layout.
+LethalConfig automatically picks up some of your mod info, and it automatically creates sections based on the section of the provided ConfigEntry, so you do not have to worry about any extra setup in terms of layout.
 
 ### ConfigItem restart requirement
 

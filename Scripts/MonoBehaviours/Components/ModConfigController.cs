@@ -36,6 +36,7 @@ namespace LethalConfig.MonoBehaviours.Components
 
         public virtual string GetDescription()
         {
+            if (baseConfigItem.RequiresRestart) return $"{baseConfigItem.Name}\n*REQUIRES RESTART*\n\n{baseConfigItem.Description}";
             return $"{baseConfigItem.Name}\n\n{baseConfigItem.Description}";
         }
 

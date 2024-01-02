@@ -56,7 +56,7 @@ namespace LethalConfig.MonoBehaviours
             if (restartRequiredItems.Count > 0)
             {
                 // Show alert
-                menuManager.DisplayMenuNotification($"Some of the modified configurations requires a restart:\n\n{string.Join("\n", restartRequiredItems.Select(c => c.ToString()))}", "[OK]");
+                menuManager.DisplayMenuNotification($"Some of the modified settings will only take effect after restarting the game.", "[OK]");
             }
         }
 

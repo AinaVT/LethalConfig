@@ -50,7 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StagingPaths:
   - <ManifestStagingRoot>
-  url: 
+  url: https://github.com/AinaVT/LethalConfig
 --- !u!114 &3394057729182895937
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,7 +69,8 @@ MonoBehaviour:
   Name: LethalConfig
   Description: Provides an in-game config menu for other mods to use
   Version: 1.0.0
-  Dependencies: []
+  Dependencies:
+  - {fileID: 11400000, guid: 93f32f19b4b23484b83d50013fee18e8, type: 2}
 --- !u!114 &4587465158208312100
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106,3 +107,4 @@ MonoBehaviour:
   includeMetaFiles: 0
   files:
   - {fileID: 2800000, guid: baf9ab11476f0324f8e9d15d96916163, type: 3}
+  - {fileID: 4900000, guid: b0c8f20098c2fed4a8c503f17565329c, type: 3}

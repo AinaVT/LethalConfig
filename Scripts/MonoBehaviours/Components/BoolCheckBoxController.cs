@@ -1,3 +1,4 @@
+using LethalConfig.ConfigItems;
 using LethalConfig.MonoBehaviours.Components;
 using System.Collections;
 using System.Collections.Generic;

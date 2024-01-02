@@ -6,7 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace LethalConfig
+namespace LethalConfig.ConfigItems
 {
     public class BoolCheckBoxConfigItem : BaseValueConfigItem<bool>
     {

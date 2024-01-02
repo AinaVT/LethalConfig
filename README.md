@@ -13,6 +13,7 @@ Inspired by Rune580's [RiskOfOptions](https://github.com/Rune580/RiskOfOptions)
     - [Adding a ConfigItem](#adding-a-configitem)
     - [ConfigItem restart requirement](#configitem-restart-requirement)
     - [Listening to setting changes](#listening-to-setting-changes)
+- [Issues and Suggestions](#issues-and-suggestions)
 - [Changelog](#changelog)
 
 
@@ -20,12 +21,15 @@ Inspired by Rune580's [RiskOfOptions](https://github.com/Rune580/RiskOfOptions)
 
 Currently, LethalConfig allows developers to add the following types of interfaces for ConfigEntry's:
 
-- Integer Sliders `int`
-- Float Sliders `float`
-- Float Step Slider `float`
-- Text Input Field `string`
-- Enum Dropdown `Enum`
-- Boolean Checkbox `bool`
+| Component | Value Type | ConfigItem Type |
+| --------- | ---------- | ---------- |
+| Integer Slider | `int` | `IntSliderConfigItem` |
+| Float Slider | `float` | `FloatSliderConfigItem` |
+| Float Step Slider | `float` | `FloatStepSliderConfigItem` |
+| Text Input Field | `string` | `TextInputFieldConfigItem` |
+| Enum Dropdown | `Enum` | `EnumDropDownConfigItem<>` |
+| Boolean Checkbox | `Enum` | `BoolCheckBoxConfigItem` |
+
 
 ![LethalConfig Menu Example](https://i.imgur.com/nJkGNnj.gif "An example of the LethalConfig menu")
 *An example of the LethalConfig menu and its element types*
@@ -106,6 +110,12 @@ configEntry.SettingChanged += (obj, args) =>
     logSource.LogInfo($"Slider value changed to {configEntry.Value}");
 };
 ```
+
+## Issues and Suggestions
+
+If you have an issue with LethalConfig, or want to suggest a feature, feel free to open an issue at the [GitHub repository](https://github.com/AinaVT/LethalConfig).
+
+Alternatively, you can also leave your suggestions and issues on the LethalConfig post under the `Mod Releases` forum in the [Unofficial Lethal Company Discord Server](https://discord.gg/nYcQFEpXfU).
 
 ## Changelog
 ### Version 1.0.0

@@ -7,7 +7,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace LethalConfig
+namespace LethalConfig.ConfigItems
 {
     public class EnumDropDownConfigItem<T> : BaseValueConfigItem<T> where T: Enum
     {

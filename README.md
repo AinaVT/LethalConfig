@@ -45,7 +45,7 @@ To access the API, simply use the `LethalConfig` namespace or import it on your 
 using LethalConfig;
 ```
 
-It is also recommend to add a `BepInDependency` attribute to your plugin to hint BepInEx that your mod has a dependency to it:
+It is also recommended to add a `BepInDependency` attribute to your plugin to hint BepInEx that your mod has a dependency to it:
 
 ```csharp
 [BepInPlugin(PluginInfo.Guid, PluginInfo.Name, PluginInfo.Version)]

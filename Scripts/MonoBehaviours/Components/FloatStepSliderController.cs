@@ -1,5 +1,6 @@
 using LethalConfig.ConfigItems;
 using LethalConfig.Utils;
+using SharedUtils;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -34,7 +35,6 @@ namespace LethalConfig.MonoBehaviours.Components
         public void OnSliderValueChanged(float value)
         {
             ConfigItem.CurrentValue = MathF.Round(ConfigItem.MinValue + (ConfigItem.Step * (int)value), 4);
-            LogUtils.LogInfo($"{ConfigItem.CurrentValue}");
             UpdateAppearance();
             audioManager.PlayChangeValueSFX();
         }
@@ -54,13 +54,6 @@ namespace LethalConfig.MonoBehaviours.Components
             sliderComponent.SetValueWithoutNotify((ConfigItem.CurrentValue - ConfigItem.MinValue) / MathF.Max(ConfigItem.Step, float.Epsilon));
             nameTextComponent.text = $"{(ConfigItem.HasValueChanged ? "*" : "")}{ConfigItem.Name}";
             valueInputField.SetTextWithoutNotify($"{ConfigItem.CurrentValue:0.0#}");
-        }
-
-        public override void ResetToDefault()
-        {
-            base.ResetToDefault();
-
-            LogUtils.LogInfo($"{ConfigItem.CurrentValue}");
         }
     } 
 }

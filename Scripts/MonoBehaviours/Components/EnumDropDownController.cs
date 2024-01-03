@@ -17,6 +17,11 @@ namespace LethalConfig.MonoBehaviours.Components
         private Type _enumType;
         private List<string> _enumNames = new List<string>();
 
+        public override string GetDescription()
+        {
+            return $"{base.GetDescription()}\n\nDefault: {Enum.GetName(_enumType, baseConfigItem.BoxedDefaultValue)}";
+        }
+
         public override void UpdateAppearance()
         {
             nameTextComponent.text = $"{(baseConfigItem.HasValueChanged ? "*" : "")}{baseConfigItem.Name}";

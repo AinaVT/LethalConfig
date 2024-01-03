@@ -2,6 +2,7 @@ using LethalConfig;
 using LethalConfig.MonoBehaviours;
 using LethalConfig.MonoBehaviours.Components;
 using LethalConfig.Utils;
+using SharedUtils;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;

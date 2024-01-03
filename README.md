@@ -24,8 +24,10 @@ Currently, LethalConfig allows developers to add the following types of interfac
 | Component | Value Type | ConfigItem Type |
 | --------- | ---------- | ---------- |
 | Integer Slider | `int` | `IntSliderConfigItem` |
+| Integer Input Field | `int` | `IntInputFieldConfigItem` |
 | Float Slider | `float` | `FloatSliderConfigItem` |
 | Float Step Slider | `float` | `FloatStepSliderConfigItem` |
+| Float Input Field | `float` | `FloatInputFieldConfigItem` |
 | Text Input Field | `string` | `TextInputFieldConfigItem` |
 | Enum Dropdown | `Enum` | `EnumDropDownConfigItem<>` |
 | Boolean Checkbox | `Enum` | `BoolCheckBoxConfigItem` |
@@ -115,9 +117,15 @@ configEntry.SettingChanged += (obj, args) =>
 
 If you have an issue with LethalConfig, or want to suggest a feature, feel free to open an issue at the [GitHub repository](https://github.com/AinaVT/LethalConfig).
 
-Alternatively, you can also leave your suggestions and issues on the LethalConfig post under the `Mod Releases` forum in the [Unofficial Lethal Company Discord Server](https://discord.gg/nYcQFEpXfU).
+Alternatively, you can also leave your suggestions and issues on the LethalConfig post under the [Mod Releases forum](https://discord.com/channels/1169792572382773318/1191540198018912336) in the [Unofficial Lethal Company Discord Server](https://discord.gg/nYcQFEpXfU).
 
 ## Changelog
+### Version 1.0.1
+    - Added two new config types:
+        - IntInputConfigItem (an integer text field)
+        - FloatInputConfigItem (a float text field)
+    - Fixed missing default value in the enum dropdown's description.
+
 ### Version 1.0.0
     Initial release, which includes the following types:
         - IntSliderConfigItem

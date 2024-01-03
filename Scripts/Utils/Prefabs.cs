@@ -1,3 +1,4 @@
+using SharedUtils;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,6 +18,8 @@ namespace LethalConfig.Utils
         internal static GameObject BoolCheckBoxPrefab;
         internal static GameObject EnumDropDownPrefab;
         internal static GameObject TextInputFieldPrefab;
+        internal static GameObject IntInputFieldPrefab;
+        internal static GameObject FloatInputFieldPrefab;
 
         internal static void Init()
         {
@@ -37,6 +40,8 @@ namespace LethalConfig.Utils
                 LoadPrefab("BoolCheckBoxItem.prefab", out BoolCheckBoxPrefab);
                 LoadPrefab("EnumDropDownItem.prefab", out EnumDropDownPrefab);
                 LoadPrefab("TextInputFieldItem.prefab", out TextInputFieldPrefab);
+                LoadPrefab("IntInputFieldItem.prefab", out IntInputFieldPrefab);
+                LoadPrefab("FloatInputFieldItem.prefab", out FloatInputFieldPrefab);
 
                 LogUtils.LogInfo("Finished loading prefabs.");
             }

@@ -2,6 +2,7 @@ using BepInEx;
 using LethalConfig.ConfigItems;
 using LethalConfig.Mods;
 using LethalConfig.Utils;
+using SharedUtils;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;

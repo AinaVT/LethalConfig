@@ -13,7 +13,8 @@
     "overrideReferences": true,
     "precompiledReferences": [
         "BepInEx.dll",
-        "Assembly-CSharp.dll"
+        "Assembly-CSharp.dll",
+        "Newtonsoft.Json.dll"
     ],
     "autoReferenced": true,
     "defineConstraints": [],

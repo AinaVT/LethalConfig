@@ -13,9 +13,13 @@ namespace LethalConfig.MonoBehaviours
     internal class ConfigMenu : MonoBehaviour
     {
         public ConfigList configList;
-        public DescriptionBox descriptionBox;
         public ConfigMenuAudioManager audioManager;
         private MenuManager menuManager;
+
+        private void Awake()
+        {
+            LethalConfigManager.AutoGenerateMissingConfigsIfNeeded();
+        }
 
         public void OnCancelButtonClicked()
         {
@@ -57,13 +61,8 @@ namespace LethalConfig.MonoBehaviours
             if (restartRequiredItems.Count > 0)
             {
                 // Show alert
-                menuManager.DisplayMenuNotification($"Some of the modified settings will only take effect after restarting the game.", "[OK]");
+                menuManager.DisplayMenuNotification($"Some of the modified settings may require a restart to take effect.", "[OK]");
             }
-        }
-
-        public void ShowItemDescription(string description)
-        {
-            descriptionBox.SetDescription(description);
         }
 
         private bool EnsureMenuManagerInstance()

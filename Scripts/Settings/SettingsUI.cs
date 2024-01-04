@@ -34,7 +34,7 @@ namespace LethalConfig.Settings
                 var creditsButton = mainButtons.transform.Find("Credits").gameObject;
                 var menuNotification = menuContainer.transform.Find("MenuNotification").gameObject;
 
-                var configMenu = Object.Instantiate(Prefabs.ConfigMenuPrefab);
+                var configMenu = Object.Instantiate(Assets.ConfigMenuPrefab);
                 configMenu.transform.SetParent(menuContainer.transform, false);
                 configMenu.transform.localPosition = Vector3.zero;
                 configMenu.transform.localScale = Vector3.one;

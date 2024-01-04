@@ -13,7 +13,6 @@ namespace LethalConfig.MonoBehaviours.Components
     internal class FloatStepSliderController : ModConfigController<FloatStepSliderConfigItem, float>
     {
         public Slider sliderComponent;
-        public TextMeshProUGUI nameTextComponent;
         public TMP_InputField valueInputField;
 
         public override string GetDescription()
@@ -23,11 +22,11 @@ namespace LethalConfig.MonoBehaviours.Components
 
         protected override void OnSetConfigItem()
         {
+            sliderComponent.SetValueWithoutNotify(ConfigItem.CurrentValue);
             var numberOfSteps = (int)MathF.Ceiling((ConfigItem.MaxValue - ConfigItem.MinValue) / MathF.Max(ConfigItem.Step, float.Epsilon));
             sliderComponent.maxValue = numberOfSteps;
             sliderComponent.minValue = 0;
             sliderComponent.wholeNumbers = true;
-            sliderComponent.SetValueWithoutNotify(ConfigItem.CurrentValue);
 
             UpdateAppearance();
         }
@@ -51,8 +50,8 @@ namespace LethalConfig.MonoBehaviours.Components
 
         public override void UpdateAppearance()
         {
+            base.UpdateAppearance();
             sliderComponent.SetValueWithoutNotify((ConfigItem.CurrentValue - ConfigItem.MinValue) / MathF.Max(ConfigItem.Step, float.Epsilon));
-            nameTextComponent.text = $"{(ConfigItem.HasValueChanged ? "*" : "")}{ConfigItem.Name}";
             valueInputField.SetTextWithoutNotify($"{ConfigItem.CurrentValue:0.0#}");
         }
     } 

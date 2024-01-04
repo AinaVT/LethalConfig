@@ -17,7 +17,7 @@ namespace LethalConfig.ConfigItems
 
         internal override GameObject CreateGameObjectForConfig()
         {
-            return GameObject.Instantiate(Prefabs.EnumDropDownPrefab);
+            return GameObject.Instantiate(Assets.EnumDropDownPrefab);
         }
     }
 }

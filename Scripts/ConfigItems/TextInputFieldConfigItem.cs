@@ -22,7 +22,7 @@ namespace LethalConfig.ConfigItems
 
         internal override GameObject CreateGameObjectForConfig()
         {
-            return GameObject.Instantiate(Prefabs.TextInputFieldPrefab);
+            return GameObject.Instantiate(Assets.TextInputFieldPrefab);
         }
 
         private static TextInputFieldOptions GetDefaultOptions(ConfigEntry<string> configEntry, bool requiresRestart = true)

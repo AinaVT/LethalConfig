@@ -28,7 +28,7 @@ namespace LethalConfig.ConfigItems
 
         internal override GameObject CreateGameObjectForConfig()
         {
-            return GameObject.Instantiate(Prefabs.FloatStepSliderPrefab);
+            return GameObject.Instantiate(Assets.FloatStepSliderPrefab);
         }
 
         private static FloatStepSliderOptions GetDefaultOptions(ConfigEntry<float> configEntry, bool requiresRestart = true)

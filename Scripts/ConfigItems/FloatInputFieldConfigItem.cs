@@ -25,7 +25,7 @@ namespace LethalConfig.ConfigItems
 
         internal override GameObject CreateGameObjectForConfig()
         {
-            return GameObject.Instantiate(Prefabs.FloatInputFieldPrefab);
+            return GameObject.Instantiate(Assets.FloatInputFieldPrefab);
         }
 
         private static FloatInputFieldOptions GetDefaultOptions(ConfigEntry<float> configEntry, bool requiresRestart = true)

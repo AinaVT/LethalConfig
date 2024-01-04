@@ -9,6 +9,7 @@ Inspired by Rune580's [RiskOfOptions](https://github.com/Rune580/RiskOfOptions)
 ## Summary
 - [Supported Types](#supported-types)
 - [Usage](#usage)
+    - [Automatic generation](#automatic-generation)
     - [Setting up](#setting-up)
     - [Adding a ConfigItem](#adding-a-configitem)
     - [ConfigItem restart requirement](#configitem-restart-requirement)
@@ -33,10 +34,21 @@ Currently, LethalConfig allows developers to add the following types of interfac
 | Boolean Checkbox | `Enum` | `BoolCheckBoxConfigItem` |
 
 
-![LethalConfig Menu Example](https://i.imgur.com/nJkGNnj.gif "An example of the LethalConfig menu")
+![LethalConfig Menu Example](https://i.imgur.com/ZPkZEL1.gif "An example of the LethalConfig menu")
+\
 *An example of the LethalConfig menu and its element types*
 
 ## Usage
+
+### Automatic generation
+
+As of 1.1.0, LethalConfig automatically generates mod entries and detect all ConfigEntry's declared by said mods, and tries its best to generate the correct UI components.
+
+It'll assign a default mod icon and will have a disclaimer in the mod's and config's descriptions about them being automatically generated and that they may require a restart.
+
+Unless you're a mod developer that wants to customize their mod icon and description, manually setup the UI components (e.g. use a slider instead of a number text field), or mark settings as non-restart required, you don't need to do anything else other than installing the mod.
+
+Some types may not have a UI component developed for it yet. In these cases, LethalConfig will ignore the ConfigEntry. More types will be covered over time.
 
 ### Setting up
 
@@ -120,6 +132,12 @@ If you have an issue with LethalConfig, or want to suggest a feature, feel free 
 Alternatively, you can also leave your suggestions and issues on the LethalConfig post under the [Mod Releases forum](https://discord.com/channels/1169792572382773318/1191540198018912336) in the [Unofficial Lethal Company Discord Server](https://discord.gg/nYcQFEpXfU).
 
 ## Changelog
+### Version 1.1.0
+    - Automatically generating mod entries and config items for all loaded mods that creates their own ConfigEntry. With this, mods technically don't have the need to necessarily have LethalConfig as a dependency unless they want to use specific components, mark certain settings as non-restart required, or want to set their mod icon and description.
+    - Adjusted some layout stuff.
+    - Fixed a bug with the initialization of sliders.
+    - Added customizable mod icons and mod descriptions.
+
 ### Version 1.0.1
     - Added two new config types:
         - IntInputConfigItem (an integer text field)

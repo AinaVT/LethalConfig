@@ -1,3 +1,4 @@
+using LethalConfig.Mods;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -7,11 +8,37 @@ namespace LethalConfig.MonoBehaviours
 {
     internal class DescriptionBox : MonoBehaviour
     {
-        public TextMeshProUGUI textMesh;
+        public ModInfoBox modInfoBox;
+        public ConfigInfoBox configInfoBox;
 
-        public void SetDescription(string description)
+        private void Awake()
         {
-            textMesh.text = description;
+            modInfoBox.gameObject.SetActive(false);
+            configInfoBox.gameObject.SetActive(false);
+        }
+
+        public void ShowConfigInfo(string configInfo)
+        {
+            configInfoBox.gameObject.SetActive(true);
+            configInfoBox.SetConfigInfo(configInfo);
+            HideModInfo();
+        }
+
+        public void HideConfigInfo()
+        {
+            configInfoBox.gameObject.SetActive(false);
+        }
+
+        public void ShowModInfo(Mod mod)
+        {
+            modInfoBox.gameObject.SetActive(true);
+            modInfoBox.SetModInfo(mod);
+            HideConfigInfo();
+        }
+
+        public void HideModInfo()
+        {
+            modInfoBox.gameObject.SetActive(false);
         }
     }
 }

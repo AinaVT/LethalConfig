@@ -23,7 +23,7 @@ namespace LethalConfig.MonoBehaviours
 
             foreach (var section in sections)
             {
-                var header = Instantiate(Prefabs.SectionHeaderPrefab);
+                var header = Instantiate(Assets.SectionHeaderPrefab);
                 header.GetComponent<SectionHeader>().SetSectionName(section.Key);
                 header.transform.SetParent(listContainerObject.transform);
                 header.transform.localPosition = Vector3.zero;
@@ -34,6 +34,7 @@ namespace LethalConfig.MonoBehaviours
                 {
                     var configItemObject = configItem.CreateGameObjectForConfig();
                     var controller = configItemObject.GetComponent<ModConfigController>();
+                    controller.audioManager = audioManager;
                     var result = controller.SetConfigItem(configItem);
                     if (!result)
                     {
@@ -47,13 +48,12 @@ namespace LethalConfig.MonoBehaviours
                     configItemObject.transform.localRotation = Quaternion.identity;
                     controller.OnHoverEnter += () =>
                     {
-                        descriptionBox.SetDescription(controller.GetDescription());
+                        descriptionBox.ShowConfigInfo(controller.GetDescription());
                     };
                     controller.OnHoverExit += () =>
                     {
-                        descriptionBox.SetDescription("");
+                        //descriptionBox.HideConfigInfo();
                     };
-                    controller.audioManager = audioManager;
                 }
             }
         }

@@ -12,7 +12,6 @@ namespace LethalConfig.MonoBehaviours.Components
     internal class EnumDropDownController : ModConfigController
     {
         public TMP_Dropdown dropdownComponent;
-        public TextMeshProUGUI nameTextComponent;
 
         private Type _enumType;
         private List<string> _enumNames = new List<string>();
@@ -24,7 +23,7 @@ namespace LethalConfig.MonoBehaviours.Components
 
         public override void UpdateAppearance()
         {
-            nameTextComponent.text = $"{(baseConfigItem.HasValueChanged ? "*" : "")}{baseConfigItem.Name}";
+            base.UpdateAppearance();
             var index = _enumNames.FindIndex(e => e == Enum.GetName(_enumType, baseConfigItem.CurrentBoxedValue));
             dropdownComponent.SetValueWithoutNotify(index);
         }

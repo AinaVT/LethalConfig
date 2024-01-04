@@ -12,12 +12,11 @@ namespace LethalConfig.MonoBehaviours.Components
     internal class BoolCheckBoxController : ModConfigController<BoolCheckBoxConfigItem, bool>
     {
         public Toggle toggleComponent;
-        public TextMeshProUGUI nameTextComponent;
 
         public override void UpdateAppearance()
         {
+            base.UpdateAppearance();
             toggleComponent.SetIsOnWithoutNotify(ConfigItem.CurrentValue);
-            nameTextComponent.text = $"{(ConfigItem.HasValueChanged ? "*" : "")}{ConfigItem.Name}";
         }
 
         protected override void OnSetConfigItem()

@@ -12,6 +12,7 @@ namespace LethalConfig.MonoBehaviours
     {
         public TextMeshProUGUI textMesh;
         public GameObject selectedBorder;
+        public Image modIcon;
 
         public delegate void OnHoverHandler();
         public event OnHoverHandler OnHoverEnter;
@@ -30,6 +31,7 @@ namespace LethalConfig.MonoBehaviours
             {
                 _mod = value;
                 textMesh.text = _mod.modInfo.Name;
+                modIcon.sprite = _mod.modInfo.Icon;
             }
         }
 

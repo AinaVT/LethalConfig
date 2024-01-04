@@ -16,7 +16,7 @@ namespace LethalConfig.ConfigItems
 
         internal override GameObject CreateGameObjectForConfig()
         {
-            return GameObject.Instantiate(Prefabs.BoolCheckBoxPrefab);
+            return GameObject.Instantiate(Assets.BoolCheckBoxPrefab);
         }
     }
 }

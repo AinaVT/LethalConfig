@@ -8,7 +8,7 @@ namespace LethalConfig.Mods
         internal string Name { get; set; }
         internal string GUID { get; set; }
         internal string Version { get; set; }
-        internal string Description { get; set; }
+        internal string Description { get; set; } = "";
         internal Sprite Icon { get; set; } = Assets.DefaultModIcon;
 
         public override string ToString()

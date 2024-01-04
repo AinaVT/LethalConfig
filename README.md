@@ -125,6 +125,22 @@ configEntry.SettingChanged += (obj, args) =>
 };
 ```
 
+### Customizing mod's icon and description
+
+To customize your mod's icon in its entry, simply call `LethalConfigManager.SetModIcon` passing an instance of `UnityEngine.Sprite`. A sprite can be loaded from an AssetBundle.
+
+```csharp
+// The icon asset is a Sprite
+var aVeryCoolIconAsset = assetBundle.LoadAsset<Sprite>("path/to/asset.png")
+LethalConfigManager.SetModIcon(aVeryCoolIconAsset);
+```
+
+To customize your mod's description, simply call `LethalConfigManager.SetModDescription` passing a string.
+
+```csharp
+LethalConfigManager.SetModDescription("Very cool mod description!");
+```
+
 ## Issues and Suggestions
 
 If you have an issue with LethalConfig, or want to suggest a feature, feel free to open an issue at the [GitHub repository](https://github.com/AinaVT/LethalConfig).

@@ -68,7 +68,8 @@ MonoBehaviour:
   - <ManifestPluginStaging>
   Author: AinaVT
   Name: LethalConfig
-  Description: Provides an in-game config menu for other mods to use
+  Description: Provides an in-game config menu for players to edit their configs,
+    and an API for other mods to use and customize their entries.
   Version: 1.1.0
   Dependencies:
   - {fileID: 11400000, guid: 93f32f19b4b23484b83d50013fee18e8, type: 2}

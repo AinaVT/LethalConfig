@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace LethalConfig
+namespace LethalConfig.MonoBehaviours
 {
     internal class Tooltip : MonoBehaviour
     {

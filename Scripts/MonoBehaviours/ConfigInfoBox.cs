@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-namespace LethalConfig
+namespace LethalConfig.MonoBehaviours
 {
     internal class ConfigInfoBox : MonoBehaviour
     {

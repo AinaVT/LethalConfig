@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace LethalConfig
+namespace LethalConfig.MonoBehaviours
 {
     internal class TooltipTrigger : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {

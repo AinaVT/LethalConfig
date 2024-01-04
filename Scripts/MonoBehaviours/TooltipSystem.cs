@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace LethalConfig
+namespace LethalConfig.MonoBehaviours
 {
     internal class TooltipSystem : MonoBehaviour
     {

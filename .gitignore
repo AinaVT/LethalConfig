@@ -71,6 +71,13 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
-# Specific files
-README.md.meta
-LICENSE.meta
+
+# Project specific stuff
+/[Aa]ssets/Plugins/*.dll
+/[Aa]ssets/Plugins/*.dll.meta
+/[Pp]ackages/Lethal Company
+/ThunderKit
+/[Aa]ssets/ThunderKitSettings/
+/[Aa]ssets/ThunderKitSettings/*
+/[Aa]ssets/ThunderKitSettings.meta
+.vsconfig

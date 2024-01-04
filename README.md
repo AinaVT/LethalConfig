@@ -2,7 +2,7 @@
 
 # LethalConfig
 
-LethalConfig is an in-game mod configuration menu that can be used by any mod developer to let players change their BepInEx's ConfigEntry's within the game through a variety of UI controls.
+LethalConfig is a mod configuration menu that allows players to edit their configs from within the game. It also provides a simple API for developers to customize their mod and config entries.
 
 Inspired by Rune580's [RiskOfOptions](https://github.com/Rune580/RiskOfOptions)
 
@@ -44,7 +44,7 @@ Currently, LethalConfig allows developers to add the following types of interfac
 
 As of 1.1.0, LethalConfig automatically generates mod entries and detect all ConfigEntry's declared by said mods, and tries its best to generate the correct UI components.
 
-It'll assign a default mod icon and will have a disclaimer in the mod's and config's descriptions about them being automatically generated and that they may require a restart.
+It'll assign a default mod icon and will have a disclaimer in the mod's and config's descriptions about them being automatically generated and that they may require a restart, as there's no way for LethalConfig to tell if a setting will take effect immediately or not.
 
 Unless you're a mod developer that wants to customize their mod icon and description, manually setup the UI components (e.g. use a slider instead of a number text field), or mark settings as non-restart required, you don't need to do anything else other than installing the mod.
 

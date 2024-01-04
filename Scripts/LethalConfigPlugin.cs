@@ -48,7 +48,7 @@ namespace LethalConfig
             CreateExampleConfigs();
 
             LethalConfigManager.SetModIcon(Assets.LethalConfigModIcon);
-            LethalConfigManager.SetModDescription("Provides an in-game config menu for other mods to use.");
+            LethalConfigManager.SetModDescription("Provides an in-game config menu for players to edit their configs, and an API for other mods to use and customize their entries.");
 
             LogUtils.LogInfo("LethalConfig loaded!");
         }

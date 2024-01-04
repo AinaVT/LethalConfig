@@ -27,37 +27,74 @@ namespace LethalConfig.Settings
             if (scene.name == "MainMenu")
             {
                 LogUtils.LogInfo("Injecting mod config menu into main menu...");
-
-                var menuManager = GameObject.Find("MenuManager").GetComponent<MenuManager>();
-                var menuContainer = GameObject.Find("MenuContainer");
-                var mainButtons = menuContainer.transform.Find("MainButtons").gameObject;
-                var creditsButton = mainButtons.transform.Find("Credits").gameObject;
-                var menuNotification = menuContainer.transform.Find("MenuNotification").gameObject;
-
-                var configMenu = Object.Instantiate(Assets.ConfigMenuPrefab);
-                configMenu.transform.SetParent(menuContainer.transform, false);
-                configMenu.transform.localPosition = Vector3.zero;
-                configMenu.transform.localScale = Vector3.one;
-                configMenu.transform.localRotation = Quaternion.identity;
-                configMenu.transform.SetSiblingIndex(menuNotification.transform.GetSiblingIndex());
-                configMenu.SetActive(false);
-
-                var clonedButton = Object.Instantiate(creditsButton, mainButtons.transform);
-                clonedButton.GetComponent<Button>().onClick.RemoveAllListeners();
-                clonedButton.GetComponent<Button>().onClick = new Button.ButtonClickedEvent();
-                clonedButton.GetComponent<Button>().onClick.AddListener(delegate { menuManager.EnableUIPanel(configMenu); });
-                clonedButton.GetComponent<Button>().onClick.AddListener(delegate { menuManager.PlayConfirmSFX(); });
-
-                clonedButton.GetComponentInChildren<TextMeshProUGUI>().text = "> LethalConfig";
-
-                var buttonsList = mainButtons.GetComponentsInChildren<Button>(true).Select(b => b.gameObject);
-                foreach (var button in buttonsList.Where(g => g.name != "QuitButton" && g.name != "Credits"))
-                {
-                    button.GetComponent<RectTransform>().anchoredPosition += new Vector2(0, 38.5f);
-                }
-
-                clonedButton.GetComponent<RectTransform>().anchoredPosition = buttonsList.First(g => g.name == "Credits").GetComponent<RectTransform>().anchoredPosition + new Vector2(0, 38.5f);
+                
+                LoadUIMainMenu();
+                
+                return;
             }
+
+            var systems = scene.GetRootGameObjects()
+                .First(gameObject => gameObject.name == "Systems");
+
+            if (!systems)
+                return;
+
+            LogUtils.LogInfo("Injecting mod config menu into quick menu...");
+            
+            LoadUIQuickMenu(systems);
+        }
+
+        private static void LoadUIMainMenu()
+        {
+            var menuManager = GameObject.Find("MenuManager").GetComponent<MenuManager>();
+            var menuContainer = GameObject.Find("MenuContainer");
+            var mainButtons = menuContainer.transform.Find("MainButtons").gameObject;
+            var creditsButton = mainButtons.transform.Find("Credits").gameObject;
+            var menuNotification = menuContainer.transform.Find("MenuNotification").gameObject;
+            
+            var configMenu = InjectConfigMenu(creditsButton, menuContainer.transform, mainButtons.transform);
+            configMenu.transform.SetSiblingIndex(menuNotification.transform.GetSiblingIndex());
+        }
+
+        private static void LoadUIQuickMenu(GameObject systems)
+        {
+            var quickMenu = systems.transform
+                .Find("UI")
+                .Find("Canvas")
+                .Find("QuickMenu");
+
+            var mainButtons = quickMenu.Find("MainButtons").gameObject;
+            var quitButton = mainButtons.transform.Find("Quit").gameObject;
+
+            InjectConfigMenu(quitButton, quickMenu, mainButtons.transform);
+        }
+
+        private static GameObject InjectConfigMenu(GameObject buttonPrefab, Transform parent, Transform mainButtonsTransform)
+        {
+            var configMenu = Object.Instantiate(Assets.ConfigMenuPrefab, parent, false);
+
+            configMenu.transform.localPosition = Vector3.zero;
+            configMenu.transform.localScale = Vector3.one;
+            configMenu.transform.localRotation = Quaternion.identity;
+            configMenu.SetActive(false);
+            
+            var clonedButton = Object.Instantiate(buttonPrefab, mainButtonsTransform);
+            clonedButton.GetComponent<Button>().onClick.RemoveAllListeners();
+            clonedButton.GetComponent<Button>().onClick = new Button.ButtonClickedEvent();
+            clonedButton.GetComponent<Button>().onClick.AddListener(delegate { menuManager.EnableUIPanel(configMenu); });
+            clonedButton.GetComponent<Button>().onClick.AddListener(delegate { menuManager.PlayConfirmSFX(); });
+            
+            clonedButton.GetComponentInChildren<TextMeshProUGUI>().text = "> LethalConfig";
+
+            var buttonsList = mainButtonsTransform.GetComponentsInChildren<Button>(true).Select(b => b.gameObject);
+            foreach (var button in buttonsList.Where(g => g.name != "QuitButton" && g.name != "Credits"))
+            {
+                button.GetComponent<RectTransform>().anchoredPosition += new Vector2(0, 38.5f);
+            }
+
+            clonedButton.GetComponent<RectTransform>().anchoredPosition = buttonsList.First(g => g.name == "Credits").GetComponent<RectTransform>().anchoredPosition + new Vector2(0, 38.5f);
+
+            return configMenu;
         }
     }
 }

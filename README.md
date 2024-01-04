@@ -130,7 +130,6 @@ configEntry.SettingChanged += (obj, args) =>
 To customize your mod's icon in its entry, simply call `LethalConfigManager.SetModIcon` passing an instance of `UnityEngine.Sprite`. A sprite can be loaded from an AssetBundle.
 
 ```csharp
-// The icon asset is a Sprite
 var aVeryCoolIconAsset = assetBundle.LoadAsset<Sprite>("path/to/asset.png")
 LethalConfigManager.SetModIcon(aVeryCoolIconAsset);
 ```

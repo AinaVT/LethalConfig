@@ -104,6 +104,8 @@ namespace LethalConfig
 
         public static void SetModIcon(Sprite sprite)
         {
+            if (sprite == null) return;
+
             var mod = ModForAssembly(Assembly.GetCallingAssembly());
             if (mod == null) return;
 
@@ -112,6 +114,8 @@ namespace LethalConfig
 
         public static void SetModDescription(string description)
         {
+            if (description == null) return;
+
             var mod = ModForAssembly(Assembly.GetCallingAssembly());
             if (mod == null) return;
 

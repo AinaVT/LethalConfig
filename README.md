@@ -1,21 +1,26 @@
-![LethalConfig Icon](https://i.imgur.com/fKaf1mS.png "LethalConfig icon")
+![LethalConfig Icon](.github/images/icon.png "LethalConfig icon")
 
-# LethalConfig
+# LethalConfig <!-- omit in toc -->
 
 LethalConfig is a mod configuration menu that allows players to edit their configs from within the game. It also provides a simple API for developers to customize their mod and config entries.
 
 Inspired by Rune580's [RiskOfOptions](https://github.com/Rune580/RiskOfOptions)
 
-## Summary
+### Summary <!-- omit in toc -->
 - [Supported Types](#supported-types)
 - [Usage](#usage)
-    - [Automatic generation](#automatic-generation)
-    - [Setting up](#setting-up)
-    - [Adding a ConfigItem](#adding-a-configitem)
-    - [ConfigItem restart requirement](#configitem-restart-requirement)
-    - [Listening to setting changes](#listening-to-setting-changes)
+  - [Automatic generation](#automatic-generation)
+  - [Setting up](#setting-up)
+  - [Adding a ConfigItem](#adding-a-configitem)
+  - [ConfigItem restart requirement](#configitem-restart-requirement)
+  - [Listening to setting changes](#listening-to-setting-changes)
+  - [Customizing mod's icon and description](#customizing-mods-icon-and-description)
+- [Building LethalConfig](#building-lethalconfig)
 - [Issues and Suggestions](#issues-and-suggestions)
 - [Changelog](#changelog)
+  - [Version 1.1.0](#version-110)
+  - [Version 1.0.1](#version-101)
+  - [Version 1.0.0](#version-100)
 
 
 ## Supported Types
@@ -34,7 +39,7 @@ Currently, LethalConfig allows developers to add the following types of interfac
 | Boolean Checkbox | `Enum` | `BoolCheckBoxConfigItem` |
 
 
-![LethalConfig Menu Example](https://i.imgur.com/ZPkZEL1.gif "An example of the LethalConfig menu")
+![LethalConfig Menu Example](.github/images/menu-example.gif "An example of the LethalConfig menu")
 \
 *An example of the LethalConfig menu and its element types*
 
@@ -91,7 +96,7 @@ LethalConfigManager.AddConfigItem(exampleSlider);
 ```
 
 And that's it, you now have created your first component!
-![Slider example](https://i.imgur.com/c212ZMV.png)
+![Slider example](.github/images/slider-example.png)
 
 LethalConfig automatically picks up some of your mod info, and it automatically creates sections based on the section of the provided ConfigEntry, so you do not have to worry about any extra setup in terms of layout.
 
@@ -127,18 +132,36 @@ configEntry.SettingChanged += (obj, args) =>
 
 ### Customizing mod's icon and description
 
-To customize your mod's icon in its entry, simply call `LethalConfigManager.SetModIcon` passing an instance of `UnityEngine.Sprite`. A sprite can be loaded from an AssetBundle.
+LethalConfig automatically attempts to load your mod's icon and description from your Thunderstore manifest, but also allows you to override them.
+
+To override your mod's icon in its entry, simply call `LethalConfigManager.SetModIcon` passing an instance of `UnityEngine.Sprite`. A sprite can be loaded from an AssetBundle.
 
 ```csharp
 var aVeryCoolIconAsset = assetBundle.LoadAsset<Sprite>("path/to/asset.png")
 LethalConfigManager.SetModIcon(aVeryCoolIconAsset);
 ```
 
-To customize your mod's description, simply call `LethalConfigManager.SetModDescription` passing a string.
+To override your mod's description, simply call `LethalConfigManager.SetModDescription` passing a string.
 
 ```csharp
 LethalConfigManager.SetModDescription("Very cool mod description!");
 ```
+
+## Building LethalConfig
+
+If you want to contribute and/or need to build LethalConfig yourself, just open the project and import Lethal Company using the included ThunderKit. To do so, follow these steps to setup your project:
+
+- Clone the repository and open the project with Unity `2022.3.9f1`. 
+  - If Unity asks if you want to open in Safe Mode at any point, click to ignore.
+- On the ThunderKit window that opened, go to `ThunderKit Settings`, set your game path and executable to your Lethal Company folder and exe file.
+  - If the ThunderKit window didn't automatically open, you can find it on `Tools > ThunderKit > Settings`.
+- ThunderKit will prompt you to restart the project a couple of times. After the restarts, the project should be setup!
+
+With the project setup, simply select the `Publish` pipeline and the `LethalConfigManifest` at the top of the project, then click `execute`. After it's done, it should generate a zip file under the `ThunderKit/Staging` folder containing the mod.
+
+![Pipeline and Manifest](.github/images/pipeline-and-manifest.png)
+
+![Pipeline and Manifest](.github/images/publish-success.png)
 
 ## Issues and Suggestions
 

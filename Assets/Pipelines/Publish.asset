@@ -31,7 +31,6 @@ MonoBehaviour:
   PerManifest: 1
   ListType: 0
   Manifests:
-  - {fileID: 11400000, guid: 0549c0cc2b3c3644c92c91b5e1fd521b, type: 2}
   - {fileID: 11400000, guid: 93f32f19b4b23484b83d50013fee18e8, type: 2}
   ArchiveType: 1
   Source: <ManifestStagingRoot>
@@ -66,4 +65,4 @@ MonoBehaviour:
   - {fileID: -542447268358599656}
   - {fileID: -4940581843857107105}
   QuickAccess: 1
-  manifest: {fileID: 11400000, guid: 1c92897909f53044486ad5d7bc1a8b92, type: 2}
+  manifest: {fileID: 11400000, guid: d6af42b242738754bb7bfd2964d57402, type: 2}

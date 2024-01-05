@@ -1,5 +1,28 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8871553670440391919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03063c7a6ec04cc4c82c75cf9bcc8db8, type: 3}
+  m_Name: Copy
+  m_EditorClassIdentifier: 
+  Active: 1
+  PerManifest: 1
+  ListType: 0
+  Manifests:
+  - {fileID: 11400000, guid: 93f32f19b4b23484b83d50013fee18e8, type: 2}
+  ReplaceDirectory: 0
+  Recursive: 0
+  SourceRequired: 1
+  EstablishDestination: 1
+  Source: <StagingRoot>/../../README.md
+  Destination: <ManifestStagingRoot>/README.md
 --- !u!114 &-5278156622408674242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30,8 +53,10 @@ MonoBehaviour:
   - {fileID: 114643622350610336}
   - {fileID: 114537630434205182}
   - {fileID: -5278156622408674242}
+  - {fileID: -8871553670440391919}
+  - {fileID: 4072777437068664547}
   QuickAccess: 0
-  manifest: {fileID: 11400000, guid: 1c92897909f53044486ad5d7bc1a8b92, type: 2}
+  manifest: {fileID: 11400000, guid: d6af42b242738754bb7bfd2964d57402, type: 2}
 --- !u!114 &114520525572577756
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -95,3 +120,26 @@ MonoBehaviour:
   m_Name: StageThunderstoreManifest
   m_EditorClassIdentifier: 
   Active: 1
+--- !u!114 &4072777437068664547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03063c7a6ec04cc4c82c75cf9bcc8db8, type: 3}
+  m_Name: Copy
+  m_EditorClassIdentifier: 
+  Active: 1
+  PerManifest: 1
+  ListType: 0
+  Manifests:
+  - {fileID: 11400000, guid: 93f32f19b4b23484b83d50013fee18e8, type: 2}
+  ReplaceDirectory: 0
+  Recursive: 0
+  SourceRequired: 1
+  EstablishDestination: 1
+  Source: <StagingRoot>/../../CHANGELOG.md
+  Destination: <ManifestStagingRoot>/CHANGELOG.md

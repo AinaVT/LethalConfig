@@ -73,8 +73,6 @@ crashlytics-build.properties
 
 
 # Project specific stuff
-/[Aa]ssets/Plugins/*.dll
-/[Aa]ssets/Plugins/*.dll.meta
 /[Pp]ackages/Lethal Company
 /ThunderKit
 /[Aa]ssets/ThunderKitSettings/

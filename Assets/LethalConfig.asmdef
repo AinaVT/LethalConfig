@@ -10,7 +10,7 @@
     "allowUnsafeCode": false,
     "overrideReferences": true,
     "precompiledReferences": [
-        "BepInEx.dll",
+        "BepInEx-stripped.dll",
         "Assembly-CSharp.dll",
         "Newtonsoft.Json.dll"
     ],

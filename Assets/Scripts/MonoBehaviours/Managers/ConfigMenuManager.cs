@@ -1,5 +1,7 @@
 using LethalConfig.Utils;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace LethalConfig.MonoBehaviours.Managers
 {
@@ -29,10 +31,14 @@ namespace LethalConfig.MonoBehaviours.Managers
             FindObjectOfType<ConfigMenu>()?.gameObject.SetActive(false);
         }
 
-        public void DisplayNotification(string message)
+        public void DisplayNotification(string message, string button)
         {
-            // Temporary
-            LogUtils.LogInfo(message);
+            var menuNotification = FindObjectOfType<ConfigMenuNotification>();
+            if (menuNotification == null) return;
+
+            menuNotification.SetNotificationContent(message, button);
+            menuNotification.gameObject.SetActive(true);
+            EventSystem.current.SetSelectedGameObject(menuNotification.GetComponentInChildren<Button>().gameObject);
         }
     }
 }

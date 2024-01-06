@@ -546,6 +546,7 @@ GameObject:
   - component: {fileID: 427333888657126187}
   - component: {fileID: 5386422196970997913}
   - component: {fileID: 7541659755487068162}
+  - component: {fileID: 3156696091369353351}
   m_Layer: 5
   m_Name: ConfigMenuNotification
   m_TagString: Untagged
@@ -611,6 +612,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3156696091369353351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8853282203080296739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85d03fa0691807d4686ee1b497803ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  messageTextComponent: {fileID: 713596244141259622}
+  buttonTextComponent: {fileID: 1876972480508639915}
 --- !u!1 &8858229636851931268
 GameObject:
   m_ObjectHideFlags: 0

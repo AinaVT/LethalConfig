@@ -1,3 +1,4 @@
+using System;
 using LethalConfig.ConfigItems;
 using LethalConfig.Utils;
 using System.Collections;
@@ -5,11 +6,14 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace LethalConfig.MonoBehaviours.Components
 {
     internal abstract class ModConfigController : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
+        private readonly List<Selectable> _selectables = new();
+        
         protected BaseConfigItem baseConfigItem;
 
         internal ConfigMenuAudioManager audioManager;
@@ -21,6 +25,14 @@ namespace LethalConfig.MonoBehaviours.Components
         protected bool isOnSetup = false;
 
         public TextMeshProUGUI nameTextComponent;
+
+        protected virtual void Awake()
+        {
+            if (_selectables.Count > 0)
+                return;
+
+            _selectables.AddRange(GetComponentsInChildren<Selectable>());
+        }
 
         public virtual bool SetConfigItem(BaseConfigItem configItem)
         {
@@ -35,7 +47,16 @@ namespace LethalConfig.MonoBehaviours.Components
         public virtual void UpdateAppearance()
         {
             nameTextComponent.text = $"{(baseConfigItem.HasValueChanged ? "* " : "")}{baseConfigItem.Name}";
+
+            if (baseConfigItem.Options.CanModifyCallback is not null)
+            {
+                var canModify = baseConfigItem.Options.CanModifyCallback.Invoke();
+                foreach (var selectable in _selectables)
+                    selectable.interactable = canModify;
+            }
         }
+        
+        
 
         public virtual void ResetToDefault()
         {

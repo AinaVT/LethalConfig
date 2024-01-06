@@ -200,6 +200,7 @@ GameObject:
   - component: {fileID: 5283133979314556791}
   - component: {fileID: 1598889874160124540}
   - component: {fileID: 7531622532206273394}
+  - component: {fileID: -6779222962432297514}
   m_Layer: 5
   m_Name: TextInputFieldItem
   m_TagString: Untagged
@@ -326,7 +327,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nameTextComponent: {fileID: 8604809152883524144}
+  tooltipTrigger: {fileID: -6779222962432297514}
   textInputField: {fileID: 3067905636494260939}
+--- !u!114 &-6779222962432297514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3442174291674987581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d48011a777def6d4b906544b23aada75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tooltipText: 
 --- !u!1 &4155296619522806800
 GameObject:
   m_ObjectHideFlags: 0

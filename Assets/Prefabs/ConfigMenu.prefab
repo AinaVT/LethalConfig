@@ -696,7 +696,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   listContainerObject: {fileID: 722688913674499865}
   descriptionBox: {fileID: 1919778533759594393}
-  audioManager: {fileID: 3276280154533127725}
 --- !u!1 &1185377964848211325
 GameObject:
   m_ObjectHideFlags: 0
@@ -1104,6 +1103,7 @@ MonoBehaviour:
   selectSFX: {fileID: 8300000, guid: 6abb149c5cb592543bee788fb8d7e7f3, type: 3}
   hoverSFX: {fileID: 8300000, guid: fd14f7bb7ebf3774192f2c9cf5a445e3, type: 3}
   changeValueSFX: {fileID: 8300000, guid: 45172ac99d4ebaa4e8f3e1fc62337682, type: 3}
+  audioSource: {fileID: 0}
 --- !u!1 &1664010991982258585
 GameObject:
   m_ObjectHideFlags: 0
@@ -1219,7 +1219,6 @@ MonoBehaviour:
   listContainerObject: {fileID: 2513450335314086676}
   configList: {fileID: 6173246048099119890}
   descriptionBox: {fileID: 1919778533759594393}
-  audioManager: {fileID: 3276280154533127725}
 --- !u!1 &2136475645907872766
 GameObject:
   m_ObjectHideFlags: 0
@@ -4017,4 +4016,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   configList: {fileID: 6173246048099119890}
-  audioManager: {fileID: 3276280154533127725}

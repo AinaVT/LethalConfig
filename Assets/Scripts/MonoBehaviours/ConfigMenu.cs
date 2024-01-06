@@ -18,12 +18,33 @@ namespace LethalConfig.MonoBehaviours
 
         public void Open()
         {
+            var animatorState = menuAnimator.GetCurrentAnimatorStateInfo(0);
+            if (animatorState.IsName("ConfigMenuNormal") || animatorState.IsName("ConfigMenuAppear")) return;
+
             gameObject.SetActive(true);
             menuAnimator.SetTrigger("Open");
         }
 
-        public void Close()
+        public void Close(bool animated = true)
         {
+            var animatorState = menuAnimator.GetCurrentAnimatorStateInfo(0);
+            if (animatorState.IsName("ConfigMenuClosed") || animatorState.IsName("ConfigMenuDisappear")) return;
+
+            var mods = LethalConfigManager.Mods;
+            foreach (var item in mods.SelectMany(m => m.Value.configItems))
+            {
+                item.CancelChanges();
+            }
+
+            UpdateAppearanceOfCurrentComponents();
+
+            if (!animated)
+            {
+                menuAnimator.SetTrigger("ForceClose");
+                gameObject.SetActive(false);
+                return;
+            }
+
             menuAnimator.SetTrigger("Close");
         }
 
@@ -34,14 +55,6 @@ namespace LethalConfig.MonoBehaviours
 
         public void OnCancelButtonClicked()
         {
-            var mods = LethalConfigManager.Mods;
-            foreach (var item in mods.SelectMany(m => m.Value.configItems))
-            {
-                item.CancelChanges();
-            }
-
-            UpdateAppearanceOfCurrentComponents();
-
             Close();
             ConfigMenuManager.Instance.menuAudio.PlayCancelSFX();
         }

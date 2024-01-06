@@ -1,9 +1,12 @@
 using BepInEx;
 using BepInEx.Configuration;
+using HarmonyLib;
 using LethalConfig.ConfigItems;
 using LethalConfig.ConfigItems.Options;
+using LethalConfig.Patches;
 using LethalConfig.Settings;
 using LethalConfig.Utils;
+using System.Reflection;
 
 namespace LethalConfig
 {
@@ -18,6 +21,7 @@ namespace LethalConfig
     internal class LethalConfigPlugin : BaseUnityPlugin
     {
         private static LethalConfigPlugin instance;
+        private static Harmony harmony;
 
         enum TestEnum
         {
@@ -33,6 +37,9 @@ namespace LethalConfig
             LogUtils.Init(PluginInfo.Guid);
             Assets.Init();
             SettingsUI.Init();
+
+            harmony = new Harmony(PluginInfo.Guid);
+            harmony.PatchAll();
 
             CreateExampleConfigs();
 

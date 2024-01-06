@@ -23,8 +23,15 @@ namespace LethalConfig.MonoBehaviours
             notificationAnimator.SetTrigger("Open");
         }
 
-        public void Close()
+        public void Close(bool animated = true)
         {
+            if (!animated)
+            {
+                notificationAnimator.SetTrigger("ForceClose");
+                gameObject.SetActive(false);
+                return;
+            }
+
             notificationAnimator.SetTrigger("Close");
         }
 

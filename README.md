@@ -14,6 +14,7 @@ Inspired by Rune580's [RiskOfOptions](https://github.com/Rune580/RiskOfOptions)
   - [Adding a ConfigItem](#adding-a-configitem)
   - [ConfigItem restart requirement](#configitem-restart-requirement)
   - [ConfigItem CanModifyCallback](#configitem-canmodifycallback)
+  - [Disabling/Skipping Automatic Generation](#disablingskipping-automatic-generation)
   - [Listening to setting changes](#listening-to-setting-changes)
   - [Customizing mod's icon and description](#customizing-mods-icon-and-description)
 - [Building LethalConfig](#building-lethalconfig)
@@ -138,6 +139,24 @@ private static CanModifyResult CheckboxCanModifyCallback()
     return (false, "Example reason");
     // you can also return only a bool, or CanModifyResult.True()/CanModifyResult.False(reason)
 }
+```
+
+### Disabling/Skipping Automatic Generation
+
+You can skip automatic generation per ConfigEntry, Config section, or for your entire mod.
+
+```csharp
+var configEntry = Config.Bind("General", "Example", 0, "This is an example component!");
+var skippedConfigEntry = Config.Bind("Skip This Section", "Example 2", 0, "This is an example component!");
+
+// skips automatic generation for the ConfigEntry.
+LethalConfigManager.SkipAutoGenFor(configEntry);
+
+// skips automatic generation for the Config section "Skip This Section".
+LethalConfigManager.SkipAutoGenFor("Skip This Section");
+
+// skips automatic generation for the calling mod.
+LethalConfigManager.SkipAutoGen();
 ```
 
 ### Listening to setting changes

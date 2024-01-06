@@ -12,8 +12,6 @@ namespace LethalConfig.MonoBehaviours.Components
     {
         protected BaseConfigItem baseConfigItem;
 
-        internal ConfigMenuAudioManager audioManager;
-
         public delegate void OnHoverHandler();
         public event OnHoverHandler OnHoverEnter;
         public event OnHoverHandler OnHoverExit;
@@ -39,7 +37,7 @@ namespace LethalConfig.MonoBehaviours.Components
 
         public virtual void ResetToDefault()
         {
-            audioManager.PlayConfirmSFX();
+            ConfigMenuManager.Instance.menuAudio.PlayConfirmSFX();
             baseConfigItem.ChangeToDefault();
             UpdateAppearance();
         }
@@ -56,13 +54,12 @@ namespace LethalConfig.MonoBehaviours.Components
 
         public void OnPointerEnter(PointerEventData eventData)
         {
-            OnHoverEnter();
-            audioManager.PlayHoverSFX();
+            OnHoverEnter?.Invoke();
         }
 
         public void OnPointerExit(PointerEventData eventData)
         {
-            OnHoverExit();
+            OnHoverExit?.Invoke();
         }
     }
 

@@ -14,14 +14,12 @@ namespace LethalConfig.MonoBehaviours
 
         public ConfigList configList;
         public DescriptionBox descriptionBox;
-        public ConfigMenuAudioManager audioManager;
 
         private List<ModListItem> _items;
 
         private void Awake()
         {
             _items = new List<ModListItem>();
-            audioManager = GameObject.Find("ConfigMenuAudioManager").GetComponent<ConfigMenuAudioManager>();
             BuildModList();
         }
 
@@ -47,10 +45,10 @@ namespace LethalConfig.MonoBehaviours
                 var listItem = modItem.GetComponent<ModListItem>();
                 listItem.mod = mod;
                 listItem.modSelected += ModSelected;
-                listItem.audioManager = audioManager;
                 listItem.OnHoverEnter += () =>
                 {
                     descriptionBox.ShowModInfo(mod);
+                    ConfigMenuManager.Instance.menuAudio.PlayHoverSFX();
                 };
                 listItem.OnHoverExit += () =>
                 {
@@ -62,7 +60,7 @@ namespace LethalConfig.MonoBehaviours
 
         private void ModSelected(Mod mod)
         {
-            audioManager.PlayConfirmSFX();
+            ConfigMenuManager.Instance.menuAudio.PlayConfirmSFX();
             configList.LoadConfigsForMod(mod);
 
             _items.First(i => i.mod == mod).SetSelected(true);

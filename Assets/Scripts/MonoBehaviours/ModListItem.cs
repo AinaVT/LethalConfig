@@ -18,8 +18,6 @@ namespace LethalConfig.MonoBehaviours
         public event OnHoverHandler OnHoverEnter;
         public event OnHoverHandler OnHoverExit;
 
-        internal ConfigMenuAudioManager audioManager;
-
         private Mod _mod;
         internal Mod mod
         {
@@ -50,13 +48,12 @@ namespace LethalConfig.MonoBehaviours
 
         public void OnPointerEnter(PointerEventData eventData)
         {
-            OnHoverEnter();
-            audioManager.PlayHoverSFX();
+            OnHoverEnter?.Invoke();
         }
 
         public void OnPointerExit(PointerEventData eventData)
         {
-            OnHoverExit();
+            OnHoverExit?.Invoke();
         }
 
         public string GetDescription()

@@ -44,7 +44,7 @@ namespace LethalConfig.MonoBehaviours.Components
         {
             baseConfigItem.CurrentBoxedValue = Enum.Parse(_enumType, _enumNames[index]);
             UpdateAppearance();
-            audioManager.PlayChangeValueSFX();
+            ConfigMenuManager.Instance.menuAudio.PlayChangeValueSFX();
         }
     }
 }

@@ -29,7 +29,7 @@ namespace LethalConfig.MonoBehaviours.Components
         {
             ConfigItem.CurrentValue = value;
             UpdateAppearance();
-            audioManager.PlayChangeValueSFX();
+            ConfigMenuManager.Instance.menuAudio.PlayChangeValueSFX();
         }
 
         public void OnPointerClicked(BaseEventData eventData)

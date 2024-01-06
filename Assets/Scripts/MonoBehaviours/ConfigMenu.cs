@@ -12,8 +12,6 @@ namespace LethalConfig.MonoBehaviours
     internal class ConfigMenu : MonoBehaviour
     {
         public ConfigList configList;
-        public ConfigMenuAudioManager audioManager;
-        private MenuManager menuManager;
 
         private void Awake()
         {
@@ -22,8 +20,6 @@ namespace LethalConfig.MonoBehaviours
 
         public void OnCancelButtonClicked()
         {
-            if (!EnsureMenuManagerInstance()) return;
-
             var mods = LethalConfigManager.Mods;
             foreach (var item in mods.SelectMany(m => m.Value.configItems))
             {
@@ -32,14 +28,12 @@ namespace LethalConfig.MonoBehaviours
 
             UpdateAppearanceOfCurrentComponents();
 
-            menuManager.DisableUIPanel(gameObject);
-            menuManager.PlayCancelSFX();
+            ConfigMenuManager.Instance.HideConfigMenu();
+            ConfigMenuManager.Instance.menuAudio.PlayCancelSFX();
         }
 
         public void OnApplyButtonClicked()
         {
-            if (!EnsureMenuManagerInstance()) return;
-
             var mods = LethalConfigManager.Mods;
             var itemsToSave = mods
                 .SelectMany(m => m.Value.configItems)
@@ -53,29 +47,15 @@ namespace LethalConfig.MonoBehaviours
 
             UpdateAppearanceOfCurrentComponents();
 
-            menuManager.PlayConfirmSFX();
+            ConfigMenuManager.Instance.menuAudio.PlayConfirmSFX();
 
             LogUtils.LogInfo($"Saved config values for {itemsToSave.Count} items.");
             LogUtils.LogInfo($"Modified {restartRequiredItems.Count} item(s) that requires a restart.");
             if (restartRequiredItems.Count > 0)
             {
                 // Show alert
-                menuManager.DisplayMenuNotification($"Some of the modified settings may require a restart to take effect.", "[OK]");
+                ConfigMenuManager.Instance.DisplayNotification($"Some of the modified settings may require a restart to take effect.");
             }
-        }
-
-        private bool EnsureMenuManagerInstance()
-        {
-            if (menuManager == null)
-            {
-                var menuManagerObject = GameObject.Find("MenuManager");
-                if (menuManagerObject == null) return false;
-
-                menuManager = menuManagerObject.GetComponent<MenuManager>();
-                if (menuManager == null) return false;
-            }
-
-            return true;
         }
 
         private void UpdateAppearanceOfCurrentComponents()

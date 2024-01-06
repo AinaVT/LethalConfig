@@ -34,7 +34,7 @@ namespace LethalConfig.MonoBehaviours.Components
         {
             ConfigItem.CurrentValue = MathF.Round(ConfigItem.MinValue + (ConfigItem.Step * (int)value), 4);
             UpdateAppearance();
-            audioManager.PlayChangeValueSFX();
+            ConfigMenuManager.Instance.menuAudio.PlayChangeValueSFX();
         }
 
         public void OnInputFieldEndEdit(string value)
@@ -44,7 +44,7 @@ namespace LethalConfig.MonoBehaviours.Components
                 ConfigItem.CurrentValue = Math.Clamp(newValue, ConfigItem.MinValue, ConfigItem.MaxValue);
             }
             UpdateAppearance();
-            audioManager.PlayChangeValueSFX();
+            ConfigMenuManager.Instance.menuAudio.PlayChangeValueSFX();
         }
 
         public override void UpdateAppearance()

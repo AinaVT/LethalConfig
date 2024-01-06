@@ -10,7 +10,7 @@ namespace LethalConfig
     {
         public ConfigMenuAudioManager menuAudio;
 
-        public ConfigMenuManager Instance { get; private set; }
+        public static ConfigMenuManager Instance { get; private set; }
 
         private void Awake()
         {
@@ -26,12 +26,12 @@ namespace LethalConfig
 
         public void ShowConfigMenu()
         {
-            FindObjectOfType<ConfigMenu>().gameObject.SetActive(true);
+            FindObjectOfType<ConfigMenu>(true)?.gameObject.SetActive(true);
         }
 
         public void HideConfigMenu() 
         {
-            FindObjectOfType<ConfigMenu>().gameObject.SetActive(false);
+            FindObjectOfType<ConfigMenu>()?.gameObject.SetActive(false);
         }
 
         public void DisplayNotification(string message)

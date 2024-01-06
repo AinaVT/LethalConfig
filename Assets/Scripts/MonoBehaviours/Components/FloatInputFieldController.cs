@@ -40,7 +40,7 @@ namespace LethalConfig.MonoBehaviours.Components
                 ConfigItem.CurrentValue = Math.Clamp(newValue, ConfigItem.MinValue, ConfigItem.MaxValue);
             }
             UpdateAppearance();
-            audioManager.PlayChangeValueSFX();
+            ConfigMenuManager.Instance.menuAudio.PlayChangeValueSFX();
         }
 
         public override void UpdateAppearance()

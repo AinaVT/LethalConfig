@@ -6,6 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using BepInEx.Configuration;
 using UnityEngine;
 
 namespace LethalConfig
@@ -30,6 +31,7 @@ namespace LethalConfig
                 .SelectMany(kv =>
                 {
                     return kv.Select(c => { c.Owner = kv.Key; return c; })
+                        .Where(c => !kv.Key.entriesToSkipAutoGen.Any(path => path.Matches(c)))
                         .Where(c => existingConfigsFlat.FirstOrDefault(ec => c.IsSameConfig(ec)) == null)
                         .GroupBy(c => c.Owner);
                 }).ToDictionary(kv => kv.Key, kv => kv.Select(c => c));
@@ -118,6 +120,36 @@ namespace LethalConfig
             if (mod == null) return;
 
             mod.modInfo.Description = description;
+        }
+
+        /// <summary>
+        /// Skip Automatic Generation for a specific section
+        /// </summary>
+        public static void SkipAutoGenFor(string configSection)
+        {
+            var mod = ModForAssembly(Assembly.GetCallingAssembly());
+
+            mod?.entriesToSkipAutoGen.Add(new ConfigEntryPath(configSection, "*"));
+        }
+
+        /// <summary>
+        /// Skip Automatic Generation for a specific <see cref="ConfigEntry{T}"/>
+        /// </summary>
+        public static void SkipAutoGenFor(ConfigEntryBase configEntryBase)
+        {
+            var mod = ModForAssembly(Assembly.GetCallingAssembly());
+            
+            mod?.entriesToSkipAutoGen.Add(new ConfigEntryPath(configEntryBase.Definition.Section, configEntryBase.Definition.Key));
+        }
+
+        /// <summary>
+        /// Skip Automatic Generation for your mod entirely
+        /// </summary>
+        public static void SkipAutoGen()
+        {
+            var mod = ModForAssembly(Assembly.GetCallingAssembly());
+            
+            mod?.entriesToSkipAutoGen.Add(new ConfigEntryPath("*", "*"));
         }
     } 
 }

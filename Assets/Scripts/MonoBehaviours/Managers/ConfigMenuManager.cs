@@ -33,8 +33,12 @@ namespace LethalConfig.MonoBehaviours.Managers
 
         public void DisplayNotification(string message, string button)
         {
-            var menuNotification = FindObjectOfType<ConfigMenuNotification>();
-            if (menuNotification == null) return;
+            var menuNotification = FindObjectOfType<ConfigMenuNotification>(true);
+            if (menuNotification == null)
+            {
+                LogUtils.LogWarning("Notification object not found");
+                return;
+            }
 
             menuNotification.SetNotificationContent(message, button);
             menuNotification.gameObject.SetActive(true);

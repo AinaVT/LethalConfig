@@ -1,6 +1,5 @@
+using LethalConfig.MonoBehaviours.Managers;
 using LethalConfig.Utils;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
@@ -33,19 +32,33 @@ namespace LethalConfig.Settings
                 var creditsButton = mainButtons.transform.Find("Credits").gameObject;
                 var menuNotification = menuContainer.transform.Find("MenuNotification").gameObject;
 
+                // Adding manager to scene
+                var manager = Object.Instantiate(Assets.ConfigMenuManagerPrefab);
+                manager.transform.SetParent(menuManager.transform.parent); // Same level as menu manager.
+                manager.transform.localPosition = Vector3.zero;
+
+                // Adding menu to scene
                 var configMenu = Object.Instantiate(Assets.ConfigMenuPrefab);
                 configMenu.transform.SetParent(menuContainer.transform, false);
                 configMenu.transform.localPosition = Vector3.zero;
                 configMenu.transform.localScale = Vector3.one;
                 configMenu.transform.localRotation = Quaternion.identity;
-                configMenu.transform.SetSiblingIndex(menuNotification.transform.GetSiblingIndex());
                 configMenu.SetActive(false);
 
+                // Adding notification ui to scene
+                var notification = Object.Instantiate(Assets.ConfigMenuNotificationPrefab);
+                notification.transform.SetParent(menuContainer.transform.parent, false);
+                notification.transform.localPosition = Vector3.zero;
+                notification.transform.localScale = Vector3.one;
+                notification.transform.localRotation = Quaternion.identity;
+                notification.SetActive(false);
+
+                // Cloning main menu button for opening our menu
                 var clonedButton = Object.Instantiate(creditsButton, mainButtons.transform);
                 clonedButton.GetComponent<Button>().onClick.RemoveAllListeners();
                 clonedButton.GetComponent<Button>().onClick = new Button.ButtonClickedEvent();
-                clonedButton.GetComponent<Button>().onClick.AddListener(delegate { menuManager.EnableUIPanel(configMenu); });
-                clonedButton.GetComponent<Button>().onClick.AddListener(delegate { menuManager.PlayConfirmSFX(); });
+                clonedButton.GetComponent<Button>().onClick.AddListener(delegate { ConfigMenuManager.Instance.ShowConfigMenu(); });
+                clonedButton.GetComponent<Button>().onClick.AddListener(delegate { ConfigMenuManager.Instance.menuAudio.PlayConfirmSFX(); });
 
                 clonedButton.GetComponentInChildren<TextMeshProUGUI>().text = "> LethalConfig";
 

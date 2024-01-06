@@ -1,9 +1,6 @@
 using BepInEx;
 using LethalConfig.Mods;
-using System.Collections;
-using System.Collections.Generic;
 using System.Reflection;
-using UnityEngine;
 
 namespace LethalConfig.Utils
 {

@@ -1,9 +1,5 @@
 using LethalConfig.ConfigItems;
-using LethalConfig.MonoBehaviours.Components;
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
-using UnityEngine;
+using LethalConfig.MonoBehaviours.Managers;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 

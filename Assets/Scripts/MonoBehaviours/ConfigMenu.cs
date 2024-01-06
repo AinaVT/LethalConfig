@@ -1,9 +1,6 @@
-using LethalConfig;
-using LethalConfig.MonoBehaviours;
 using LethalConfig.MonoBehaviours.Components;
+using LethalConfig.MonoBehaviours.Managers;
 using LethalConfig.Utils;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 

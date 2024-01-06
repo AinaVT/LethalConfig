@@ -1,10 +1,7 @@
 using LethalConfig.ConfigItems;
-using LethalConfig.Utils;
+using LethalConfig.MonoBehaviours.Managers;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
-using UnityEngine;
 using UnityEngine.UI;
 
 namespace LethalConfig.MonoBehaviours.Components

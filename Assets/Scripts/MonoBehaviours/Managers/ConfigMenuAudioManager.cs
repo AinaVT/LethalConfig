@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-namespace LethalConfig.MonoBehaviours
+namespace LethalConfig.MonoBehaviours.Managers
 {
     internal class ConfigMenuAudioManager : MonoBehaviour
     {

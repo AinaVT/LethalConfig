@@ -1,10 +1,7 @@
-using LethalConfig.MonoBehaviours;
 using LethalConfig.Utils;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-namespace LethalConfig
+namespace LethalConfig.MonoBehaviours.Managers
 {
     internal class ConfigMenuManager : MonoBehaviour
     {
@@ -14,13 +11,11 @@ namespace LethalConfig
 
         private void Awake()
         {
-            LogUtils.LogInfo("Create Config Menu Manager!");
             Instance = this;
         }
 
         private void OnDestroy()
         {
-            LogUtils.LogInfo("Destroy Config Menu Manager!");
             Instance = null;
         }
 

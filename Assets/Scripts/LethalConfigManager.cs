@@ -2,7 +2,6 @@ using LethalConfig.ConfigItems;
 using LethalConfig.Mods;
 using LethalConfig.AutoConfig;
 using LethalConfig.Utils;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;

@@ -122,6 +122,9 @@ namespace LethalConfig
             mod.modInfo.Description = description;
         }
 
+        /// <summary>
+        /// Skip Automatic Generation for a specific section
+        /// </summary>
         public static void SkipAutoGenFor(string configSection)
         {
             var mod = ModForAssembly(Assembly.GetCallingAssembly());
@@ -129,11 +132,24 @@ namespace LethalConfig
             mod?.entriesToSkipAutoGen.Add(new ConfigEntryPath(configSection, "*"));
         }
 
+        /// <summary>
+        /// Skip Automatic Generation for a specific <see cref="ConfigEntry{T}"/>
+        /// </summary>
         public static void SkipAutoGenFor(ConfigEntryBase configEntryBase)
         {
             var mod = ModForAssembly(Assembly.GetCallingAssembly());
             
             mod?.entriesToSkipAutoGen.Add(new ConfigEntryPath(configEntryBase.Definition.Section, configEntryBase.Definition.Key));
+        }
+
+        /// <summary>
+        /// Skip Automatic Generation for your mod entirely
+        /// </summary>
+        public static void SkipAutoGen()
+        {
+            var mod = ModForAssembly(Assembly.GetCallingAssembly());
+            
+            mod?.entriesToSkipAutoGen.Add(new ConfigEntryPath("*", "*"));
         }
     } 
 }

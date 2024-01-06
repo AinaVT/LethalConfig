@@ -23,12 +23,7 @@ namespace LethalConfig.MonoBehaviours.Managers
 
         public void ShowConfigMenu()
         {
-            FindObjectOfType<ConfigMenu>(true)?.gameObject.SetActive(true);
-        }
-
-        public void HideConfigMenu() 
-        {
-            FindObjectOfType<ConfigMenu>()?.gameObject.SetActive(false);
+            FindObjectOfType<ConfigMenu>(true)?.Open();
         }
 
         public void DisplayNotification(string message, string button)
@@ -41,7 +36,7 @@ namespace LethalConfig.MonoBehaviours.Managers
             }
 
             menuNotification.SetNotificationContent(message, button);
-            menuNotification.gameObject.SetActive(true);
+            menuNotification.Open();
             EventSystem.current.SetSelectedGameObject(menuNotification.GetComponentInChildren<Button>().gameObject);
         }
     }

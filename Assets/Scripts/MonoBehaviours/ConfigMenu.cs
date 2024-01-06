@@ -9,10 +9,27 @@ namespace LethalConfig.MonoBehaviours
     internal class ConfigMenu : MonoBehaviour
     {
         public ConfigList configList;
+        public Animator menuAnimator;
 
         private void Awake()
         {
             LethalConfigManager.AutoGenerateMissingConfigsIfNeeded();
+        }
+
+        public void Open()
+        {
+            gameObject.SetActive(true);
+            menuAnimator.SetTrigger("Open");
+        }
+
+        public void Close()
+        {
+            menuAnimator.SetTrigger("Close");
+        }
+
+        public void OnCloseAnimationEnd()
+        {
+            gameObject.SetActive(false);
         }
 
         public void OnCancelButtonClicked()
@@ -25,7 +42,7 @@ namespace LethalConfig.MonoBehaviours
 
             UpdateAppearanceOfCurrentComponents();
 
-            ConfigMenuManager.Instance.HideConfigMenu();
+            Close();
             ConfigMenuManager.Instance.menuAudio.PlayCancelSFX();
         }
 

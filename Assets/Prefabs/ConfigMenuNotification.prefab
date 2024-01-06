@@ -307,7 +307,7 @@ GameObject:
   - component: {fileID: 5356583053699393484}
   - component: {fileID: 3378480688044928540}
   m_Layer: 5
-  m_Name: Container
+  m_Name: NotificationWindow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -323,7 +323,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5633061286677004082}
   - {fileID: 1285707561214632696}
@@ -560,6 +560,8 @@ GameObject:
   - component: {fileID: 5386422196970997913}
   - component: {fileID: 7541659755487068162}
   - component: {fileID: 3156696091369353351}
+  - component: {fileID: 4893997148961520618}
+  - component: {fileID: 1176283474456313605}
   m_Layer: 5
   m_Name: ConfigMenuNotification
   m_TagString: Untagged
@@ -639,6 +641,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   messageTextComponent: {fileID: 713596244141259622}
   buttonTextComponent: {fileID: 1876972480508639915}
+  notificationAnimator: {fileID: 4893997148961520618}
+--- !u!95 &4893997148961520618
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8853282203080296739}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c2760db470583ca49a068e3af73190c2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!225 &1176283474456313605
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8853282203080296739}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &8858229636851931268
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,6 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using BepInEx.Configuration;
 using UnityEngine;
 
 namespace LethalConfig
@@ -30,6 +31,7 @@ namespace LethalConfig
                 .SelectMany(kv =>
                 {
                     return kv.Select(c => { c.Owner = kv.Key; return c; })
+                        .Where(c => !kv.Key.entriesToSkipAutoGen.Any(path => path.Matches(c)))
                         .Where(c => existingConfigsFlat.FirstOrDefault(ec => c.IsSameConfig(ec)) == null)
                         .GroupBy(c => c.Owner);
                 }).ToDictionary(kv => kv.Key, kv => kv.Select(c => c));
@@ -118,6 +120,20 @@ namespace LethalConfig
             if (mod == null) return;
 
             mod.modInfo.Description = description;
+        }
+
+        public static void SkipAutoGenFor(string configSection)
+        {
+            var mod = ModForAssembly(Assembly.GetCallingAssembly());
+
+            mod?.entriesToSkipAutoGen.Add(new ConfigEntryPath(configSection, "*"));
+        }
+
+        public static void SkipAutoGenFor(ConfigEntryBase configEntryBase)
+        {
+            var mod = ModForAssembly(Assembly.GetCallingAssembly());
+            
+            mod?.entriesToSkipAutoGen.Add(new ConfigEntryPath(configEntryBase.Definition.Section, configEntryBase.Definition.Key));
         }
     } 
 }

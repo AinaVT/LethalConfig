@@ -8,57 +8,9 @@ using UnityEngine.UI;
 
 namespace LethalConfig.Settings
 {
-    internal static class SettingsUI
+    internal static class MenusUtils
     {
-        private static bool hasInitialized = false;
-
-        internal static void Init()
-        {
-            if (hasInitialized) return;
-
-            SceneManager.sceneLoaded += OnSceneLoaded;
-            hasInitialized = true;
-        }
-
-        private static void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-        {
-            switch (scene.name)
-            {
-                case "MainMenu":
-                    LoadUIForMainMenu();
-                    break;
-                case "SampleSceneRelay":
-                    LoadUIForQuickMenu(scene.GetRootGameObjects().First(g => g.name == "Systems"));
-                    break;
-            }
-        }
-
-        private static void LoadUIForMainMenu()
-        {
-            LogUtils.LogInfo("Injecting mod config menu into main menu...");
-
-            var menuContainer = GameObject.Find("MenuContainer");
-            var mainButtonsTransform = menuContainer.transform.Find("MainButtons");
-            var quitButton = mainButtonsTransform.Find("QuitButton").gameObject;
-
-            InjectMenu(menuContainer.transform, mainButtonsTransform, quitButton);
-        }
-
-        private static void LoadUIForQuickMenu(GameObject systems)
-        {
-            LogUtils.LogInfo("Injecting mod config menu into in-game quick menu...");
-
-            var quickMenu = systems.transform
-                .Find("UI")
-                .Find("Canvas")
-                .Find("QuickMenu");
-            var mainButtonsTransform = quickMenu.transform.Find("MainButtons");
-            var quitButton = mainButtonsTransform.Find("Quit").gameObject;
-
-            InjectMenu(quickMenu.transform, mainButtonsTransform, quitButton);
-        }
-
-        private static void InjectMenu(Transform parentTransform, Transform mainButtonsTransform, GameObject quitButton)
+        internal static void InjectMenu(Transform parentTransform, Transform mainButtonsTransform, GameObject quitButton)
         {
             // Adding manager to scene
             var manager = Object.Instantiate(Assets.ConfigMenuManagerPrefab);
@@ -92,7 +44,7 @@ namespace LethalConfig.Settings
 
             // Offsets all buttons inside the main buttons.
             // This is what makes me wish the game used a vertical layout group :T
-            var buttonsList = mainButtonsTransform.GetComponentsInChildren<Button>(true)
+            var buttonsList = mainButtonsTransform.GetComponentsInChildren<Button>()
                 .Select(b => b.gameObject);
 
             // Gets the smallest distance between two buttons. Needs this since it turns out different
@@ -100,11 +52,14 @@ namespace LethalConfig.Settings
             // This is awful and would also be unnecessary if the game used a vertial layout group
             // Oh well..
             var positions = buttonsList
+                .Where(b => b != clonedButton)
                 .Select(b => b.transform as RectTransform)
                 .Select(t => t.anchoredPosition.y);
-            var offset = positions
-                .Zip(positions.Skip(1), (y1, y2) => Mathf.Abs(y2 - y1))
-                .Max();
+            var offsets = positions
+                .Zip(positions.Skip(1), (y1, y2) => Mathf.Abs(y2 - y1));
+            var offset = offsets.Min();
+
+            LogUtils.LogInfo($"OFFSETS: {string.Join(", ", offsets.Select(o => o.ToString()))}");
 
             foreach (var button in buttonsList.Where(g => g != quitButton))
             {

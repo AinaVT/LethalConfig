@@ -36,7 +36,6 @@ namespace LethalConfig
 
             LogUtils.Init(PluginInfo.Guid);
             Assets.Init();
-            SettingsUI.Init();
 
             harmony = new Harmony(PluginInfo.Guid);
             harmony.PatchAll();

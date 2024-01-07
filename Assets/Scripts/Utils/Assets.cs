@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace LethalConfig.Utils
@@ -8,6 +6,8 @@ namespace LethalConfig.Utils
     {
         private static AssetBundle assetBundle;
 
+        internal static GameObject ConfigMenuManagerPrefab;
+        internal static GameObject ConfigMenuNotificationPrefab;
         internal static GameObject ConfigMenuPrefab;
         internal static GameObject ModListItemPrefab;
         internal static GameObject SectionHeaderPrefab;
@@ -33,6 +33,8 @@ namespace LethalConfig.Utils
             else
             {
                 // UI Prefabs
+                LoadAsset("prefabs/ConfigMenuManager.prefab", out ConfigMenuManagerPrefab);
+                LoadAsset("prefabs/ConfigMenuNotification.prefab", out ConfigMenuNotificationPrefab);
                 LoadAsset("prefabs/ConfigMenu.prefab", out ConfigMenuPrefab);
                 LoadAsset("prefabs/ModListItem.prefab", out ModListItemPrefab);
                 LoadAsset("prefabs/components/SectionHeader.prefab", out SectionHeaderPrefab);

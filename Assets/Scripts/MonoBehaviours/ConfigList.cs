@@ -1,9 +1,7 @@
-using LethalConfig.ConfigItems;
 using LethalConfig.Mods;
 using LethalConfig.MonoBehaviours.Components;
+using LethalConfig.MonoBehaviours.Managers;
 using LethalConfig.Utils;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -13,7 +11,6 @@ namespace LethalConfig.MonoBehaviours
     {
         public GameObject listContainerObject;
         public DescriptionBox descriptionBox;
-        public ConfigMenuAudioManager audioManager;
 
         internal void LoadConfigsForMod(Mod mod)
         {
@@ -34,7 +31,6 @@ namespace LethalConfig.MonoBehaviours
                 {
                     var configItemObject = configItem.CreateGameObjectForConfig();
                     var controller = configItemObject.GetComponent<ModConfigController>();
-                    controller.audioManager = audioManager;
                     var result = controller.SetConfigItem(configItem);
                     if (!result)
                     {
@@ -49,10 +45,7 @@ namespace LethalConfig.MonoBehaviours
                     controller.OnHoverEnter += () =>
                     {
                         descriptionBox.ShowConfigInfo(controller.GetDescription());
-                    };
-                    controller.OnHoverExit += () =>
-                    {
-                        //descriptionBox.HideConfigInfo();
+                        ConfigMenuManager.Instance.menuAudio.PlayHoverSFX();
                     };
                 }
             }

@@ -1,9 +1,5 @@
-using LethalConfig.Utils;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace LethalConfig.MonoBehaviours
 {
@@ -19,20 +15,9 @@ namespace LethalConfig.MonoBehaviours
             textComponent.text = text;
         }
 
-        private void Awake()
+        public void SetTarget(GameObject gameObject)
         {
-            rectTransform = transform as RectTransform;
-            uiCamera = GameObject.Find("UICamera").GetComponent<Camera>();
-        }
-
-        private void LateUpdate()
-        {
-            var mousePos = Mouse.current.position.ReadValue();
-
-            if (RectTransformUtility.ScreenPointToLocalPointInRectangle(transform.parent as RectTransform, mousePos, uiCamera, out var convertedPoint))
-            {
-                rectTransform.localPosition = convertedPoint;
-            }
+            transform.position = gameObject.transform.position;
         }
 
         

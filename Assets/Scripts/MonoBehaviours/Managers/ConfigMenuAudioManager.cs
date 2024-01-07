@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-namespace LethalConfig.MonoBehaviours
+namespace LethalConfig.MonoBehaviours.Managers
 {
     internal class ConfigMenuAudioManager : MonoBehaviour
     {
@@ -12,36 +10,31 @@ namespace LethalConfig.MonoBehaviours
         public AudioClip hoverSFX;
         public AudioClip changeValueSFX;
 
-        private MenuManager menuManager;
-
-        private void Awake()
-        {
-            menuManager = GameObject.Find("MenuManager").GetComponent<MenuManager>();
-        }
+        public AudioSource audioSource;
 
         public void PlayConfirmSFX()
         {
-            menuManager.MenuAudio.PlayOneShot(confirmSFX);
+            audioSource.PlayOneShot(confirmSFX);
         }
 
         public void PlayCancelSFX()
         {
-            menuManager.MenuAudio.PlayOneShot(cancelSFX);
+            audioSource.PlayOneShot(cancelSFX);
         }
 
         public void PlayHoverSFX()
         {
-            menuManager.MenuAudio.PlayOneShot(hoverSFX);
+            audioSource.PlayOneShot(hoverSFX);
         }
 
         public void PlaySelectSFX()
         {
-            menuManager.MenuAudio.PlayOneShot(selectSFX);
+            audioSource.PlayOneShot(selectSFX);
         }
 
         public void PlayChangeValueSFX()
         {
-            menuManager.MenuAudio.PlayOneShot(changeValueSFX);
+            audioSource.PlayOneShot(changeValueSFX);
         }
     }
 }

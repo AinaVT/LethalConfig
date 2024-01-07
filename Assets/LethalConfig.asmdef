@@ -12,7 +12,8 @@
     "precompiledReferences": [
         "BepInEx-stripped.dll",
         "Assembly-CSharp.dll",
-        "Newtonsoft.Json.dll"
+        "Newtonsoft.Json.dll",
+        "0Harmony-stripped.dll"
     ],
     "autoReferenced": true,
     "defineConstraints": [],

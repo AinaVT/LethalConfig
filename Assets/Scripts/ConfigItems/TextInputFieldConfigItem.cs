@@ -1,10 +1,6 @@
 using BepInEx.Configuration;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
 using LethalConfig.Utils;
-using UnityEngine.EventSystems;
 using LethalConfig.ConfigItems.Options;
 
 namespace LethalConfig.ConfigItems

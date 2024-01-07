@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -11,7 +9,7 @@ namespace LethalConfig.MonoBehaviours
 
         public void OnPointerEnter(PointerEventData eventData)
         {
-            TooltipSystem.Show(tooltipText);
+            TooltipSystem.Show(tooltipText, gameObject);
         }
 
         public void OnPointerExit(PointerEventData eventData)

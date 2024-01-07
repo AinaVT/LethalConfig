@@ -1,11 +1,8 @@
-using LethalConfig.MonoBehaviours.Components;
+using LethalConfig.MonoBehaviours.Managers;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
-using UnityEngine;
-using UnityEngine.UI;
 
 namespace LethalConfig.MonoBehaviours.Components
 {
@@ -44,7 +41,7 @@ namespace LethalConfig.MonoBehaviours.Components
         {
             baseConfigItem.CurrentBoxedValue = Enum.Parse(_enumType, _enumNames[index]);
             UpdateAppearance();
-            audioManager.PlayChangeValueSFX();
+            ConfigMenuManager.Instance.menuAudio.PlayChangeValueSFX();
         }
     }
 }

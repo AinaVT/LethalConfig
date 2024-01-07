@@ -1,6 +1,4 @@
 using LethalConfig.Mods;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -17,8 +15,6 @@ namespace LethalConfig.MonoBehaviours
         public delegate void OnHoverHandler();
         public event OnHoverHandler OnHoverEnter;
         public event OnHoverHandler OnHoverExit;
-
-        internal ConfigMenuAudioManager audioManager;
 
         private Mod _mod;
         internal Mod mod
@@ -50,13 +46,12 @@ namespace LethalConfig.MonoBehaviours
 
         public void OnPointerEnter(PointerEventData eventData)
         {
-            OnHoverEnter();
-            audioManager.PlayHoverSFX();
+            OnHoverEnter?.Invoke();
         }
 
         public void OnPointerExit(PointerEventData eventData)
         {
-            OnHoverExit();
+            OnHoverExit?.Invoke();
         }
 
         public string GetDescription()

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace LethalConfig.MonoBehaviours
@@ -15,12 +13,13 @@ namespace LethalConfig.MonoBehaviours
             instance = this;
         }
 
-        public static void Show(string content)
+        public static void Show(string content, GameObject target)
         {
             if (instance == null) return;
 
             instance.tooltip.gameObject.SetActive(true);
             instance.tooltip.SetText(content);
+            instance.tooltip.SetTarget(target);
         }
 
         public static void Hide()

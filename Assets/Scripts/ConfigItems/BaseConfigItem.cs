@@ -1,11 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using BepInEx;
 using BepInEx.Configuration;
-using System.Linq;
-using System;
-using System.Reflection;
 using LethalConfig.Mods;
 using LethalConfig.ConfigItems.Options;
 

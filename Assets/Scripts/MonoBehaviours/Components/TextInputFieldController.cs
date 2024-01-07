@@ -1,10 +1,7 @@
 using LethalConfig.ConfigItems;
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using LethalConfig.MonoBehaviours.Managers;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace LethalConfig.MonoBehaviours.Components
 {
@@ -22,7 +19,7 @@ namespace LethalConfig.MonoBehaviours.Components
         {
             ConfigItem.CurrentValue = value;
             UpdateAppearance();
-            audioManager.PlayChangeValueSFX();
+            ConfigMenuManager.Instance.menuAudio.PlayChangeValueSFX();
         }
 
         public override void UpdateAppearance()

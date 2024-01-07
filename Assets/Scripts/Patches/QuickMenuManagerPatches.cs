@@ -1,6 +1,7 @@
 using HarmonyLib;
 using LethalConfig.MonoBehaviours;
 using LethalConfig.Settings;
+using LethalConfig.Utils;
 using UnityEngine;
 
 namespace LethalConfig.Patches
@@ -22,8 +23,8 @@ namespace LethalConfig.Patches
         [HarmonyPostfix]
         public static void StartPostFix(QuickMenuManager __instance)
         {
-            var quickMenu = __instance.GetComponentInParent<Canvas>()?.transform
-                .Find("QuickMenu");
+            LogUtils.LogInfo("Injecting mod config menu into quick menu...");
+            var quickMenu = __instance.menuContainer;
             var mainButtonsTransform = quickMenu.transform.Find("MainButtons");
             var quitButton = mainButtonsTransform.Find("Quit").gameObject;
 

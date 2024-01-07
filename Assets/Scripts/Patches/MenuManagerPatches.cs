@@ -1,6 +1,7 @@
 using HarmonyLib;
 using LethalConfig.MonoBehaviours;
 using LethalConfig.Settings;
+using LethalConfig.Utils;
 using System.Collections;
 using UnityEngine;
 
@@ -28,6 +29,8 @@ namespace LethalConfig.Patches
 
         private static void InjectToMainMenu()
         {
+            LogUtils.LogInfo("Injecting mod config menu into main menu...");
+
             var menuContainer = GameObject.Find("MenuContainer");
             var mainButtonsTransform = menuContainer.transform.Find("MainButtons");
             var quitButton = mainButtonsTransform.Find("QuitButton").gameObject;

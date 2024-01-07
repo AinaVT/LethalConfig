@@ -59,8 +59,6 @@ namespace LethalConfig.Settings
                 .Zip(positions.Skip(1), (y1, y2) => Mathf.Abs(y2 - y1));
             var offset = offsets.Min();
 
-            LogUtils.LogInfo($"OFFSETS: {string.Join(", ", offsets.Select(o => o.ToString()))}");
-
             foreach (var button in buttonsList.Where(g => g != quitButton))
             {
                 button.GetComponent<RectTransform>().anchoredPosition += new Vector2(0, offset);

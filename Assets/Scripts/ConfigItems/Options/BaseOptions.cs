@@ -3,6 +3,12 @@ namespace LethalConfig.ConfigItems.Options
 {
     public class BaseOptions
     {
+        public string Name { get; set; } = null;
+
+        public string Description { get; set; } = null;
+
+        public string Section { get; set; } = null;
+
         public bool RequiresRestart { get; set; } = true;
         
         public delegate CanModifyResult CanModifyDelegate();

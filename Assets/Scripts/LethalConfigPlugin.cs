@@ -14,7 +14,7 @@ namespace LethalConfig
     {
         public const string Guid = "ainavt.lc.lethalconfig";
         public const string Name = "LethalConfig";
-        public const string Version = "1.1.0";
+        public const string Version = "1.2.0";
     }
 
     [BepInPlugin(PluginInfo.Guid, PluginInfo.Name, PluginInfo.Version)]
@@ -42,9 +42,6 @@ namespace LethalConfig
             harmony.PatchAll();
 
             CreateExampleConfigs();
-
-            LethalConfigManager.SetModIcon(Assets.LethalConfigModIcon);
-            LethalConfigManager.SetModDescription("Provides an in-game config menu for players to edit their configs, and an API for other mods to use and customize their entries.");
 
             LogUtils.LogInfo("LethalConfig loaded!");
         }

@@ -60,6 +60,9 @@ namespace LethalConfig
             hasGeneratedMissingConfigs = true;
         }
 
+        /// <summary>
+        /// Adds a config item to the calling's mod entry UI.
+        /// </summary>
         public static void AddConfigItem(BaseConfigItem configItem)
         {
             if (AddConfigItemForAssembly(configItem, Assembly.GetCallingAssembly()))
@@ -101,6 +104,9 @@ namespace LethalConfig
             return null;
         }
 
+        /// <summary>
+        /// Overwrite the mod icon used when displaying the calling's mod entry.
+        /// </summary>
         public static void SetModIcon(Sprite sprite)
         {
             if (sprite == null) return;
@@ -111,6 +117,9 @@ namespace LethalConfig
             mod.modInfo.Icon = sprite;
         }
 
+        /// <summary>
+        /// Overwrite the mod description used when displaying the calling's mod entry.
+        /// </summary>
         public static void SetModDescription(string description)
         {
             if (description == null) return;

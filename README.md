@@ -13,6 +13,8 @@ Inspired by Rune580's [RiskOfOptions](https://github.com/Rune580/RiskOfOptions)
   - [Setting up](#setting-up)
   - [Adding a ConfigItem](#adding-a-configitem)
   - [ConfigItem restart requirement](#configitem-restart-requirement)
+  - [ConfigItem CanModifyCallback](#configitem-canmodifycallback)
+  - [Disabling/Skipping Automatic Generation](#disablingskipping-automatic-generation)
   - [Listening to setting changes](#listening-to-setting-changes)
   - [Customizing mod's icon and description](#customizing-mods-icon-and-description)
 - [Building LethalConfig](#building-lethalconfig)
@@ -113,6 +115,48 @@ var exampleSlider = new IntSliderConfigItem(configEntry, new IntSliderOptions
 
 // Using the bool constructor overload
 var exampleSlider = new IntSliderConfigItem(configEntry, requiresRestart: false);
+```
+
+### ConfigItem CanModifyCallback
+
+By default all items can be modified at runtime without restriction. This may not be desirable for some mods as they might need to conditionally disallow modifications.
+
+Mods can use the CanModifyCallback of the constructor of the config items.
+
+```csharp
+var exampleCheckbox = new BoolCheckBoxConfigItem(configEntry, new BaseOptions
+{
+    CanModifyCallback = CheckboxCanModifyCallback
+});
+
+// This gets called everytime the config entry gets displayed in the UI.
+private static CanModifyResult CheckboxCanModifyCallback()
+{
+    // Return true if the entry can be modified.
+    // Return false if it should be modified.
+    // When returning false You should also include a message for the reason
+    // that the config entry cannot be modified.
+    return (false, "Example reason");
+    // you can also return only a bool, or CanModifyResult.True()/CanModifyResult.False(reason)
+}
+```
+
+### Disabling/Skipping Automatic Generation
+
+You can skip automatic generation per ConfigEntry, Config section, or for your entire mod.
+
+```csharp
+var configEntry = Config.Bind("General", "Example", 0, "This is an example component!");
+var skippedConfigEntry = Config.Bind("Skip This Section", "Example 2", 0, "This is an example component!");
+
+// skips automatic generation for the ConfigEntry.
+LethalConfigManager.SkipAutoGenFor(configEntry);
+
+// skips automatic generation for the Config section "Skip This Section".
+LethalConfigManager.SkipAutoGenFor("Skip This Section");
+
+// skips automatic generation for the calling mod.
+LethalConfigManager.SkipAutoGen();
 ```
 
 ### Listening to setting changes

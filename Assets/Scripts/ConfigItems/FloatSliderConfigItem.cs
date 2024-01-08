@@ -14,8 +14,10 @@ namespace LethalConfig.ConfigItems
         public FloatSliderConfigItem(ConfigEntry<float> configEntry, bool requiresRestart) : this(configEntry, GetDefaultOptions(configEntry, requiresRestart)) { }
         public FloatSliderConfigItem(ConfigEntry<float> configEntry, FloatSliderOptions options) : base(configEntry, options)
         {
-            MinValue = options.Min;
-            MaxValue = options.Max;
+            var acceptableValues = configEntry.Description.AcceptableValues;
+
+            MinValue = options.Min ?? (acceptableValues as AcceptableValueRange<float>)?.MinValue ?? 0;
+            MaxValue = options.Max ?? (acceptableValues as AcceptableValueRange<float>)?.MaxValue ?? 1;
         }
 
         internal override GameObject CreateGameObjectForConfig()
@@ -30,7 +32,7 @@ namespace LethalConfig.ConfigItems
             return new()
             {
                 Min = (acceptableValues as AcceptableValueRange<float>)?.MinValue ?? 0,
-                Max = (acceptableValues as AcceptableValueRange<float>)?.MaxValue ?? 100,
+                Max = (acceptableValues as AcceptableValueRange<float>)?.MaxValue ?? 1,
                 RequiresRestart = requiresRestart
             };
         }

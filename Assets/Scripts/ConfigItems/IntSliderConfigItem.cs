@@ -2,6 +2,7 @@ using BepInEx.Configuration;
 using UnityEngine;
 using LethalConfig.Utils;
 using LethalConfig.ConfigItems.Options;
+using System;
 
 namespace LethalConfig.ConfigItems
 {
@@ -14,8 +15,10 @@ namespace LethalConfig.ConfigItems
         public IntSliderConfigItem(ConfigEntry<int> configEntry, bool requiresRestart) : this(configEntry, GetDefaultOptions(configEntry, requiresRestart)) { }
         public IntSliderConfigItem(ConfigEntry<int> configEntry, IntSliderOptions options) : base(configEntry, options)
         {
-            MinValue = options.Min;
-            MaxValue = options.Max;
+            var acceptableValues = configEntry.Description.AcceptableValues;
+
+            MinValue = options.Min ?? (acceptableValues as AcceptableValueRange<int>)?.MinValue ?? 0;
+            MaxValue = options.Max ?? (acceptableValues as AcceptableValueRange<int>)?.MaxValue ?? 100;
         }
 
         internal override GameObject CreateGameObjectForConfig()

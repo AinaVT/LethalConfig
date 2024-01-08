@@ -14,8 +14,10 @@ namespace LethalConfig.ConfigItems
         public IntInputFieldConfigItem(ConfigEntry<int> configEntry, bool requiresRestart) : this(configEntry, GetDefaultOptions(configEntry, requiresRestart)) { }
         public IntInputFieldConfigItem(ConfigEntry<int> configEntry, IntInputFieldOptions options) : base(configEntry, options)
         {
-            MinValue = options.Min;
-            MaxValue = options.Max;
+            var acceptableValues = configEntry.Description.AcceptableValues;
+
+            MinValue = options.Min ?? (acceptableValues as AcceptableValueRange<int>)?.MinValue ?? int.MinValue;
+            MaxValue = options.Max ?? (acceptableValues as AcceptableValueRange<int>)?.MaxValue ?? int.MaxValue;
         }
 
         internal override GameObject CreateGameObjectForConfig()

@@ -3,6 +3,11 @@ namespace LethalConfig.ConfigItems.Options
 {
     public class BaseOptions
     {
+        public static BaseOptions Default { get; } = new()
+        {
+            RequiresRestart = true
+        };
+
         /// <summary>
         /// Overrides the name of the item displayed in the UI.
         /// Visual change only.

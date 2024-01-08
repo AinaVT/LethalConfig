@@ -1,4 +1,4 @@
-![LethalConfig Icon](.github/images/icon.png "LethalConfig icon")
+![LethalConfig Icon](https://github.com/AinaVT/LethalConfig/blob/main/.github/images/icon.png?raw=true "LethalConfig icon")
 
 # LethalConfig <!-- omit in toc -->
 
@@ -40,7 +40,7 @@ Currently, LethalConfig allows developers to add the following types of interfac
 | Generic Button | `-` | `GenericButtonConfigItem`
 
 
-![LethalConfig Menu Example](.github/images/menu-example.gif "An example of the LethalConfig menu")
+![LethalConfig Menu Example](https://github.com/AinaVT/LethalConfig/blob/main/.github/images/menu-example.gif?raw=true "An example of the LethalConfig menu")
 \
 *An example of the LethalConfig menu and its element types*
 
@@ -97,7 +97,7 @@ LethalConfigManager.AddConfigItem(exampleSlider);
 ```
 
 And that's it, you now have created your first component!
-![Slider example](.github/images/slider-example.png)
+![Slider example](https://github.com/AinaVT/LethalConfig/blob/main/.github/images/slider-example.png?raw=true)
 
 LethalConfig automatically picks up some of your mod info, and it automatically creates sections based on the section of the provided ConfigEntry, so you do not have to worry about any extra setup in terms of layout.
 
@@ -232,9 +232,9 @@ If you want to contribute and/or need to build LethalConfig yourself, just open 
 
 With the project setup, simply select the `Publish` pipeline and the `LethalConfigManifest` at the top of the project, then click `execute`. After it's done, it should generate a zip file under the `ThunderKit/Staging` folder containing the mod.
 
-![Pipeline and Manifest](.github/images/pipeline-and-manifest.png)
+![Pipeline and Manifest](https://github.com/AinaVT/LethalConfig/blob/main/.github/images/pipeline-and-manifest.png?raw=true)
 
-![Pipeline and Manifest](.github/images/publish-success.png)
+![Pipeline and Manifest](https://github.com/AinaVT/LethalConfig/blob/main/.github/images/publish-success.png?raw=true)
 
 ## Issues and Suggestions
 

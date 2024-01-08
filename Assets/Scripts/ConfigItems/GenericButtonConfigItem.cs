@@ -14,7 +14,8 @@ namespace LethalConfig.ConfigItems
             Name = name,
             Description = description,
             ButtonText = buttonText,
-            ButtonHandler = buttonHandler
+            ButtonHandler = buttonHandler,
+            RequiresRestart = false
         }) { }
 
         internal override GameObject CreateGameObjectForConfig()

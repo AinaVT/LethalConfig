@@ -15,8 +15,8 @@ namespace LethalConfig.Patches
         {
             var configMenu = __instance.menuContainer.transform.GetComponentInChildren<ConfigMenu>(true);
             var notification = __instance.menuContainer.transform.GetComponentInChildren<ConfigMenuNotification>(true);
-            configMenu.Close(false);
-            notification.Close(false);
+            configMenu?.Close(false);
+            notification?.Close(false);
         }
 
         [HarmonyPatch("Start")]
@@ -25,8 +25,10 @@ namespace LethalConfig.Patches
         {
             LogUtils.LogInfo("Injecting mod config menu into quick menu...");
             var quickMenu = __instance.menuContainer;
-            var mainButtonsTransform = quickMenu.transform.Find("MainButtons");
-            var quitButton = mainButtonsTransform.Find("Quit").gameObject;
+            var mainButtonsTransform = quickMenu?.transform.Find("MainButtons");
+            var quitButton = mainButtonsTransform?.Find("Quit").gameObject;
+
+            if (quickMenu == null || mainButtonsTransform == null || quitButton == null) return;
 
             MenusUtils.InjectMenu(quickMenu.transform, mainButtonsTransform, quitButton);
         }

@@ -32,8 +32,10 @@ namespace LethalConfig.Patches
             LogUtils.LogInfo("Injecting mod config menu into main menu...");
 
             var menuContainer = GameObject.Find("MenuContainer");
-            var mainButtonsTransform = menuContainer.transform.Find("MainButtons");
-            var quitButton = mainButtonsTransform.Find("QuitButton").gameObject;
+            var mainButtonsTransform = menuContainer?.transform.Find("MainButtons");
+            var quitButton = mainButtonsTransform?.Find("QuitButton")?.gameObject;
+
+            if (menuContainer == null || mainButtonsTransform == null || quitButton == null) return;
 
             MenusUtils.InjectMenu(menuContainer.transform, mainButtonsTransform, quitButton);
         }

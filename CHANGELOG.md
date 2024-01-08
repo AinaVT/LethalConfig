@@ -1,3 +1,9 @@
+## Version 1.3.0
+- Added new `GenericButtonConfigItem`, which allows you to create a button that provides you with a callback to run your own code when it's clicked.
+- Added item's Section, Name, and Description overrides, which allows you to change what LethalConfig will show without changing the section, keys, or descriptions in your `ConfigEntry` directly.
+- Fixed issue when trying to automatically read the mod's icon and description from mods installed manually with their dll at the root of the BepInEx's plugins folder. (@Rune580)
+- Fixed exception caused in the quick menu when running LethalConfig with AdvancedCompany.
+
 ## Version 1.2.0
 - LethalConfig now reads both the mod's icons and descriptions directly from its thunderstore manifest if one can be found. (@Rune580)
 - Added methods to make LethalConfig skip the autogeneration for your entire mod, a config section, or individual configs. (@Rune580)

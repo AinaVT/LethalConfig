@@ -25,8 +25,10 @@ namespace LethalConfig.Patches
         {
             LogUtils.LogInfo("Injecting mod config menu into quick menu...");
             var quickMenu = __instance.menuContainer;
-            var mainButtonsTransform = quickMenu.transform.Find("MainButtons");
-            var quitButton = mainButtonsTransform.Find("Quit").gameObject;
+            var mainButtonsTransform = quickMenu?.transform.Find("MainButtons");
+            var quitButton = mainButtonsTransform?.Find("Quit").gameObject;
+
+            if (quickMenu == null || mainButtonsTransform == null || quitButton == null) return;
 
             MenusUtils.InjectMenu(quickMenu.transform, mainButtonsTransform, quitButton);
         }

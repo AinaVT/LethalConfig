@@ -42,6 +42,9 @@ namespace LethalConfig.Mods
                 parent = Directory.GetParent(searchDir); // This prevents an infinite loop, as parent becomes null if we hit the root of the drive.
             }
 
+            if (searchDir.EndsWith(".dll")) // Return early if the searchDir is a dll file, prevents a crash from occuring below. Commonly occurs when manually installing mods.
+                return;
+
             var iconPath = Directory.EnumerateFiles(searchDir, "icon.png", SearchOption.AllDirectories).FirstOrDefault();
             LoadIcon(iconPath);
 

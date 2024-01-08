@@ -19,6 +19,7 @@ namespace LethalConfig.Utils
         internal static GameObject TextInputFieldPrefab;
         internal static GameObject IntInputFieldPrefab;
         internal static GameObject FloatInputFieldPrefab;
+        internal static GameObject GenericButtonPrefab;
 
         internal static Sprite DefaultModIcon;
         internal static Sprite LethalConfigModIcon;
@@ -46,6 +47,7 @@ namespace LethalConfig.Utils
                 LoadAsset("prefabs/components/TextInputFieldItem.prefab", out TextInputFieldPrefab);
                 LoadAsset("prefabs/components/IntInputFieldItem.prefab", out IntInputFieldPrefab);
                 LoadAsset("prefabs/components/FloatInputFieldItem.prefab", out FloatInputFieldPrefab);
+                LoadAsset("prefabs/components/GenericButtonItem.prefab", out GenericButtonPrefab);
 
                 // Icons
                 LoadAsset("sprite/unknown-icon.png", out DefaultModIcon);

@@ -15,8 +15,8 @@ namespace LethalConfig.Patches
         {
             var configMenu = __instance.menuContainer.transform.GetComponentInChildren<ConfigMenu>(true);
             var notification = __instance.menuContainer.transform.GetComponentInChildren<ConfigMenuNotification>(true);
-            configMenu.Close(false);
-            notification.Close(false);
+            configMenu?.Close(false);
+            notification?.Close(false);
         }
 
         [HarmonyPatch("Start")]

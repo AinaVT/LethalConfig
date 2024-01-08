@@ -3,6 +3,24 @@ namespace LethalConfig.ConfigItems.Options
 {
     public class BaseOptions
     {
+        /// <summary>
+        /// Overrides the name of the item displayed in the UI.
+        /// Visual change only.
+        /// </summary>
+        public string Name { get; set; } = null;
+
+        /// <summary>
+        /// Overrides the description of the item displayed in the UI.
+        /// Visual change only.
+        /// </summary>
+        public string Description { get; set; } = null;
+
+        /// <summary>
+        /// Overrides the section of the item displayed in the UI.
+        /// Visual change only.
+        /// </summary>
+        public string Section { get; set; } = null;
+
         public bool RequiresRestart { get; set; } = true;
         
         public delegate CanModifyResult CanModifyDelegate();

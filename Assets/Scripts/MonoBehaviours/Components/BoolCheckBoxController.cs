@@ -27,17 +27,5 @@ namespace LethalConfig.MonoBehaviours.Components
             UpdateAppearance();
             ConfigMenuManager.Instance.menuAudio.PlayChangeValueSFX();
         }
-
-        public void OnPointerClicked(BaseEventData eventData)
-        {
-            var pointerEventData = eventData as PointerEventData;
-
-            if (pointerEventData == null) return;
-
-            if (pointerEventData.button == PointerEventData.InputButton.Left)
-            {
-                toggleComponent.isOn = !toggleComponent.isOn;
-            }
-        }
     }
 }

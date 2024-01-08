@@ -3,6 +3,7 @@ using BepInEx.Configuration;
 using HarmonyLib;
 using LethalConfig.ConfigItems;
 using LethalConfig.ConfigItems.Options;
+using LethalConfig.MonoBehaviours.Managers;
 using LethalConfig.Patches;
 using LethalConfig.Settings;
 using LethalConfig.Utils;
@@ -62,6 +63,10 @@ namespace LethalConfig
             LethalConfigManager.AddConfigItem(new BoolCheckBoxConfigItem(boolCheckBox, requiresRestart: false));
             LethalConfigManager.AddConfigItem(new EnumDropDownConfigItem<TestEnum>(enumDropDown, false));
             LethalConfigManager.AddConfigItem(new TextInputFieldConfigItem(textInput, false));
+            LethalConfigManager.AddConfigItem(new GenericButtonConfigItem("Example", "Button", "This is a test button with a callback", "Open", () =>
+            {
+                ConfigMenuManager.Instance?.DisplayNotification("Buttons can be used to open custom menus or other things.", "OK");
+            }));
             LethalConfigManager.AddConfigItem(new IntInputFieldConfigItem(intInput, new IntInputFieldOptions()
             {
                 Max = 150

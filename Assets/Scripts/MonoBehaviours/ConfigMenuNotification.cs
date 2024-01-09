@@ -19,16 +19,22 @@ namespace LethalConfig.MonoBehaviours
 
         public void Open()
         {
+            var animatorState = notificationAnimator.GetCurrentAnimatorStateInfo(0);
+            if (animatorState.IsName("NotificationNormal") || animatorState.IsName("NotificationAppear")) return;
+
             gameObject.SetActive(true);
             notificationAnimator.SetTrigger("Open");
         }
 
         public void Close(bool animated = true)
         {
+            var animatorState = notificationAnimator.GetCurrentAnimatorStateInfo(0);
+            if (animatorState.IsName("NotificationClosed") || animatorState.IsName("NotificationDisappear")) return;
+
             if (!animated)
             {
-                notificationAnimator.SetTrigger("ForceClose");
                 gameObject.SetActive(false);
+                notificationAnimator.SetTrigger("ForceClose");
                 return;
             }
 

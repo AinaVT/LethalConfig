@@ -24,6 +24,7 @@ namespace LethalConfig.MonoBehaviours
 
             gameObject.SetActive(true);
             notificationAnimator.SetTrigger("Open");
+            transform.SetAsLastSibling();
         }
 
         public void Close(bool animated = true)

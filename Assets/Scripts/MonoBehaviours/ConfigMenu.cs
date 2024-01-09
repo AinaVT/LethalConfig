@@ -23,6 +23,7 @@ namespace LethalConfig.MonoBehaviours
 
             gameObject.SetActive(true);
             menuAnimator.SetTrigger("Open");
+            transform.SetAsLastSibling();
         }
 
         public void Close(bool animated = true)

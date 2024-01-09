@@ -1,3 +1,7 @@
+## Version 1.3.4
+- Fixed issue where some assemblies' depedencies could cause the UI to not load properly.
+- Fixed issue with sliders/numeric inputs not using the `AcceptableValueRange`, this time for real.
+
 ## Version 1.3.3
 - Fixed uncommon issue where closing LethalConfig would make the main menu/quick menu unusable due to not being deactivated and blocking the UI raycasts.
 - Forcing LethalConfig to be set as the last sibling when it's opened. This ensures the menu will be shown above UI that may be added by other mods.

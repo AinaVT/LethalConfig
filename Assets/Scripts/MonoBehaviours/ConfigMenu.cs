@@ -41,8 +41,8 @@ namespace LethalConfig.MonoBehaviours
 
             if (!animated)
             {
-                menuAnimator.SetTrigger("ForceClose");
                 gameObject.SetActive(false);
+                menuAnimator.SetTrigger("ForceClose");
                 return;
             }
 

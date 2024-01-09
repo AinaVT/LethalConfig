@@ -4,10 +4,7 @@ using HarmonyLib;
 using LethalConfig.ConfigItems;
 using LethalConfig.ConfigItems.Options;
 using LethalConfig.MonoBehaviours.Managers;
-using LethalConfig.Patches;
-using LethalConfig.Settings;
 using LethalConfig.Utils;
-using System.Reflection;
 
 namespace LethalConfig
 {
@@ -15,7 +12,7 @@ namespace LethalConfig
     {
         public const string Guid = "ainavt.lc.lethalconfig";
         public const string Name = "LethalConfig";
-        public const string Version = "1.3.2";
+        public const string Version = "1.3.3";
     }
 
     [BepInPlugin(PluginInfo.Guid, PluginInfo.Name, PluginInfo.Version)]

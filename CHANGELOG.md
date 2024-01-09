@@ -1,3 +1,7 @@
+## Version 1.3.3
+- Fixed uncommon issue where closing LethalConfig would make the main menu/quick menu unusable due to not being deactivated and blocking the UI raycasts.
+- Forcing LethalConfig to be set as the last sibling when it's opened. This ensures the menu will be shown above UI that may be added by other mods.
+
 ## Version 1.3.2
 - Reverted type for slider and numeric input options from nullable.
 

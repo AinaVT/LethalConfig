@@ -16,8 +16,8 @@ namespace LethalConfig.ConfigItems
         {
             var acceptableValues = configEntry.Description.AcceptableValues;
 
-            MinValue = options.WasMinSet ? options.Min : (acceptableValues as AcceptableValueRange<int>)?.MinValue ?? 0;
-            MaxValue = options.WasMaxSet ? options.Max : (acceptableValues as AcceptableValueRange<int>)?.MaxValue ?? 100;
+            MinValue = options.IsMinSet ? options.Min : (acceptableValues as AcceptableValueRange<int>)?.MinValue ?? 0;
+            MaxValue = options.IsMaxSet ? options.Max : (acceptableValues as AcceptableValueRange<int>)?.MaxValue ?? 100;
         }
 
         internal override GameObject CreateGameObjectForConfig()

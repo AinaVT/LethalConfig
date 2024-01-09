@@ -1,5 +1,7 @@
 using BepInEx;
 using LethalConfig.Mods;
+using System;
+using System.Linq;
 using System.Reflection;
 
 namespace LethalConfig.Utils
@@ -10,21 +12,36 @@ namespace LethalConfig.Utils
         {
             modInfo = new ModInfo();
 
-            var types = assembly.GetTypes();
+            var plugin = assembly.FindPluginAttribute();
+            if (plugin == null) return false;
+
+            modInfo.Name = plugin.Name;
+            modInfo.GUID = plugin.GUID;
+            modInfo.Version = plugin.Version.ToString();
+
+            return true;
+        }
+
+        internal static BepInPlugin FindPluginAttribute(this Assembly assembly)
+        {
+            Type[] types;
+
+            try
+            {
+                types = assembly.GetTypes();
+            } catch (ReflectionTypeLoadException e)
+            {
+                types = e.Types.Where(t => t != null).ToArray();
+            }
 
             foreach (var type in types)
             {
                 var plugin = type.GetCustomAttribute<BepInPlugin>();
                 if (plugin == null) continue;
-
-                modInfo.Name = plugin.Name;
-                modInfo.GUID = plugin.GUID;
-                modInfo.Version = plugin.Version.ToString();
-
-                return true;
+                return plugin;
             }
 
-            return false;
+            return null;
         }
     } 
 }

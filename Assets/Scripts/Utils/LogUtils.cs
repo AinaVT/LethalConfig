@@ -6,19 +6,17 @@ namespace LethalConfig.Utils
 {
     internal static class LogUtils
     {
-        private static Dictionary<Assembly, ManualLogSource> logSources = new Dictionary<Assembly, ManualLogSource>();
+        private static ManualLogSource _logSource;
 
         public static void Init(string pluginGuid)
         {
-            var assembly = Assembly.GetCallingAssembly();
-            if (logSources.ContainsKey(assembly)) return;
-            logSources.Add(assembly, BepInEx.Logging.Logger.CreateLogSource(pluginGuid));
+            _logSource = BepInEx.Logging.Logger.CreateLogSource(pluginGuid);
         }
 
-        public static void LogInfo(string message) { logSources[Assembly.GetCallingAssembly()].LogInfo(message); }
-        public static void LogWarning(string message) { logSources[Assembly.GetCallingAssembly()].LogWarning(message); }
-        public static void LogError(string message) { logSources[Assembly.GetCallingAssembly()].LogError(message); }
-        public static void LogFatal(string message) { logSources[Assembly.GetCallingAssembly()].LogFatal(message); }
+        public static void LogInfo(string message) { _logSource?.LogInfo(message); }
+        public static void LogWarning(string message) { _logSource?.LogWarning(message); }
+        public static void LogError(string message) { _logSource?.LogError(message); }
+        public static void LogFatal(string message) { _logSource?.LogFatal(message); }
 
     }  
 }

@@ -118,7 +118,19 @@ namespace LethalConfig.MonoBehaviours.Components
                 return false;
             }
 
+            (configItem as T).OnCurrentValueChanged += OnCurrentValueChanged;
+
             return base.SetConfigItem(configItem);
+        }
+
+        internal void OnCurrentValueChanged()
+        {
+            UpdateAppearance();
+        }
+
+        private void OnDestroy()
+        {
+            ConfigItem.OnCurrentValueChanged -= OnCurrentValueChanged;
         }
     } 
 }

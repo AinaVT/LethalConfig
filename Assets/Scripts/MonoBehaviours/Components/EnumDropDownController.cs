@@ -27,6 +27,8 @@ namespace LethalConfig.MonoBehaviours.Components
 
         protected override void OnSetConfigItem()
         {
+            baseConfigItem.OnCurrentValueChanged += OnCurrentValueChanged;
+
             _enumType = baseConfigItem.BaseConfigEntry.SettingType;
             _enumNames = Enum.GetNames(_enumType).ToList();
 
@@ -42,6 +44,16 @@ namespace LethalConfig.MonoBehaviours.Components
             baseConfigItem.CurrentBoxedValue = Enum.Parse(_enumType, _enumNames[index]);
             UpdateAppearance();
             ConfigMenuManager.Instance.menuAudio.PlayChangeValueSFX();
+        }
+
+        private void OnCurrentValueChanged()
+        {
+            UpdateAppearance();
+        }
+
+        private void OnDestroy()
+        {
+            baseConfigItem.OnCurrentValueChanged -= OnCurrentValueChanged;
         }
     }
 }

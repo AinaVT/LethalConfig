@@ -2,11 +2,14 @@ using UnityEngine;
 using BepInEx.Configuration;
 using LethalConfig.Mods;
 using LethalConfig.ConfigItems.Options;
+using System;
 
 namespace LethalConfig.ConfigItems
 {
     public abstract class BaseConfigItem
     {
+        internal delegate void CurrentValueChangedHandler();
+
         internal ConfigEntryBase BaseConfigEntry { get; private set; }
         internal BaseOptions Options { get; }
         internal bool RequiresRestart => Options.RequiresRestart;
@@ -21,13 +24,24 @@ namespace LethalConfig.ConfigItems
         internal string Name => Options.Name ?? UnderlyingName;
         internal string Description => Options.Description ?? UnderlyingDescription;
 
-        internal object CurrentBoxedValue { get; set; }
         internal object OriginalBoxedValue => BaseConfigEntry?.BoxedValue;
         internal object BoxedDefaultValue => BaseConfigEntry?.DefaultValue;
+        private object _currentBoxedValue;
+        internal object CurrentBoxedValue
+        {
+            get => _currentBoxedValue;
+            set
+            {
+                _currentBoxedValue = value;
+                OnCurrentValueChanged?.Invoke();
+            }
+        }
 
         internal bool HasValueChanged => (!CurrentBoxedValue?.Equals(OriginalBoxedValue)) ?? false;
 
         internal abstract GameObject CreateGameObjectForConfig();
+
+        internal event CurrentValueChangedHandler OnCurrentValueChanged;
 
         internal void ApplyChanges()
         {
@@ -75,6 +89,19 @@ namespace LethalConfig.ConfigItems
         internal T Defaultvalue => (T)ConfigEntry.DefaultValue;
 
         internal BaseValueConfigItem(ConfigEntry<T> configEntry, BaseOptions options): base(configEntry, options)
+        {
+            CurrentValue = OriginalValue;
+            if (ConfigEntry != null)
+                ConfigEntry.SettingChanged += OnUnderlyingEntryChanged;
+        }
+
+        ~BaseValueConfigItem()
+        {
+            if (ConfigEntry != null)
+                ConfigEntry.SettingChanged -= OnUnderlyingEntryChanged;
+        }
+
+        private void OnUnderlyingEntryChanged(object sender, EventArgs args)
         {
             CurrentValue = OriginalValue;
         }

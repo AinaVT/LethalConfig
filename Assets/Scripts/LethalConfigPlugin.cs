@@ -5,6 +5,7 @@ using LethalConfig.ConfigItems;
 using LethalConfig.ConfigItems.Options;
 using LethalConfig.MonoBehaviours.Managers;
 using LethalConfig.Utils;
+using UnityEngine;
 
 namespace LethalConfig
 {
@@ -12,7 +13,7 @@ namespace LethalConfig
     {
         public const string Guid = "ainavt.lc.lethalconfig";
         public const string Name = "LethalConfig";
-        public const string Version = "1.3.4";
+        public const string Version = "1.4.0";
     }
 
     [BepInPlugin(PluginInfo.Guid, PluginInfo.Name, PluginInfo.Version)]

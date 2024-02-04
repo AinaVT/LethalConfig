@@ -1,3 +1,6 @@
+## Version 1.4.0
+- Updating config appearances whenever a `ConfigEntry` is modified directly.
+
 ## Version 1.3.4
 - Fixed issue where some assemblies' depedencies could cause the UI to not load properly.
 - Fixed issue with sliders/numeric inputs not using the `AcceptableValueRange`, this time for real.

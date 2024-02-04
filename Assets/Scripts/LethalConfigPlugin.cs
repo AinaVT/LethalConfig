@@ -5,6 +5,8 @@ using LethalConfig.ConfigItems;
 using LethalConfig.ConfigItems.Options;
 using LethalConfig.MonoBehaviours.Managers;
 using LethalConfig.Utils;
+using System.IO;
+using System.Linq;
 using UnityEngine;
 
 namespace LethalConfig

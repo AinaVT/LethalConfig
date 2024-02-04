@@ -15,6 +15,8 @@ namespace LethalConfig
         internal static Dictionary<string, Mod> Mods { get; private set; } = new Dictionary<string, Mod>();
         private static Dictionary<Mod, Assembly> ModToAssemblyMap { get; set; } = new Dictionary<Mod, Assembly>();
 
+        private static List<AutoConfigGenerator.ConfigFileAssemblyPair> customConfigFiles = new List<AutoConfigGenerator.ConfigFileAssemblyPair>();
+
         private static bool hasGeneratedMissingConfigs = false;
 
         internal static void AutoGenerateMissingConfigsIfNeeded()
@@ -23,7 +25,7 @@ namespace LethalConfig
 
             var existingModEntries = Mods.Values.ToArray();
             var existingConfigsFlat = Mods.SelectMany(kv => kv.Value.configItems);
-            var generatedConfigs = AutoConfigGenerator.AutoGenerateConfigs();
+            var generatedConfigs = AutoConfigGenerator.AutoGenerateConfigs(customConfigFiles.ToArray());
             var missingConfigs = generatedConfigs
                 .GroupBy(c => ModForAssembly(c.Assembly), c => c.ConfigItem)
                 .Where(kv => kv.Key != null)
@@ -158,6 +160,19 @@ namespace LethalConfig
             var mod = ModForAssembly(Assembly.GetCallingAssembly());
             
             mod?.entriesToSkipAutoGen.Add(new ConfigEntryPath("*", "*"));
+        }
+
+        /// <summary>
+        /// Queues a custom config file for auto generation
+        /// </summary>
+        /// <param name="configFile">The custom config file instance.</param>
+        public static void QueueCustomConfigFileForAutoGeneration(ConfigFile configFile)
+        {
+            customConfigFiles.Add(new AutoConfigGenerator.ConfigFileAssemblyPair
+            {
+                ConfigFile = configFile,
+                Assembly = Assembly.GetCallingAssembly()
+            });
         }
     } 
 }

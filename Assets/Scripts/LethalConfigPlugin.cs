@@ -51,6 +51,7 @@ namespace LethalConfig
             var boolCheckBox = Config.Bind<bool>("Example", "Bool Checkbox", false, new ConfigDescription("This is a bool checkbox."));
             var enumDropDown = Config.Bind<TestEnum>("Example", "Enum Dropdown", TestEnum.None, new ConfigDescription("This is a enum dropdown."));
             var textInput = Config.Bind<string>("Example", "Text Input", "Example", "This is a text input field. It can have a limit of characters too.");
+            var textInputDropdown = Config.Bind<string>("Example", "Text Input Dropdown", "Two", new ConfigDescription("This is a text input with an acceptable value list.", new AcceptableValueList<string>("One", "Two", "HL:Alyx")));
             var intInput = Config.Bind<int>("Example", "Int Input", 50, "This is an integer input field.");
             var floatInput = Config.Bind<float>("Example", "Float Input", 0.5f, "This is a float input field.");
 
@@ -72,6 +73,7 @@ namespace LethalConfig
             {
                 Max = 2.5f
             }));
+            LethalConfigManager.AddConfigItem(new TextDropDownConfigItem(textInputDropdown, new TextDropDownOptions() { RequiresRestart = false }));
         }
     }
 

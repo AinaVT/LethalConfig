@@ -16,6 +16,7 @@ namespace LethalConfig.Utils
         internal static GameObject FloatStepSliderPrefab;
         internal static GameObject BoolCheckBoxPrefab;
         internal static GameObject EnumDropDownPrefab;
+        internal static GameObject TextDropDownPrefab;
         internal static GameObject TextInputFieldPrefab;
         internal static GameObject IntInputFieldPrefab;
         internal static GameObject FloatInputFieldPrefab;
@@ -44,6 +45,7 @@ namespace LethalConfig.Utils
                 LoadAsset("prefabs/components/FloatStepSliderItem.prefab", out FloatStepSliderPrefab);
                 LoadAsset("prefabs/components/BoolCheckBoxItem.prefab", out BoolCheckBoxPrefab);
                 LoadAsset("prefabs/components/EnumDropDownItem.prefab", out EnumDropDownPrefab);
+                LoadAsset("prefabs/components/TextDropDownItem.prefab", out TextDropDownPrefab);
                 LoadAsset("prefabs/components/TextInputFieldItem.prefab", out TextInputFieldPrefab);
                 LoadAsset("prefabs/components/IntInputFieldItem.prefab", out IntInputFieldPrefab);
                 LoadAsset("prefabs/components/FloatInputFieldItem.prefab", out FloatInputFieldPrefab);

@@ -54,6 +54,7 @@ namespace LethalConfig
             var boolCheckBox = Config.Bind<bool>("Example", "Bool Checkbox", false, new ConfigDescription("This is a bool checkbox."));
             var enumDropDown = Config.Bind<TestEnum>("Example", "Enum Dropdown", TestEnum.None, new ConfigDescription("This is a enum dropdown."));
             var textInput = Config.Bind<string>("Example", "Text Input", "Example", "This is a text input field. It can have a limit of characters too.");
+            var multiLineInput = Config.Bind<string>("Example", "Multiline Text Input", "Example", "This is a text input field. It can have a limit of characters too.");
             var intInput = Config.Bind<int>("Example", "Int Input", 50, "This is an integer input field.");
             var floatInput = Config.Bind<float>("Example", "Float Input", 0.5f, "This is a float input field.");
 
@@ -63,6 +64,11 @@ namespace LethalConfig
             LethalConfigManager.AddConfigItem(new BoolCheckBoxConfigItem(boolCheckBox, requiresRestart: false));
             LethalConfigManager.AddConfigItem(new EnumDropDownConfigItem<TestEnum>(enumDropDown, false));
             LethalConfigManager.AddConfigItem(new TextInputFieldConfigItem(textInput, false));
+            LethalConfigManager.AddConfigItem(new TextInputFieldConfigItem(multiLineInput, new TextInputFieldOptions
+            {
+                NumberOfLines = 0,
+                TrimText = true
+            }));
             LethalConfigManager.AddConfigItem(new GenericButtonConfigItem("Example", "Button", "This is a test button with a callback", "Open", () =>
             {
                 ConfigMenuManager.Instance?.DisplayNotification("Buttons can be used to open custom menus or other things.", "OK");

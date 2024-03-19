@@ -1,6 +1,9 @@
 ## Version 1.4.0
 - Updating config appearances whenever a `ConfigEntry` is modified directly.
 - Added `QueueCustomConfigFileForAutoGeneration` method, allowing the auto generation of configs for manually created config files.
+- Added new options to `TextInputFieldOptions`:
+  - `NumberOfLines` Sets how many lines a text field can have. Setting it to 0 means no limit.
+  - `TrimText` When true, automatically removes empty space from the start and end of the text.
 
 ## Version 1.3.4
 - Fixed issue where some assemblies' depedencies could cause the UI to not load properly.

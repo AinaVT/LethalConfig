@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.4627451, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.24705882, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -160,7 +160,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6313726, g: 0.050980393, b: 0.050980393, a: 1}
+  m_Color: {r: 0.36862746, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -423,10 +423,10 @@ RectTransform:
   - {fileID: 2154975456071361424}
   m_Father: {fileID: 1995321760424289694}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 263.07, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 263.07, y: -17.5}
+  m_SizeDelta: {x: 0, y: 22.01}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3094187210299481547
 CanvasRenderer:
@@ -487,7 +487,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.6313726, g: 0.050980393, b: 0.050980393, a: 1}
+    m_NormalColor: {r: 0.36862746, g: 0, b: 0, a: 1}
     m_HighlightedColor: {r: 0.7924528, g: 0.18316127, b: 0.18316127, a: 1}
     m_PressedColor: {r: 0.34117648, g: 0, b: 0, a: 1}
     m_SelectedColor: {r: 0.6313726, g: 0.050980393, b: 0.050980393, a: 1}

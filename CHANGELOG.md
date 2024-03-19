@@ -5,6 +5,7 @@
   - `NumberOfLines` Sets how many lines a text field can have. Setting it to 0 means no limit.
   - `TrimText` When true, automatically removes empty space from the start and end of the text.
 - Added new component `TextDropDownConfigItem`, which allows you to make a dropdown selector for strings (including configs with `AcceptableValueList`) (thank you @Kittenji)
+- Adjusted colors of the menu to be darker.
 - Fixed issue where configs would not be generated if a plugin's instance was null at the time of the generation.
 
 ## Version 1.3.4

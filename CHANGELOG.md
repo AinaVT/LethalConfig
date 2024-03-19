@@ -4,6 +4,7 @@
 - Added new options to `TextInputFieldOptions`:
   - `NumberOfLines` Sets how many lines a text field can have. Setting it to 0 means no limit.
   - `TrimText` When true, automatically removes empty space from the start and end of the text.
+- Fixed issue where configs would not be generated if a plugin's instance was null at the time of the generation.
 
 ## Version 1.3.4
 - Fixed issue where some assemblies' depedencies could cause the UI to not load properly.

@@ -34,8 +34,14 @@ namespace LethalConfig.AutoConfig
 
             foreach (var plugin in plugins )
             {
+                LogUtils.LogInfo($"{plugin.Metadata.GUID} : {plugin.Metadata.Name} : {plugin.Metadata.Version}");
                 var info = plugin.Metadata;
+
+                var pluginInstance = plugin.Instance;
+                if (pluginInstance == null) continue;
+
                 var configFile = plugin.Instance.Config;
+                if (configFile == null) continue;
 
                 var assembly = Assembly.GetAssembly(plugin.Instance.GetType());
 

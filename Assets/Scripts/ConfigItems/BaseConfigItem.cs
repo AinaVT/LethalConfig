@@ -68,7 +68,7 @@ namespace LethalConfig.ConfigItems
             CurrentBoxedValue = OriginalBoxedValue;
         }
 
-        internal bool IsSameConfig(BaseConfigItem configItem)
+        internal virtual bool IsSameConfig(BaseConfigItem configItem)
         {
             var isSameSection = configItem.UnderlyingSection == UnderlyingSection;
             var isSameKey = configItem.UnderlyingName == UnderlyingName;

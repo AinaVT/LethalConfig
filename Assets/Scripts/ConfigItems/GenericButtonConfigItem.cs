@@ -22,5 +22,18 @@ namespace LethalConfig.ConfigItems
         {
             return GameObject.Instantiate(Assets.GenericButtonPrefab);
         }
+
+        internal override bool IsSameConfig(BaseConfigItem configItem)
+        {
+            if (configItem is GenericButtonConfigItem)
+            {
+                var isSameMod = this.Owner.modInfo.GUID == configItem.Owner.modInfo.GUID;
+                var isSameSection = this.Section == configItem.Section;
+                var isSameKey = this.Name == configItem.Name;
+                return isSameSection && isSameKey && isSameMod;
+            }
+
+            return false;
+        }
     }
 }

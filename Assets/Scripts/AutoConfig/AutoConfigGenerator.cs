@@ -30,29 +30,31 @@ namespace LethalConfig.AutoConfig
 
             var plugins = Chainloader.PluginInfos.Values.ToList();
 
-            LogUtils.LogInfo($"{plugins.Count} mods loaded: {string.Join(";", plugins.Select(p => p.Metadata.GUID))}");
+            LogUtils.LogDebug($"{plugins.Count} mods loaded: {string.Join(";", plugins.Select(p => p.Metadata.GUID))}");
 
             foreach (var plugin in plugins )
             {
-                LogUtils.LogInfo($"{plugin.Metadata.GUID} : {plugin.Metadata.Name} : {plugin.Metadata.Version}");
+                LogUtils.LogDebug($"{plugin.Metadata.GUID} : {plugin.Metadata.Name} : {plugin.Metadata.Version}");
                 var info = plugin.Metadata;
 
-                var pluginInstance = plugin.Instance;
-                if (pluginInstance == null) continue;
-
-                var configFile = plugin.Instance.Config;
-                if (configFile == null) continue;
-
-                var assembly = Assembly.GetAssembly(plugin.Instance.GetType());
-
-                var pluginConfigItems = AutoGenerateConfigsForFile(new ConfigFileAssemblyPair
+                try
                 {
-                    ConfigFile = configFile,
-                    Assembly = assembly
-                });
-                configItems.AddRange(pluginConfigItems);
+                    var assembly = Assembly.GetAssembly(plugin.Instance.GetType());
 
-                generatedConfigFiles.Add(configFile);
+                    var pluginConfigItems = AutoGenerateConfigsForFile(new ConfigFileAssemblyPair
+                    {
+                        ConfigFile = plugin.Instance.Config,
+                        Assembly = assembly
+                    });
+                    configItems.AddRange(pluginConfigItems);
+
+                    generatedConfigFiles.Add(plugin.Instance.Config);
+                }
+                catch (Exception)
+                {
+                    LogUtils.LogWarning($"Invalid instance for \"{info.Name}\" plugin. Skipping.");
+                    continue;
+                }
             }
 
             foreach (var customConfigFile in customConfigFiles)

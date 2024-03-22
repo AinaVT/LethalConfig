@@ -13,6 +13,7 @@ namespace LethalConfig.Utils
             _logSource = BepInEx.Logging.Logger.CreateLogSource(pluginGuid);
         }
 
+        public static void LogDebug(string message) {  _logSource?.LogDebug(message); }
         public static void LogInfo(string message) { _logSource?.LogInfo(message); }
         public static void LogWarning(string message) { _logSource?.LogWarning(message); }
         public static void LogError(string message) { _logSource?.LogError(message); }

@@ -5,7 +5,8 @@
   - `NumberOfLines` Sets how many lines a text field can have. Setting it to 0 means no limit.
   - `TrimText` When true, automatically removes empty space from the start and end of the text.
 - Added new component `TextDropDownConfigItem`, which allows you to make a dropdown selector for strings (including configs with `AcceptableValueList`) (thank you @Kittenji)
-- Adjusted colors of the menu to be darker.\
+- Adjusted colors of the menu to be darker.
+- Added "Hide Lethal Config" config to disable LethalConfig in-game. This setting is only visible on the r2modman's config editor and is false by default.
 - Fixed issue where a mod couldn't have more than one generic button (comparison would always think they're the same).
 - Attempt to fix issue where configs would not be generated if a plugin's instance was null at the time of the generation.
 

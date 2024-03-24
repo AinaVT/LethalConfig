@@ -36,8 +36,7 @@ namespace LethalConfig.MonoBehaviours
             {
                 var modItem = Instantiate(modItemPrefab, listContainerObject.transform);
                 modItem.transform.localScale = Vector3.one;
-                modItem.transform.localPosition = Vector3.zero;
-                modItem.transform.localRotation = Quaternion.identity;
+                modItem.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
                 var listItem = modItem.GetComponent<ModListItem>();
                 listItem.Mod = mod;
                 listItem.ModSelected += ModSelected;

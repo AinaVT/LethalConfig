@@ -33,7 +33,7 @@ namespace LethalConfig.MonoBehaviours.Managers
             menu.Open();
         }
 
-        public void DisplayNotification(string message, string button)
+        public static void DisplayNotification(string message, string button)
         {
             var menuNotification = FindObjectOfType<ConfigMenuNotification>(true);
             if (!menuNotification)

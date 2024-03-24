@@ -102,7 +102,7 @@ namespace LethalConfig.MonoBehaviours.Components
         }
     }
 
-    internal abstract class ModConfigController<T, V> : ModConfigController where T : BaseValueConfigItem<V>
+    internal abstract class ModConfigController<T, TV> : ModConfigController where T : BaseValueConfigItem<TV>
     {
         protected T ConfigItem => (T)BaseConfigItem;
 

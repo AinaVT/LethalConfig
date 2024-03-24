@@ -78,7 +78,7 @@ namespace LethalConfig.MonoBehaviours
             LogUtils.LogInfo($"Modified {restartRequiredItems.Count} item(s) that requires a restart.");
             if (restartRequiredItems.Count > 0)
                 // Show alert
-                ConfigMenuManager.Instance.DisplayNotification(
+                ConfigMenuManager.DisplayNotification(
                     "Some of the modified settings may require a restart to take effect.", "OK");
         }
 

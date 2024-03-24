@@ -66,7 +66,7 @@ namespace LethalConfig
                 "This is a test button with a callback", "Open", () =>
                 {
                     if (ConfigMenuManager.Instance)
-                        ConfigMenuManager.Instance.DisplayNotification("This is a test notification", "OK");
+                        ConfigMenuManager.DisplayNotification("This is a test notification", "OK");
                 }));
             LethalConfigManager.AddConfigItem(new IntInputFieldConfigItem(intInput, new IntInputFieldOptions
             {

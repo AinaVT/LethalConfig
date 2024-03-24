@@ -51,12 +51,12 @@ namespace LethalConfig
             foreach (var kv in missingConfigs)
             {
                 var assembly = ModToAssemblyMap.GetValueOrDefault(kv.Key);
-                if (assembly != null)
-                    foreach (var config in kv.Value)
-                        AddConfigItemForAssembly(config, assembly);
+                if (assembly == null) continue;
+                foreach (var config in kv.Value)
+                    AddConfigItemForAssembly(config, assembly);
             }
 
-            LogUtils.LogInfo($"Generated {generatedModEntries.Count()} mod entries.");
+            LogUtils.LogInfo($"Generated {generatedModEntries.Length} mod entries.");
             LogUtils.LogInfo(
                 $"Generated {generatedConfigs.Length} configs, of which {missingConfigs.SelectMany(kv => kv.Value).Count()} were missing and registered.");
 

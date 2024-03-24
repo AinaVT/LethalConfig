@@ -1,13 +1,6 @@
 using BepInEx;
-using BepInEx.Configuration;
 using HarmonyLib;
-using LethalConfig.ConfigItems;
-using LethalConfig.ConfigItems.Options;
-using LethalConfig.MonoBehaviours.Managers;
 using LethalConfig.Utils;
-using System.IO;
-using System.Linq;
-using UnityEngine;
 
 namespace LethalConfig
 {
@@ -21,17 +14,17 @@ namespace LethalConfig
     [BepInPlugin(PluginInfo.Guid, PluginInfo.Name, PluginInfo.Version)]
     internal class LethalConfigPlugin : BaseUnityPlugin
     {
-        private static LethalConfigPlugin instance;
-        private static Harmony harmony;
+        private static LethalConfigPlugin _instance;
+        private static Harmony _harmony;
 
         private void Awake()
         {
-            if (instance == null) instance = this;
+            if (_instance == null) _instance = this;
 
             LogUtils.Init(PluginInfo.Guid);
             Configs.Initialize(Config);
 
-            if (Configs.IsLethalConfigHidden.Value) 
+            if (Configs.IsLethalConfigHidden.Value)
             {
                 LogUtils.LogInfo("LethalConfig is hidden and will not load.");
                 return;
@@ -39,11 +32,10 @@ namespace LethalConfig
 
             Assets.Init();
 
-            harmony = new Harmony(PluginInfo.Guid);
-            harmony.PatchAll();
+            _harmony = new Harmony(PluginInfo.Guid);
+            _harmony.PatchAll();
 
             LogUtils.LogInfo("LethalConfig loaded!");
         }
     }
-
 }

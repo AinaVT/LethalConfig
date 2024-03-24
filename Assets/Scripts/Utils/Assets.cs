@@ -4,7 +4,7 @@ namespace LethalConfig.Utils
 {
     internal static class Assets
     {
-        private static AssetBundle assetBundle;
+        private static AssetBundle _assetBundle;
 
         internal static GameObject ConfigMenuManagerPrefab;
         internal static GameObject ConfigMenuNotificationPrefab;
@@ -27,8 +27,8 @@ namespace LethalConfig.Utils
 
         internal static void Init()
         {
-            assetBundle = AssetBundle.LoadFromFile(PathUtils.PathForResourceInAssembly("ainavt_lethalconfig"));
-            if (assetBundle == null)
+            _assetBundle = AssetBundle.LoadFromFile(PathUtils.PathForResourceInAssembly("ainavt_lethalconfig"));
+            if (_assetBundle == null)
             {
                 LogUtils.LogError("Failed to load LethalConfig bundle.");
             }
@@ -59,14 +59,11 @@ namespace LethalConfig.Utils
             }
         }
 
-        private static void LoadAsset<T>(string assetName, out T asset) where T: Object
+        private static void LoadAsset<T>(string assetName, out T asset) where T : Object
         {
             var assetPath = $"Assets/{assetName}";
-            asset = assetBundle.LoadAsset<T>(assetPath);
-            if (asset == null)
-            {
-                LogUtils.LogError($"Failed to load asset ({assetPath})");
-            }
+            asset = _assetBundle.LoadAsset<T>(assetPath);
+            if (asset == null) LogUtils.LogError($"Failed to load asset ({assetPath})");
         }
-    } 
+    }
 }

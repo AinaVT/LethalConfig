@@ -1,8 +1,6 @@
 using HarmonyLib;
 using LethalConfig.MonoBehaviours;
-using LethalConfig.Settings;
 using LethalConfig.Utils;
-using UnityEngine;
 
 namespace LethalConfig.Patches
 {
@@ -14,9 +12,10 @@ namespace LethalConfig.Patches
         public static void CloseQuickMenuPanelsPostFix(QuickMenuManager __instance)
         {
             var configMenu = __instance.menuContainer.transform.GetComponentInChildren<ConfigMenu>(true);
+            if (configMenu) configMenu.Close(false);
+
             var notification = __instance.menuContainer.transform.GetComponentInChildren<ConfigMenuNotification>(true);
-            configMenu?.Close(false);
-            notification?.Close(false);
+            if (notification) notification.Close(false);
         }
 
         [HarmonyPatch("Start")]
@@ -25,12 +24,15 @@ namespace LethalConfig.Patches
         {
             LogUtils.LogInfo("Injecting mod config menu into quick menu...");
             var quickMenu = __instance.menuContainer;
-            var mainButtonsTransform = quickMenu?.transform.Find("MainButtons");
-            var quitButton = mainButtonsTransform?.Find("Quit").gameObject;
+            if (!quickMenu) return;
 
-            if (quickMenu == null || mainButtonsTransform == null || quitButton == null) return;
+            var mainButtonsTransform = quickMenu.transform.Find("MainButtons");
+            if (!mainButtonsTransform) return;
 
-            MenusUtils.InjectMenu(quickMenu.transform, mainButtonsTransform, quitButton);
+            var quitButton = mainButtonsTransform.Find("Quit");
+            if (!quitButton) return;
+
+            MenusUtils.InjectMenu(quickMenu.transform, mainButtonsTransform, quitButton.gameObject);
         }
     }
 }

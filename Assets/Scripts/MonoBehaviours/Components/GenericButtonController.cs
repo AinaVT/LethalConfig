@@ -6,9 +6,8 @@ namespace LethalConfig.MonoBehaviours.Components
 {
     internal class GenericButtonController : ModConfigController
     {
-        private GenericButtonConfigItem ConfigItem => baseConfigItem as GenericButtonConfigItem;
-
         public TextMeshProUGUI buttonTextComponent;
+        private GenericButtonConfigItem ConfigItem => BaseConfigItem as GenericButtonConfigItem;
 
         public override void UpdateAppearance()
         {
@@ -23,7 +22,7 @@ namespace LethalConfig.MonoBehaviours.Components
 
         public void OnButtonClicked()
         {
-            ConfigMenuManager.Instance.menuAudio.PlayConfirmSFX();
+            ConfigMenuManager.Instance.menuAudio.PlayConfirmSfx();
             ConfigItem?.ButtonOptions?.ButtonHandler?.Invoke();
         }
     }

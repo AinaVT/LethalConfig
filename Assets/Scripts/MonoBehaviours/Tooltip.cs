@@ -7,19 +7,17 @@ namespace LethalConfig.MonoBehaviours
     {
         public TextMeshProUGUI textComponent;
 
-        private RectTransform rectTransform;
-        private Camera uiCamera;
+        private RectTransform _rectTransform;
+        private Camera _uiCamera;
 
         public void SetText(string text)
         {
             textComponent.text = text;
         }
 
-        public void SetTarget(GameObject gameObject)
+        public void SetTarget(GameObject newTargetGameObject)
         {
-            transform.position = gameObject.transform.position;
+            transform.position = newTargetGameObject.transform.position;
         }
-
-        
     }
 }

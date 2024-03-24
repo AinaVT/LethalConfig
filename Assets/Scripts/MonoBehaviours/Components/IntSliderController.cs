@@ -1,6 +1,6 @@
+using System;
 using LethalConfig.ConfigItems;
 using LethalConfig.MonoBehaviours.Managers;
-using System;
 using TMPro;
 using UnityEngine.UI;
 
@@ -29,17 +29,15 @@ namespace LethalConfig.MonoBehaviours.Components
         {
             ConfigItem.CurrentValue = (int)value;
             UpdateAppearance();
-            ConfigMenuManager.Instance.menuAudio.PlayChangeValueSFX();
+            ConfigMenuManager.Instance.menuAudio.PlayChangeValueSfx();
         }
 
         public void OnInputFieldEndEdit(string value)
         {
             if (int.TryParse(value, out var newValue))
-            {
                 ConfigItem.CurrentValue = Math.Clamp(newValue, ConfigItem.MinValue, ConfigItem.MaxValue);
-            }
             UpdateAppearance();
-            ConfigMenuManager.Instance.menuAudio.PlayChangeValueSFX();
+            ConfigMenuManager.Instance.menuAudio.PlayChangeValueSfx();
         }
 
         public override void UpdateAppearance()
@@ -48,5 +46,5 @@ namespace LethalConfig.MonoBehaviours.Components
             sliderComponent.SetValueWithoutNotify(ConfigItem.CurrentValue);
             valueInputField.SetTextWithoutNotify($"{ConfigItem.CurrentValue}");
         }
-    } 
+    }
 }

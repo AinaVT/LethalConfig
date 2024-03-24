@@ -6,6 +6,9 @@ namespace LethalConfig.MonoBehaviours
 {
     internal class ConfigMenuNotification : MonoBehaviour
     {
+        private static readonly int TriggerIdOpen = Animator.StringToHash("Open");
+        private static readonly int TriggerIdForceClose = Animator.StringToHash("ForceClose");
+        private static readonly int TriggerIdClose = Animator.StringToHash("Close");
         public TextMeshProUGUI messageTextComponent;
         public TextMeshProUGUI buttonTextComponent;
 
@@ -23,7 +26,7 @@ namespace LethalConfig.MonoBehaviours
             if (animatorState.IsName("NotificationNormal") || animatorState.IsName("NotificationAppear")) return;
 
             gameObject.SetActive(true);
-            notificationAnimator.SetTrigger("Open");
+            notificationAnimator.SetTrigger(TriggerIdOpen);
             transform.SetAsLastSibling();
         }
 
@@ -35,17 +38,17 @@ namespace LethalConfig.MonoBehaviours
             if (!animated)
             {
                 gameObject.SetActive(false);
-                notificationAnimator.SetTrigger("ForceClose");
+                notificationAnimator.SetTrigger(TriggerIdForceClose);
                 return;
             }
 
-            notificationAnimator.SetTrigger("Close");
+            notificationAnimator.SetTrigger(TriggerIdClose);
         }
 
         public void OnButtonClick()
         {
             Close();
-            ConfigMenuManager.Instance.menuAudio.PlayConfirmSFX();
+            ConfigMenuManager.Instance.menuAudio.PlayConfirmSfx();
         }
 
         public void OnCloseAnimationEnd()

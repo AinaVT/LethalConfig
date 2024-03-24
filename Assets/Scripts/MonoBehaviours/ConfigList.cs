@@ -1,8 +1,8 @@
+using System.Linq;
 using LethalConfig.Mods;
 using LethalConfig.MonoBehaviours.Components;
 using LethalConfig.MonoBehaviours.Managers;
 using LethalConfig.Utils;
-using System.Linq;
 using UnityEngine;
 
 namespace LethalConfig.MonoBehaviours
@@ -16,13 +16,12 @@ namespace LethalConfig.MonoBehaviours
         {
             ClearConfigList();
 
-            var sections = mod.configItems.GroupBy(c => c.Section);
+            var sections = mod.ConfigItems.GroupBy(c => c.Section);
 
             foreach (var section in sections)
             {
-                var header = Instantiate(Assets.SectionHeaderPrefab);
+                var header = Instantiate(Assets.SectionHeaderPrefab, listContainerObject.transform, true);
                 header.GetComponent<SectionHeader>().SetSectionName(section.Key);
-                header.transform.SetParent(listContainerObject.transform);
                 header.transform.localPosition = Vector3.zero;
                 header.transform.localScale = Vector3.one;
                 header.transform.localRotation = Quaternion.identity;
@@ -34,7 +33,7 @@ namespace LethalConfig.MonoBehaviours
                     var result = controller.SetConfigItem(configItem);
                     if (!result)
                     {
-                        DestroyImmediate(configItemObject.gameObject);
+                        DestroyImmediate(configItemObject);
                         return;
                     }
 
@@ -45,7 +44,7 @@ namespace LethalConfig.MonoBehaviours
                     controller.OnHoverEnter += () =>
                     {
                         descriptionBox.ShowConfigInfo(controller.GetDescription());
-                        ConfigMenuManager.Instance.menuAudio.PlayHoverSFX();
+                        ConfigMenuManager.Instance.menuAudio.PlayHoverSfx();
                     };
                 }
             }
@@ -53,10 +52,7 @@ namespace LethalConfig.MonoBehaviours
 
         private void ClearConfigList()
         {
-            foreach (Transform child in listContainerObject.transform)
-            {
-                Destroy(child.gameObject);
-            }
+            foreach (Transform child in listContainerObject.transform) Destroy(child.gameObject);
         }
-    } 
+    }
 }

@@ -16,29 +16,23 @@ namespace LethalConfig.AutoConfig
 
             if (section == "*")
                 _sectionSettings = PathSettings.Wildcard;
-            
+
             _key = key;
             _keySettings = PathSettings.Exact;
-            
+
             if (key == "*")
                 _keySettings = PathSettings.Wildcard;
         }
 
         public bool Matches(BaseConfigItem configItem)
         {
-            if (_sectionSettings == PathSettings.Exact)
-            {
-                if (!string.Equals(configItem.Section, _section))
-                    return false;
-            }
+            if (_sectionSettings != PathSettings.Exact)
+                return _keySettings != PathSettings.Exact || string.Equals(configItem.Name, _key);
 
-            if (_keySettings == PathSettings.Exact)
-            {
-                if (!string.Equals(configItem.Name, _key))
-                    return false;
-            }
+            if (!string.Equals(configItem.Section, _section))
+                return false;
 
-            return true;
+            return _keySettings != PathSettings.Exact || string.Equals(configItem.Name, _key);
         }
 
         private enum PathSettings

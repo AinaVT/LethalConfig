@@ -1,7 +1,6 @@
-﻿
-namespace LethalConfig.ConfigItems.Options
+﻿namespace LethalConfig.ConfigItems.Options
 {
-    public sealed class FloatInputFieldOptions: BaseRangeOptions<float>
+    public sealed class FloatInputFieldOptions : BaseRangeOptions<float>
     {
     }
 }

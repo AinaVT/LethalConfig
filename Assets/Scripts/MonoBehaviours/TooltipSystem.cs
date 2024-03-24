@@ -4,29 +4,29 @@ namespace LethalConfig.MonoBehaviours
 {
     internal class TooltipSystem : MonoBehaviour
     {
-        private static TooltipSystem instance;
+        private static TooltipSystem _instance;
 
         public Tooltip tooltip;
 
         private void Awake()
         {
-            instance = this;
+            _instance = this;
         }
 
         public static void Show(string content, GameObject target)
         {
-            if (instance == null) return;
+            if (_instance == null) return;
 
-            instance.tooltip.gameObject.SetActive(true);
-            instance.tooltip.SetText(content);
-            instance.tooltip.SetTarget(target);
+            _instance.tooltip.gameObject.SetActive(true);
+            _instance.tooltip.SetText(content);
+            _instance.tooltip.SetTarget(target);
         }
 
         public static void Hide()
         {
-            if (instance == null) return;
+            if (_instance == null) return;
 
-            instance.tooltip.gameObject.SetActive(false);
+            _instance.tooltip.gameObject.SetActive(false);
         }
     }
 }

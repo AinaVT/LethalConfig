@@ -12,9 +12,8 @@ namespace LethalConfig.MonoBehaviours
 
         public void SetModInfo(Mod mod)
         {
-            modIconImage.sprite = mod.modInfo.Icon;
-            var text = $"{mod.modInfo}";
-            modInfoText.text = $"{mod.modInfo}";
+            modIconImage.sprite = mod.ModInfo.Icon;
+            modInfoText.text = $"{mod.ModInfo}";
         }
     }
 }

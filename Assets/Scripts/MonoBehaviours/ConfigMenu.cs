@@ -1,13 +1,16 @@
+using System.Linq;
 using LethalConfig.MonoBehaviours.Components;
 using LethalConfig.MonoBehaviours.Managers;
 using LethalConfig.Utils;
-using System.Linq;
 using UnityEngine;
 
 namespace LethalConfig.MonoBehaviours
 {
     internal class ConfigMenu : MonoBehaviour
     {
+        private static readonly int TriggerIdOpen = Animator.StringToHash("Open");
+        private static readonly int TriggerIdForceClose = Animator.StringToHash("ForceClose");
+        private static readonly int TriggerIdClose = Animator.StringToHash("Close");
         public ConfigList configList;
         public Animator menuAnimator;
 
@@ -22,7 +25,7 @@ namespace LethalConfig.MonoBehaviours
             if (animatorState.IsName("ConfigMenuNormal") || animatorState.IsName("ConfigMenuAppear")) return;
 
             gameObject.SetActive(true);
-            menuAnimator.SetTrigger("Open");
+            menuAnimator.SetTrigger(TriggerIdOpen);
             transform.SetAsLastSibling();
         }
 
@@ -32,21 +35,18 @@ namespace LethalConfig.MonoBehaviours
             if (animatorState.IsName("ConfigMenuClosed") || animatorState.IsName("ConfigMenuDisappear")) return;
 
             var mods = LethalConfigManager.Mods;
-            foreach (var item in mods.SelectMany(m => m.Value.configItems))
-            {
-                item.CancelChanges();
-            }
+            foreach (var item in mods.SelectMany(m => m.Value.ConfigItems)) item.CancelChanges();
 
             UpdateAppearanceOfCurrentComponents();
 
             if (!animated)
             {
                 gameObject.SetActive(false);
-                menuAnimator.SetTrigger("ForceClose");
+                menuAnimator.SetTrigger(TriggerIdForceClose);
                 return;
             }
 
-            menuAnimator.SetTrigger("Close");
+            menuAnimator.SetTrigger(TriggerIdClose);
         }
 
         public void OnCloseAnimationEnd()
@@ -57,42 +57,35 @@ namespace LethalConfig.MonoBehaviours
         public void OnCancelButtonClicked()
         {
             Close();
-            ConfigMenuManager.Instance.menuAudio.PlayCancelSFX();
+            ConfigMenuManager.Instance.menuAudio.PlayCancelSfx();
         }
 
         public void OnApplyButtonClicked()
         {
             var mods = LethalConfigManager.Mods;
             var itemsToSave = mods
-                .SelectMany(m => m.Value.configItems)
+                .SelectMany(m => m.Value.ConfigItems)
                 .Where(c => c.HasValueChanged).ToList();
             var restartRequiredItems = itemsToSave.Where(c => c.RequiresRestart).ToList();
 
-            foreach (var item in itemsToSave)
-            {
-                item.ApplyChanges();
-            }
+            foreach (var item in itemsToSave) item.ApplyChanges();
 
             UpdateAppearanceOfCurrentComponents();
 
-            ConfigMenuManager.Instance.menuAudio.PlayConfirmSFX();
+            ConfigMenuManager.Instance.menuAudio.PlayConfirmSfx();
 
             LogUtils.LogInfo($"Saved config values for {itemsToSave.Count} items.");
             LogUtils.LogInfo($"Modified {restartRequiredItems.Count} item(s) that requires a restart.");
             if (restartRequiredItems.Count > 0)
-            {
                 // Show alert
-                ConfigMenuManager.Instance.DisplayNotification($"Some of the modified settings may require a restart to take effect.", "OK");
-            }
+                ConfigMenuManager.DisplayNotification(
+                    "Some of the modified settings may require a restart to take effect.", "OK");
         }
 
         private void UpdateAppearanceOfCurrentComponents()
         {
             foreach (var controller in configList.GetComponentsInChildren<ModConfigController>())
-            {
                 controller.UpdateAppearance();
-            }
         }
     }
-
 }

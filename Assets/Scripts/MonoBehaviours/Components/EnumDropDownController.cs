@@ -1,7 +1,7 @@
-using LethalConfig.MonoBehaviours.Managers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using LethalConfig.MonoBehaviours.Managers;
 using TMPro;
 
 namespace LethalConfig.MonoBehaviours.Components
@@ -9,51 +9,51 @@ namespace LethalConfig.MonoBehaviours.Components
     internal class EnumDropDownController : ModConfigController
     {
         public TMP_Dropdown dropdownComponent;
+        private List<string> _enumNames = new();
 
         private Type _enumType;
-        private List<string> _enumNames = new List<string>();
+
+        private void OnDestroy()
+        {
+            BaseConfigItem.OnCurrentValueChanged -= OnCurrentValueChanged;
+        }
 
         public override string GetDescription()
         {
-            return $"{base.GetDescription()}\n\nDefault: {Enum.GetName(_enumType, baseConfigItem.BoxedDefaultValue)}";
+            return $"{base.GetDescription()}\n\nDefault: {Enum.GetName(_enumType, BaseConfigItem.BoxedDefaultValue)}";
         }
 
         public override void UpdateAppearance()
         {
             base.UpdateAppearance();
-            var index = _enumNames.FindIndex(e => e == Enum.GetName(_enumType, baseConfigItem.CurrentBoxedValue));
+            var index = _enumNames.FindIndex(e => e == Enum.GetName(_enumType, BaseConfigItem.CurrentBoxedValue));
             dropdownComponent.SetValueWithoutNotify(index);
         }
 
         protected override void OnSetConfigItem()
         {
-            baseConfigItem.OnCurrentValueChanged += OnCurrentValueChanged;
+            BaseConfigItem.OnCurrentValueChanged += OnCurrentValueChanged;
 
-            _enumType = baseConfigItem.BaseConfigEntry.SettingType;
+            _enumType = BaseConfigItem.BaseConfigEntry.SettingType;
             _enumNames = Enum.GetNames(_enumType).ToList();
 
             dropdownComponent.ClearOptions();
             dropdownComponent.AddOptions(_enumNames);
-            var index = _enumNames.FindIndex(e => e == Enum.GetName(_enumType, baseConfigItem.CurrentBoxedValue));
+            var index = _enumNames.FindIndex(e => e == Enum.GetName(_enumType, BaseConfigItem.CurrentBoxedValue));
             dropdownComponent.SetValueWithoutNotify(index);
             UpdateAppearance();
         }
 
         public void OnDropDownValueChanged(int index)
         {
-            baseConfigItem.CurrentBoxedValue = Enum.Parse(_enumType, _enumNames[index]);
+            BaseConfigItem.CurrentBoxedValue = Enum.Parse(_enumType, _enumNames[index]);
             UpdateAppearance();
-            ConfigMenuManager.Instance.menuAudio.PlayChangeValueSFX();
+            ConfigMenuManager.Instance.menuAudio.PlayChangeValueSfx();
         }
 
         private void OnCurrentValueChanged()
         {
             UpdateAppearance();
-        }
-
-        private void OnDestroy()
-        {
-            baseConfigItem.OnCurrentValueChanged -= OnCurrentValueChanged;
         }
     }
 }

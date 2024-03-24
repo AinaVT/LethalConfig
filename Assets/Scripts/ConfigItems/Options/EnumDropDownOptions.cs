@@ -1,5 +1,4 @@
-﻿
-namespace LethalConfig.ConfigItems.Options
+﻿namespace LethalConfig.ConfigItems.Options
 {
     public sealed class EnumDropDownOptions : BaseOptions
     {

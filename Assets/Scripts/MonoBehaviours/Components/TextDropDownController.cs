@@ -1,9 +1,7 @@
-using BepInEx.Configuration;
-using LethalConfig.ConfigItems;
-using LethalConfig.MonoBehaviours.Managers;
-using System;
 using System.Collections.Generic;
 using System.Linq;
+using LethalConfig.ConfigItems;
+using LethalConfig.MonoBehaviours.Managers;
 using TMPro;
 
 // Adapted from EnumDropDownController
@@ -13,12 +11,12 @@ namespace LethalConfig.MonoBehaviours.Components
     {
         public TMP_Dropdown dropdownComponent;
 
-        private List<string> _textValues = new List<string>();
+        private List<string> _textValues = new();
 
         public override void UpdateAppearance()
         {
             base.UpdateAppearance();
-            var index = _textValues.FindIndex(e => e == (string)baseConfigItem.CurrentBoxedValue);
+            var index = _textValues.FindIndex(e => e == (string)BaseConfigItem.CurrentBoxedValue);
             dropdownComponent.SetValueWithoutNotify(index);
         }
 
@@ -28,7 +26,7 @@ namespace LethalConfig.MonoBehaviours.Components
 
             dropdownComponent.ClearOptions();
             dropdownComponent.AddOptions(_textValues);
-            var index = _textValues.FindIndex(e => e == (string)baseConfigItem.CurrentBoxedValue);
+            var index = _textValues.FindIndex(e => e == (string)BaseConfigItem.CurrentBoxedValue);
             dropdownComponent.SetValueWithoutNotify(index);
             UpdateAppearance();
         }
@@ -37,7 +35,7 @@ namespace LethalConfig.MonoBehaviours.Components
         {
             ConfigItem.CurrentValue = _textValues[index];
             UpdateAppearance();
-            ConfigMenuManager.Instance.menuAudio.PlayChangeValueSFX();
+            ConfigMenuManager.Instance.menuAudio.PlayChangeValueSfx();
         }
     }
 }

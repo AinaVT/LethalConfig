@@ -1,6 +1,6 @@
+using System;
 using LethalConfig.ConfigItems;
 using LethalConfig.MonoBehaviours.Managers;
-using System;
 using TMPro;
 using UnityEngine;
 
@@ -13,14 +13,8 @@ namespace LethalConfig.MonoBehaviours.Components
         public override string GetDescription()
         {
             var description = base.GetDescription();
-            if (ConfigItem.MinValue != float.MinValue)
-            {
-                description += $"\nMin: {ConfigItem.MinValue:0.0#}";
-            }
-            if (ConfigItem.MaxValue != float.MaxValue)
-            {
-                description += $"\nMax: {ConfigItem.MaxValue:0.0#}";
-            }
+            if (ConfigItem.MinValue != float.MinValue) description += $"\nMin: {ConfigItem.MinValue:0.0#}";
+            if (ConfigItem.MaxValue != float.MaxValue) description += $"\nMax: {ConfigItem.MaxValue:0.0#}";
 
             return description;
         }
@@ -34,11 +28,9 @@ namespace LethalConfig.MonoBehaviours.Components
         public void OnInputFieldEndEdit(string value)
         {
             if (float.TryParse(value, out var newValue))
-            {
                 ConfigItem.CurrentValue = Math.Clamp(newValue, ConfigItem.MinValue, ConfigItem.MaxValue);
-            }
             UpdateAppearance();
-            ConfigMenuManager.Instance.menuAudio.PlayChangeValueSFX();
+            ConfigMenuManager.Instance.menuAudio.PlayChangeValueSfx();
         }
 
         public override void UpdateAppearance()
@@ -47,5 +39,5 @@ namespace LethalConfig.MonoBehaviours.Components
             textInputField.SetTextWithoutNotify($"{ConfigItem.CurrentValue}");
             textInputField.textComponent.rectTransform.localPosition = Vector3.zero;
         }
-    } 
+    }
 }

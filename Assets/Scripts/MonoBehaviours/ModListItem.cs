@@ -8,40 +8,23 @@ namespace LethalConfig.MonoBehaviours
 {
     internal class ModListItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
+        public delegate void OnHoverHandler();
+
         public TextMeshProUGUI textMesh;
         public GameObject selectedBorder;
         public Image modIcon;
 
-        public delegate void OnHoverHandler();
-        public event OnHoverHandler OnHoverEnter;
-        public event OnHoverHandler OnHoverExit;
-
         private Mod _mod;
-        internal Mod mod
+
+        internal Mod Mod
         {
-            get
-            {
-                return _mod;
-            }
+            get => _mod;
             set
             {
                 _mod = value;
-                textMesh.text = _mod.modInfo.Name;
-                modIcon.sprite = _mod.modInfo.Icon;
+                textMesh.text = _mod.ModInfo.Name;
+                modIcon.sprite = _mod.ModInfo.Icon;
             }
-        }
-
-        internal delegate void ModSelectedHandler(Mod mod);
-        internal event ModSelectedHandler modSelected;
-
-        public void OnClick()
-        {
-            modSelected(_mod);
-        }
-
-        public void SetSelected(bool selected)
-        {
-            selectedBorder.SetActive(selected);
         }
 
         public void OnPointerEnter(PointerEventData eventData)
@@ -54,9 +37,25 @@ namespace LethalConfig.MonoBehaviours
             OnHoverExit?.Invoke();
         }
 
+        public event OnHoverHandler OnHoverEnter;
+        public event OnHoverHandler OnHoverExit;
+        internal event ModSelectedHandler ModSelected;
+
+        public void OnClick()
+        {
+            ModSelected?.Invoke(_mod);
+        }
+
+        public void SetSelected(bool selected)
+        {
+            selectedBorder.SetActive(selected);
+        }
+
         public string GetDescription()
         {
-            return $"{_mod.modInfo.Name}\n{_mod.modInfo.GUID}\n{_mod.modInfo.Version}";
+            return $"{_mod.ModInfo.Name}\n{_mod.ModInfo.Guid}\n{_mod.ModInfo.Version}";
         }
-    } 
+
+        internal delegate void ModSelectedHandler(Mod mod);
+    }
 }

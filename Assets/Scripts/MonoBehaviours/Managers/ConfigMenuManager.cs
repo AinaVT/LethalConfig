@@ -21,15 +21,22 @@ namespace LethalConfig.MonoBehaviours.Managers
             Instance = null;
         }
 
-        public void ShowConfigMenu()
+        public static void ShowConfigMenu()
         {
-            FindObjectOfType<ConfigMenu>(true)?.Open();
+            var menu = FindObjectOfType<ConfigMenu>(true);
+            if (!menu)
+            {
+                LogUtils.LogWarning("ConfigMenu object not found");
+                return;
+            }
+
+            menu.Open();
         }
 
         public void DisplayNotification(string message, string button)
         {
             var menuNotification = FindObjectOfType<ConfigMenuNotification>(true);
-            if (menuNotification == null)
+            if (!menuNotification)
             {
                 LogUtils.LogWarning("Notification object not found");
                 return;

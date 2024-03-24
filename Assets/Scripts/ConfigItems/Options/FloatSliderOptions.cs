@@ -1,7 +1,6 @@
-﻿
-namespace LethalConfig.ConfigItems.Options
+﻿namespace LethalConfig.ConfigItems.Options
 {
-    public class FloatSliderOptions: BaseRangeOptions<float>
+    public class FloatSliderOptions : BaseRangeOptions<float>
     {
     }
 }

@@ -1,8 +1,8 @@
-using BepInEx;
-using LethalConfig.Mods;
 using System;
 using System.Linq;
 using System.Reflection;
+using BepInEx;
+using LethalConfig.Mods;
 
 namespace LethalConfig.Utils
 {
@@ -16,32 +16,27 @@ namespace LethalConfig.Utils
             if (plugin == null) return false;
 
             modInfo.Name = plugin.Name;
-            modInfo.GUID = plugin.GUID;
+            modInfo.Guid = plugin.GUID;
             modInfo.Version = plugin.Version.ToString();
 
             return true;
         }
 
-        internal static BepInPlugin FindPluginAttribute(this Assembly assembly)
+        private static BepInPlugin FindPluginAttribute(this Assembly assembly)
         {
             Type[] types;
 
             try
             {
                 types = assembly.GetTypes();
-            } catch (ReflectionTypeLoadException e)
+            }
+            catch (ReflectionTypeLoadException e)
             {
                 types = e.Types.Where(t => t != null).ToArray();
             }
 
-            foreach (var type in types)
-            {
-                var plugin = type.GetCustomAttribute<BepInPlugin>();
-                if (plugin == null) continue;
-                return plugin;
-            }
-
-            return null;
+            return types.Select(type => type.GetCustomAttribute<BepInPlugin>())
+                .FirstOrDefault(plugin => plugin != null);
         }
-    } 
+    }
 }

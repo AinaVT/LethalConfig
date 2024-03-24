@@ -16,10 +16,10 @@ namespace LethalConfig.AutoConfig
 
             if (section == "*")
                 _sectionSettings = PathSettings.Wildcard;
-            
+
             _key = key;
             _keySettings = PathSettings.Exact;
-            
+
             if (key == "*")
                 _keySettings = PathSettings.Wildcard;
         }
@@ -27,16 +27,12 @@ namespace LethalConfig.AutoConfig
         public bool Matches(BaseConfigItem configItem)
         {
             if (_sectionSettings == PathSettings.Exact)
-            {
                 if (!string.Equals(configItem.Section, _section))
                     return false;
-            }
 
             if (_keySettings == PathSettings.Exact)
-            {
                 if (!string.Equals(configItem.Name, _key))
                     return false;
-            }
 
             return true;
         }

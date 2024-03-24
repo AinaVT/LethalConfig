@@ -1,28 +1,16 @@
-﻿using BepInEx.Bootstrap;
-using BepInEx.Configuration;
-using LethalConfig.ConfigItems;
-using LethalConfig.Utils;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using BepInEx.Bootstrap;
+using BepInEx.Configuration;
+using LethalConfig.ConfigItems;
+using LethalConfig.Utils;
 
 namespace LethalConfig.AutoConfig
 {
     internal static class AutoConfigGenerator
     {
-        public struct AutoConfigItem
-        {
-            public BaseConfigItem ConfigItem { get; set; }
-            public Assembly Assembly { get; set; }
-        }
-
-        public struct ConfigFileAssemblyPair
-        {
-            public ConfigFile ConfigFile { get; set; }
-            public Assembly Assembly { get; set; }
-        }
-
         public static AutoConfigItem[] AutoGenerateConfigs(params ConfigFileAssemblyPair[] customConfigFiles)
         {
             var configItems = new List<AutoConfigItem>();
@@ -32,7 +20,7 @@ namespace LethalConfig.AutoConfig
 
             LogUtils.LogDebug($"{plugins.Count} mods loaded: {string.Join(";", plugins.Select(p => p.Metadata.GUID))}");
 
-            foreach (var plugin in plugins )
+            foreach (var plugin in plugins)
             {
                 LogUtils.LogDebug($"{plugin.Metadata.GUID} : {plugin.Metadata.Name} : {plugin.Metadata.Version}");
                 var info = plugin.Metadata;
@@ -53,7 +41,6 @@ namespace LethalConfig.AutoConfig
                 catch (Exception)
                 {
                     LogUtils.LogWarning($"Invalid instance for \"{info.Name}\" plugin. Skipping.");
-                    continue;
                 }
             }
 
@@ -61,7 +48,8 @@ namespace LethalConfig.AutoConfig
             {
                 if (generatedConfigFiles.Contains(customConfigFile.ConfigFile))
                 {
-                    LogUtils.LogWarning($"Custom config file provided was already auto generated ({customConfigFile.ConfigFile.ConfigFilePath})");
+                    LogUtils.LogWarning(
+                        $"Custom config file provided was already auto generated ({customConfigFile.ConfigFile.ConfigFilePath})");
                     continue;
                 }
 
@@ -74,7 +62,7 @@ namespace LethalConfig.AutoConfig
             return configItems.ToArray();
         }
 
-        private static AutoConfigItem[] AutoGenerateConfigsForFile(ConfigFileAssemblyPair configAssemblyPair)
+        private static IEnumerable<AutoConfigItem> AutoGenerateConfigsForFile(ConfigFileAssemblyPair configAssemblyPair)
         {
             var configItems = new List<AutoConfigItem>();
             var configs = configAssemblyPair.ConfigFile.Select(c => c.Value);
@@ -94,7 +82,8 @@ namespace LethalConfig.AutoConfig
                 }
                 else
                 {
-                    LogUtils.LogWarning($"No UI component found for config of type {config.SettingType.Name} ({config.Definition.Section}/{config.Definition.Key})");
+                    LogUtils.LogWarning(
+                        $"No UI component found for config of type {config.SettingType.Name} ({config.Definition.Section}/{config.Definition.Key})");
                 }
             }
 
@@ -104,77 +93,67 @@ namespace LethalConfig.AutoConfig
         private static BaseConfigItem GenerateConfigForEntry(ConfigEntryBase configEntryBase)
         {
             var type = configEntryBase.SettingType;
-            if (type.IsEquivalentTo(typeof(int))) 
-            {
-                return GenerateItemForInt(configEntryBase);
-            } 
-            else if (type.IsEquivalentTo(typeof(float)))
-            {
-                return GenerateItemForFloat(configEntryBase);
-            }
-            else if (type.IsEquivalentTo(typeof(bool)))
-            {
-                return GenerateItemForBool(configEntryBase);
-            }
-            else if (type.IsEquivalentTo(typeof(string)))
-            {
-                return GenerateItemForString(configEntryBase);
-            }
-            else if (type.IsEnum)
-            {
-                return GenerateItemForEnum(configEntryBase);
-            }
+            if (type.IsEquivalentTo(typeof(int))) return GenerateItemForInt(configEntryBase);
 
-            return null;
+            if (type.IsEquivalentTo(typeof(float))) return GenerateItemForFloat(configEntryBase);
+
+            if (type.IsEquivalentTo(typeof(bool))) return GenerateItemForBool(configEntryBase);
+
+            if (type.IsEquivalentTo(typeof(string))) return GenerateItemForString(configEntryBase);
+
+            return type.IsEnum ? GenerateItemForEnum(configEntryBase) : null;
         }
 
         private static BaseConfigItem GenerateItemForInt(ConfigEntryBase configEntryBase)
         {
             var configEntry = (ConfigEntry<int>)configEntryBase;
-            var acceptableValues = configEntry.Description?.AcceptableValues as AcceptableValueRange<int>;
 
-            if (acceptableValues != null)
-            {
-                return new IntSliderConfigItem(configEntry, true);
-            } else
-            {
-                return new IntInputFieldConfigItem(configEntry, true);
-            }
+            if (configEntry.Description?.AcceptableValues is AcceptableValueRange<int>)
+                return new IntSliderConfigItem(configEntry);
+
+            return new IntInputFieldConfigItem(configEntry);
         }
 
         private static BaseConfigItem GenerateItemForFloat(ConfigEntryBase configEntryBase)
         {
             var configEntry = (ConfigEntry<float>)configEntryBase;
-            var acceptableValues = configEntry.Description?.AcceptableValues as AcceptableValueRange<float>;
 
-            if (acceptableValues != null)
-            {
-                return new FloatSliderConfigItem(configEntry, true);
-            }
-            else
-            {
-                return new FloatInputFieldConfigItem(configEntry, true);
-            }
+            if (configEntry.Description?.AcceptableValues is AcceptableValueRange<float>)
+                return new FloatSliderConfigItem(configEntry);
+
+            return new FloatInputFieldConfigItem(configEntry);
         }
 
         private static BaseConfigItem GenerateItemForBool(ConfigEntryBase configEntryBase)
         {
             var configEntry = (ConfigEntry<bool>)configEntryBase;
-            return new BoolCheckBoxConfigItem(configEntry, true);
+            return new BoolCheckBoxConfigItem(configEntry);
         }
 
         private static BaseConfigItem GenerateItemForString(ConfigEntryBase configEntryBase)
         {
             var configEntry = (ConfigEntry<string>)configEntryBase;
-            return new TextInputFieldConfigItem(configEntry, true);
+            return new TextInputFieldConfigItem(configEntry);
         }
 
         private static BaseConfigItem GenerateItemForEnum(ConfigEntryBase configEntryBase)
         {
             var enumType = configEntryBase.SettingType;
             var componentType = typeof(EnumDropDownConfigItem<>).MakeGenericType(enumType);
-            var instance = Activator.CreateInstance(componentType, new object[] { configEntryBase, true });
+            var instance = Activator.CreateInstance(componentType, configEntryBase, true);
             return (BaseConfigItem)instance;
+        }
+
+        public struct AutoConfigItem
+        {
+            public BaseConfigItem ConfigItem { get; set; }
+            public Assembly Assembly { get; set; }
+        }
+
+        public struct ConfigFileAssemblyPair
+        {
+            public ConfigFile ConfigFile { get; set; }
+            public Assembly Assembly { get; set; }
         }
     }
 }

@@ -1,40 +1,43 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace LethalConfig.MonoBehaviours.Managers
 {
     internal class ConfigMenuAudioManager : MonoBehaviour
     {
-        public AudioClip confirmSFX;
-        public AudioClip cancelSFX;
-        public AudioClip selectSFX;
-        public AudioClip hoverSFX;
-        public AudioClip changeValueSFX;
+        [FormerlySerializedAs("confirmSFX")] public AudioClip confirmSfx;
+        [FormerlySerializedAs("cancelSFX")] public AudioClip cancelSfx;
+        [FormerlySerializedAs("selectSFX")] public AudioClip selectSfx;
+        [FormerlySerializedAs("hoverSFX")] public AudioClip hoverSfx;
+
+        [FormerlySerializedAs("changeValueSFX")]
+        public AudioClip changeValueSfx;
 
         public AudioSource audioSource;
 
-        public void PlayConfirmSFX()
+        public void PlayConfirmSfx()
         {
-            audioSource.PlayOneShot(confirmSFX);
+            audioSource.PlayOneShot(confirmSfx);
         }
 
-        public void PlayCancelSFX()
+        public void PlayCancelSfx()
         {
-            audioSource.PlayOneShot(cancelSFX);
+            audioSource.PlayOneShot(cancelSfx);
         }
 
-        public void PlayHoverSFX()
+        public void PlayHoverSfx()
         {
-            audioSource.PlayOneShot(hoverSFX);
+            audioSource.PlayOneShot(hoverSfx);
         }
 
-        public void PlaySelectSFX()
+        public void PlaySelectSfx()
         {
-            audioSource.PlayOneShot(selectSFX);
+            audioSource.PlayOneShot(selectSfx);
         }
 
-        public void PlayChangeValueSFX()
+        public void PlayChangeValueSfx()
         {
-            audioSource.PlayOneShot(changeValueSFX);
+            audioSource.PlayOneShot(changeValueSfx);
         }
     }
 }

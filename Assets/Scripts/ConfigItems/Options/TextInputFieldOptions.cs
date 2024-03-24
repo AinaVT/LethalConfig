@@ -1,7 +1,6 @@
-﻿
-namespace LethalConfig.ConfigItems.Options
+﻿namespace LethalConfig.ConfigItems.Options
 {
-    public sealed class TextInputFieldOptions: BaseOptions
+    public sealed class TextInputFieldOptions : BaseOptions
     {
         public int CharacterLimit { get; set; } = 0;
         public int NumberOfLines { get; set; } = 1;

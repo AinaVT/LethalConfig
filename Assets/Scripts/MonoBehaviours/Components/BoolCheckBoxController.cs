@@ -1,6 +1,5 @@
 using LethalConfig.ConfigItems;
 using LethalConfig.MonoBehaviours.Managers;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace LethalConfig.MonoBehaviours.Components
@@ -25,7 +24,7 @@ namespace LethalConfig.MonoBehaviours.Components
         {
             ConfigItem.CurrentValue = value;
             UpdateAppearance();
-            ConfigMenuManager.Instance.menuAudio.PlayChangeValueSFX();
+            ConfigMenuManager.Instance.menuAudio.PlayChangeValueSfx();
         }
     }
 }

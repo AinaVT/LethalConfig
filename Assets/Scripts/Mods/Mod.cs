@@ -63,7 +63,7 @@ namespace LethalConfig.Mods
                     return;
 
                 var iconTex = new Texture2D(256, 256);
-                if (!iconTex.LoadImage(File.ReadAllBytes(iconPath)))
+                if (!iconTex.LoadImage(File.ReadAllBytes(iconPath), true))
                     return;
 
                 ModInfo.Icon = Sprite.Create(iconTex, new Rect(0, 0, iconTex.width, iconTex.height),

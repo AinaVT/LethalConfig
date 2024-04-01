@@ -54,18 +54,18 @@ namespace LethalConfig.ConfigItems
 
         internal event CurrentValueChangedHandler OnCurrentValueChanged;
 
-        internal void ApplyChanges()
+        public void ApplyChanges()
         {
             if (BaseConfigEntry == null) return;
             BaseConfigEntry.BoxedValue = CurrentBoxedValue;
         }
 
-        internal void CancelChanges()
+        public void CancelChanges()
         {
             CurrentBoxedValue = OriginalBoxedValue;
         }
 
-        internal void ChangeToDefault()
+        public void ChangeToDefault()
         {
             CurrentBoxedValue = BoxedDefaultValue;
         }

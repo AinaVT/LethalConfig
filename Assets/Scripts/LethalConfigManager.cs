@@ -72,6 +72,15 @@ namespace LethalConfig
                 LogUtils.LogInfo($"Registered config \"{configItem}\"");
         }
 
+        /// <summary>
+        ///     Adds a config item to the calling's mod entry UI whilst specifying the responsible assembly.
+        /// </summary>
+        public static void AddConfigItem(BaseConfigItem configItem, Assembly assembly)
+        {
+            if (AddConfigItemForAssembly(configItem, assembly))
+                LogUtils.LogInfo($"Registered config \"{configItem}\"");
+        }
+
         private static bool AddConfigItemForAssembly(BaseConfigItem configItem, Assembly assembly)
         {
             var mod = ModForAssembly(assembly);

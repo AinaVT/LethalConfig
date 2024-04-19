@@ -1,3 +1,8 @@
+## Version 1.4.1
+- Exposing `BaseConfigItem#ApplyChanges`, `BaseConfigItem#CancelChanges`, and `BaseConfigItem#ChangeToDefault`
+- Added optional Assembly argument for `LethalConfigManager#AddConfigItem`
+- Marking dynamically loaded mod icons as non-readable to improve memory usage.
+
 ## Version 1.4.0
 - Updating config appearances whenever a `ConfigEntry` is modified directly.
 - Added `QueueCustomConfigFileForAutoGeneration` method, allowing the auto generation of configs for manually created config files.

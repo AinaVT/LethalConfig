@@ -7,7 +7,11 @@ namespace LethalConfig.ConfigItems
 {
     public class BoolCheckBoxConfigItem : BaseValueConfigItem<bool>
     {
-        public BoolCheckBoxConfigItem(ConfigEntry<bool> configEntry, bool requiresRestart = true) : this(configEntry,
+        public BoolCheckBoxConfigItem(ConfigEntry<bool> configEntry) : this(configEntry, true) 
+        { 
+        }
+
+        public BoolCheckBoxConfigItem(ConfigEntry<bool> configEntry, bool requiresRestart) : this(configEntry,
             new BoolCheckBoxOptions { RequiresRestart = requiresRestart })
         {
         }

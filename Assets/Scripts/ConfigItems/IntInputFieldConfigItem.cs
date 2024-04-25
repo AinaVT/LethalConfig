@@ -7,7 +7,11 @@ namespace LethalConfig.ConfigItems
 {
     public sealed class IntInputFieldConfigItem : BaseValueConfigItem<int>
     {
-        public IntInputFieldConfigItem(ConfigEntry<int> configEntry, bool requiresRestart = true) : this(configEntry,
+        public IntInputFieldConfigItem(ConfigEntry<int> configEntry) : this(configEntry, true) 
+        { 
+        }
+
+        public IntInputFieldConfigItem(ConfigEntry<int> configEntry, bool requiresRestart) : this(configEntry,
             GetDefaultOptions(configEntry, requiresRestart))
         {
         }

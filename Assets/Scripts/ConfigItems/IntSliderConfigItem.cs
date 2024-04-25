@@ -8,6 +8,10 @@ namespace LethalConfig.ConfigItems
 {
     public sealed class IntSliderConfigItem : BaseValueConfigItem<int>
     {
+        public IntSliderConfigItem(ConfigEntry<int> configEntry) : this(configEntry, true) 
+        { 
+        }
+
         public IntSliderConfigItem(ConfigEntry<int> configEntry, bool requiresRestart = true) : this(configEntry,
             GetDefaultOptions(configEntry, requiresRestart))
         {

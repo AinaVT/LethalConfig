@@ -7,7 +7,11 @@ namespace LethalConfig.ConfigItems
 {
     public sealed class FloatStepSliderConfigItem : BaseValueConfigItem<float>
     {
-        public FloatStepSliderConfigItem(ConfigEntry<float> configEntry, bool requiresRestart = true) : this(
+        public FloatStepSliderConfigItem(ConfigEntry<float> configEntry) : this(configEntry, true)
+        {
+        }
+
+        public FloatStepSliderConfigItem(ConfigEntry<float> configEntry, bool requiresRestart) : this(
             configEntry, GetDefaultOptions(configEntry, requiresRestart))
         {
         }

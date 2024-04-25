@@ -1,3 +1,6 @@
+## Version 1.4.2
+- Reverted changes to most config item's constructors from #42, as it was an unintentional breaking change. (#47)
+
 ## Version 1.4.1
 - Exposing `BaseConfigItem#ApplyChanges`, `BaseConfigItem#CancelChanges`, and `BaseConfigItem#ChangeToDefault`
 - Added optional Assembly argument for `LethalConfigManager#AddConfigItem`

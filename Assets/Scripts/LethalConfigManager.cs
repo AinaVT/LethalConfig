@@ -13,6 +13,7 @@ namespace LethalConfig
     public static class LethalConfigManager
     {
         private static readonly List<AutoConfigGenerator.ConfigFileAssemblyPair> CustomConfigFiles = new();
+        private static readonly List<AutoConfigGenerator.ConfigFileAssemblyPair> LateConfigFiles = new();
 
         private static bool _hasGeneratedMissingConfigs;
         internal static Dictionary<string, Mod> Mods { get; } = new();
@@ -22,19 +23,26 @@ namespace LethalConfig
         {
             if (_hasGeneratedMissingConfigs) return;
 
+            var generatedConfigs = AutoConfigGenerator.AutoGenerateConfigs(CustomConfigFiles.ToArray());
+            GenerateConfigItems(generatedConfigs);
+
+            _hasGeneratedMissingConfigs = true;
+        }
+
+        private static void GenerateConfigItems(AutoConfigGenerator.AutoConfigItem[] generatedConfigs)
+        {
             var existingModEntries = Mods.Values.ToArray();
             var existingConfigsFlat = Mods.SelectMany(kv => kv.Value.ConfigItems);
-            var generatedConfigs = AutoConfigGenerator.AutoGenerateConfigs(CustomConfigFiles.ToArray());
             var missingConfigs = generatedConfigs
                 .GroupBy(c => ModForAssembly(c.Assembly), c => c.ConfigItem)
                 .Where(kv => kv.Key != null)
                 .SelectMany(kv =>
                 {
                     return kv.Select(c =>
-                        {
-                            c.Owner = kv.Key;
-                            return c;
-                        })
+                    {
+                        c.Owner = kv.Key;
+                        return c;
+                    })
                         .Where(c => !kv.Key.EntriesToSkipAutoGen.Any(path => path.Matches(c)))
                         .Where(c => existingConfigsFlat.FirstOrDefault(c.IsSameConfig) == null)
                         .GroupBy(c => c.Owner);
@@ -59,8 +67,6 @@ namespace LethalConfig
             LogUtils.LogInfo($"Generated {generatedModEntries.Length} mod entries.");
             LogUtils.LogInfo(
                 $"Generated {generatedConfigs.Length} configs, of which {missingConfigs.SelectMany(kv => kv.Value).Count()} were missing and registered.");
-
-            _hasGeneratedMissingConfigs = true;
         }
 
         /// <summary>
@@ -180,6 +186,43 @@ namespace LethalConfig
                 ConfigFile = configFile,
                 Assembly = Assembly.GetCallingAssembly()
             });
+        }
+
+        /// <summary>
+        ///     Queue a custom config file for auto generation if it does not already exist.
+        ///     Added for mods like LLL that generate config items later.
+        ///     These config files will be loaded into LethalConfig when RunLateAutoGeneration is called.
+        ///     RunLateAutoGeneration is called automatically at StartOfRound Start.
+        /// </summary>
+        /// <param name="configFile">The custom config file instance.</param>
+        /// 
+        public static void QueueCustomConfigFileForLateAutoGeneration(ConfigFile configFile) 
+        {
+            LateConfigFiles.Add(new AutoConfigGenerator.ConfigFileAssemblyPair
+            {
+                ConfigFile = configFile,
+                Assembly = Assembly.GetCallingAssembly()
+            });
+        }
+
+        /// <summary>
+        ///     Add all custom configs registered for LateAutoGeneration, will run automatically at StartOfRound Start.
+        ///     Added for mods like LLL that generate config items later.
+        ///     Called automatically at StartOfRound Start and can also be called later by another mod.
+        /// </summary>
+        /// 
+        /// 
+        public static void RunLateAutoGeneration()
+        {
+            if (LateConfigFiles.Count == 0)
+                return;
+
+            var generatedConfigs = AutoConfigGenerator.AutoGenerateConfigs(LateConfigFiles.ToArray());
+            GenerateConfigItems(generatedConfigs);
+            LateConfigFiles.Clear();
+
+            var lookingforLLL = AutoConfigGenerator.AutoGenerateConfigs(CustomConfigFiles.ToArray());
+            GenerateConfigItems(lookingforLLL);
         }
     }
 }

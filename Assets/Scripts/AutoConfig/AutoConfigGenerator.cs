@@ -133,6 +133,10 @@ namespace LethalConfig.AutoConfig
         private static BaseConfigItem GenerateItemForString(ConfigEntryBase configEntryBase)
         {
             var configEntry = (ConfigEntry<string>)configEntryBase;
+
+            if (configEntry.Description?.AcceptableValues is AcceptableValueList<string>)
+                return new TextDropDownConfigItem(configEntry); //Make strings with acceptablevalues dropdowns by default
+
             return new TextInputFieldConfigItem(configEntry);
         }
 

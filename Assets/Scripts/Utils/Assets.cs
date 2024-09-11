@@ -39,7 +39,10 @@ namespace LethalConfig.Utils
                 LoadAsset("prefabs/ConfigMenuNotification.prefab", out ConfigMenuNotificationPrefab);
                 LoadAsset("prefabs/ConfigMenu.prefab", out ConfigMenuPrefab);
                 LoadAsset("prefabs/ModListItem.prefab", out ModListItemPrefab);
-                LoadAsset("prefabs/components/SectionHeader.prefab", out SectionHeaderPrefab);
+                if(Configs.AddSectionButtons.Value) //swap out prefabs based on config item
+                    LoadAsset("prefabs/components/SectionHeader WithButton.prefab", out SectionHeaderPrefab);
+                else
+                    LoadAsset("prefabs/components/SectionHeader Old.prefab", out SectionHeaderPrefab);
                 LoadAsset("prefabs/components/IntSliderItem.prefab", out IntSliderPrefab);
                 LoadAsset("prefabs/components/FloatSliderItem.prefab", out FloatSliderPrefab);
                 LoadAsset("prefabs/components/FloatStepSliderItem.prefab", out FloatStepSliderPrefab);

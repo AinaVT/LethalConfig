@@ -8,6 +8,7 @@ namespace LethalConfig
     internal static class Configs
     {
         internal static ConfigEntry<bool> IsLethalConfigHidden { get; private set; }
+        internal static ConfigEntry<bool> AddSectionButtons { get; private set; }
 
         internal static void Initialize(ConfigFile config)
         {
@@ -24,6 +25,9 @@ namespace LethalConfig
 
         private static void CreateExampleConfigs(ConfigFile config)
         {
+            AddSectionButtons = config.Bind("General", "Section Buttons", false, "Add Section buttons to show/hide config items in a section.");
+            LethalConfigManager.AddConfigItem(new BoolCheckBoxConfigItem(AddSectionButtons, true));
+
             var intSlider = config.Bind("Example", "Int Slider", 30,
                 new ConfigDescription(
                     "This is an integer slider. You can also type a value in the input field to the right of the slider.",

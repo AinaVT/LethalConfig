@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using System.Linq;
+using LethalConfig.ConfigItems;
 using LethalConfig.Mods;
 using LethalConfig.MonoBehaviours.Components;
 using LethalConfig.MonoBehaviours.Managers;
@@ -11,6 +13,8 @@ namespace LethalConfig.MonoBehaviours
     {
         public GameObject listContainerObject;
         public DescriptionBox descriptionBox;
+        public static List<string> disabledSections = new();
+        public static List<SectionButton> sectionButtons = new();
 
         internal void LoadConfigsForMod(Mod mod)
         {
@@ -22,37 +26,52 @@ namespace LethalConfig.MonoBehaviours
             {
                 var header = Instantiate(Assets.SectionHeaderPrefab, listContainerObject.transform, true);
                 header.GetComponent<SectionHeader>().SetSectionName(section.Key);
+                header.GetComponent<SectionHeader>().SetSectionButton(section, out SectionButton thisButton);
                 header.transform.localPosition = Vector3.zero;
                 header.transform.localScale = Vector3.one;
                 header.transform.localRotation = Quaternion.identity;
 
+                if(thisButton != null)
+                    sectionButtons.Add(thisButton);
+
                 foreach (var configItem in section)
                 {
-                    var configItemObject = configItem.CreateGameObjectForConfig();
-                    var controller = configItemObject.GetComponent<ModConfigController>();
-                    var result = controller.SetConfigItem(configItem);
-                    if (!result)
-                    {
-                        DestroyImmediate(configItemObject);
-                        return;
-                    }
-
-                    configItemObject.transform.SetParent(listContainerObject.transform);
-                    configItemObject.transform.localPosition = Vector3.zero;
-                    configItemObject.transform.localScale = Vector3.one;
-                    configItemObject.transform.localRotation = Quaternion.identity;
-                    controller.OnHoverEnter += () =>
-                    {
-                        descriptionBox.ShowConfigInfo(controller.GetDescription());
-                        ConfigMenuManager.Instance.menuAudio.PlayHoverSfx();
-                    };
+                    CreateMenuItem(configItem, thisButton);
                 }
             }
         }
 
+        private void CreateMenuItem(BaseConfigItem configItem, SectionButton button = null)
+        {
+            var configItemObject = configItem.CreateGameObjectForConfig();
+            var controller = configItemObject.GetComponent<ModConfigController>();
+            var result = controller.SetConfigItem(configItem);
+            if (!result)
+            {
+                DestroyImmediate(configItemObject);
+                return;
+            }
+
+            configItemObject.transform.SetParent(listContainerObject.transform);
+            configItemObject.transform.localPosition = Vector3.zero;
+            configItemObject.transform.localScale = Vector3.one;
+            configItemObject.transform.localRotation = Quaternion.identity;
+            controller.OnHoverEnter += () =>
+            {
+                descriptionBox.ShowConfigInfo(controller.GetDescription());
+                ConfigMenuManager.Instance.menuAudio.PlayHoverSfx();
+            };
+
+            button?.AddTransform(configItemObject.transform);
+        }
+
+
         private void ClearConfigList()
         {
             foreach (Transform child in listContainerObject.transform) Destroy(child.gameObject);
+
+            sectionButtons.Clear();
+            disabledSections.Clear();
         }
     }
 }

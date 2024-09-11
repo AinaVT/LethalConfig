@@ -220,9 +220,6 @@ namespace LethalConfig
             var generatedConfigs = AutoConfigGenerator.AutoGenerateConfigs(LateConfigFiles.ToArray());
             GenerateConfigItems(generatedConfigs);
             LateConfigFiles.Clear();
-
-            var lookingforLLL = AutoConfigGenerator.AutoGenerateConfigs(CustomConfigFiles.ToArray());
-            GenerateConfigItems(lookingforLLL);
         }
     }
 }

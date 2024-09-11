@@ -1,5 +1,4 @@
 using LethalConfig.ConfigItems;
-using LethalConfig.Mods;
 using LethalConfig.MonoBehaviours.Managers;
 using LethalConfig.Utils;
 using System.Collections.Generic;

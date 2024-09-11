@@ -39,7 +39,7 @@ namespace LethalConfig.MonoBehaviours
             });
 
             buttonTextMesh.text = "Hide";
-            thisButton = new(section.Key, section.ToList());
+            thisButton = new(section.Key, section.ToList(), buttonTextMesh);
         }
 
         private void OnToggle(IGrouping<string, BaseConfigItem> section)
@@ -98,11 +98,13 @@ namespace LethalConfig.MonoBehaviours
         internal string sectionName = "";
         internal List<BaseConfigItem> itemsInSection = new();
         internal List<Transform> transformsInSection = new();
+        internal TextMeshProUGUI buttonText;
 
-        internal SectionButton(string sectionName, List<BaseConfigItem> itemsInSection)
+        internal SectionButton(string sectionName, List<BaseConfigItem> itemsInSection, TextMeshProUGUI button)
         {
             this.sectionName = sectionName;
             this.itemsInSection = itemsInSection;
+            this.buttonText = button;
 
         }
 

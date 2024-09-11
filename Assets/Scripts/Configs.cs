@@ -9,6 +9,7 @@ namespace LethalConfig
     {
         internal static ConfigEntry<bool> IsLethalConfigHidden { get; private set; }
         internal static ConfigEntry<bool> AddSectionButtons { get; private set; }
+        internal static ConfigEntry<bool> SectionsDefaultClosed { get; private set; }
 
         internal static void Initialize(ConfigFile config)
         {
@@ -21,13 +22,16 @@ namespace LethalConfig
             IsLethalConfigHidden = config.Bind("General", "Hide Lethal Config", false,
                 "Hides the LethalConfig menu in the game. This setting will not show up in LethalConfig itself.");
             LethalConfigManager.SkipAutoGenFor(IsLethalConfigHidden);
+            AddSectionButtons = config.Bind("General", "AddSectionButtons", true, "Add Section buttons to show/hide config items in a section.");
+            LethalConfigManager.SkipAutoGenFor(AddSectionButtons); //toggling this mid-game will not update the prefab
+            SectionsDefaultClosed = config.Bind("General", "SectionsDefaultClosed", false,
+                "Hides all config items by default when AddSectionButtons is enabled.");
+            LethalConfigManager.AddConfigItem(new BoolCheckBoxConfigItem(SectionsDefaultClosed, false));
         }
 
         private static void CreateExampleConfigs(ConfigFile config)
         {
-            AddSectionButtons = config.Bind("General", "Section Buttons", false, "Add Section buttons to show/hide config items in a section.");
-            LethalConfigManager.AddConfigItem(new BoolCheckBoxConfigItem(AddSectionButtons, true));
-
+            
             var intSlider = config.Bind("Example", "Int Slider", 30,
                 new ConfigDescription(
                     "This is an integer slider. You can also type a value in the input field to the right of the slider.",

@@ -62,7 +62,20 @@ namespace LethalConfig.MonoBehaviours
                 ConfigMenuManager.Instance.menuAudio.PlayHoverSfx();
             };
 
-            button?.AddTransform(configItemObject.transform);
+            if(button != null)
+            {
+                if (Configs.SectionsDefaultClosed.Value)
+                {
+                    if(!disabledSections.Contains(button.sectionName))
+                        disabledSections.Add(button.sectionName);
+
+                    configItemObject.SetActive(false);
+                    button.buttonText.text = "Show";
+                }
+                    
+                button.AddTransform(configItemObject.transform);
+            }
+            
         }
 
 

@@ -1,0 +1,242 @@
+ManifestFileVersion: 0
+CRC: 1420639057
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: f9b6424b96583385d8d37107f06ce538
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 277e4664bab3533566ce06601f4ca1de
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: f9b6424b96583385d8d37107f06ce538
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 74
+  Script: {instanceID: 0}
+- Class: 82
+  Script: {instanceID: 0}
+- Class: 83
+  Script: {instanceID: 0}
+- Class: 91
+  Script: {instanceID: 0}
+- Class: 95
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 306cc8c2b49d7114eaa3623786fc2126, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 1aa08ab6e0800fa44ae55d278d1423e3, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: c4c051993f83b104289a0ce5ce05b5cb, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 46fd1177ff7ccab4686c7837512b8a12, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 5eba4626989979c4daeaef7cf852a9a2, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: f2a674e0e821ee34d90a7fd4ea12dfd8, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: c2506c7ef253bf647ac14dafff0c9c42, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 0bd2e1d4f8976a6418a7cea84828a238, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 31fbafe6400dc9249af29859fb64e6f1, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: b8e4dac3bc075c54d8fce7070c30f527, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: af84ce9af7f21db4594e9fa3ce979f68, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 3fc9d7873ff431444aa8ac71c6aafa04, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: b31744e809fc11748adbbdcb360a6876, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 85d03fa0691807d4686ee1b497803ecf, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 7b743370ac3e4ec2a1668f5455a8ef8a, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 51372edf57f62ea48b384445ddea22b3, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 09ce5fe662a8cb34aadf78d10098a361, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 15fc9a05f52404c45ac954b47ab938d5, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 320417e58255bdb4c97f2da4adc40770, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 31a19414c41e5ae4aae2af33fee712f6, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 3312d7739989d2b4e91e6319e9a96d76, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: eeabfb38115af0149865b00fd4925fe0, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: cd138d2012368dc42b4d59bf1a3dbd8e, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 2da0c512f12947e489f739169773d7ca, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 2a4db7a114972834c8e4117be1d82ba3, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: de8daa90920208b4fa612bc8ea160300, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 794a22b757af9b24294d8024be2b7e39, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: ebf542f22fcddcf4e9dd083d29cd693c, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 22a3fc969872f9b468ca32fc898a0e0c, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 5da06d75c567ca943978976c74270836, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 50568988965ec9846ba55160e6c177fd, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: d48011a777def6d4b906544b23aada75, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 128
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+- Class: 222
+  Script: {instanceID: 0}
+- Class: 224
+  Script: {instanceID: 0}
+- Class: 225
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers:
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.FaceInfo_Legacy
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.FontAssetCreationSettings
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.KerningTable
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.TMP_Character
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.TMP_Dropdown/DropdownEvent
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.TMP_Dropdown/OptionData
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.TMP_Dropdown/OptionDataList
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.TMP_FontFeatureTable
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.TMP_FontWeightPair
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.TMP_InputField/OnChangeEvent
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.TMP_InputField/SelectionEvent
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.TMP_InputField/SubmitEvent
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.TMP_InputField/TextSelectionEvent
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.TMP_InputField/TouchScreenKeyboardEvent
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.VertexGradient
+- AssemblyName: UnityEngine.CoreModule
+  ClassName: UnityEngine.Events.ArgumentCache
+- AssemblyName: UnityEngine.CoreModule
+  ClassName: UnityEngine.Events.PersistentCallGroup
+- AssemblyName: UnityEngine.CoreModule
+  ClassName: UnityEngine.Events.PersistentListenerMode
+- AssemblyName: UnityEngine.CoreModule
+  ClassName: UnityEngine.RectOffset
+- AssemblyName: UnityEngine.TextCoreFontEngineModule
+  ClassName: UnityEngine.TextCore.FaceInfo
+- AssemblyName: UnityEngine.TextCoreFontEngineModule
+  ClassName: UnityEngine.TextCore.Glyph
+- AssemblyName: UnityEngine.TextCoreFontEngineModule
+  ClassName: UnityEngine.TextCore.GlyphMetrics
+- AssemblyName: UnityEngine.TextCoreFontEngineModule
+  ClassName: UnityEngine.TextCore.GlyphRect
+- AssemblyName: UnityEngine.UI
+  ClassName: UnityEngine.UI.AnimationTriggers
+- AssemblyName: UnityEngine.UI
+  ClassName: UnityEngine.UI.Button/ButtonClickedEvent
+- AssemblyName: UnityEngine.UI
+  ClassName: UnityEngine.UI.ColorBlock
+- AssemblyName: UnityEngine.UI
+  ClassName: UnityEngine.UI.MaskableGraphic/CullStateChangedEvent
+- AssemblyName: UnityEngine.UI
+  ClassName: UnityEngine.UI.Navigation
+- AssemblyName: UnityEngine.UI
+  ClassName: UnityEngine.UI.ScrollRect/ScrollRectEvent
+- AssemblyName: UnityEngine.UI
+  ClassName: UnityEngine.UI.Scrollbar/ScrollEvent
+- AssemblyName: UnityEngine.UI
+  ClassName: UnityEngine.UI.Slider/SliderEvent
+- AssemblyName: UnityEngine.UI
+  ClassName: UnityEngine.UI.SpriteState
+- AssemblyName: UnityEngine.UI
+  ClassName: UnityEngine.UI.Toggle/ToggleEvent
+Assets:
+- Assets/Animations/ConfigMenu/ConfigMenuClosed.anim
+- Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Dropdown Icon.psd
+- Assets/AudioClips/CancelSFX.ogg
+- Assets/Font/3270-Regular SDF.asset
+- Assets/Prefabs/Components/SectionHeader Old.prefab
+- Assets/TextMesh Pro/Shaders/TMP_SDF.shader
+- Assets/Sprite/reset-to-default.png
+- Assets/Prefabs/Components/IntSliderItem.prefab
+- Assets/Sprite/DialogueBox1Frame 5.png
+- Assets/Prefabs/ConfigMenuNotification.prefab
+- Assets/Animations/ConfigMenuNotification/NotificationAppear.anim
+- Assets/Animations/ConfigMenu/ConfigMenuAppear.anim
+- Assets/Sprite/UICheckMark.png
+- Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Input Field Icon.psd
+- Assets/Prefabs/Components/SectionHeader WithButton.prefab
+- Assets/AudioClips/SelectSFX.ogg
+- Assets/Animations/ConfigMenuNotification/NotificationNormal.anim
+- Assets/Prefabs/Components/GenericButtonItem.prefab
+- Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Text Component Icon.psd
+- Assets/Prefabs/Components/EnumDropDownItem.prefab
+- Assets/Prefabs/Components/TextDropDownItem.prefab
+- Assets/icon.png
+- Assets/Animations/ConfigMenuNotification/NotificationDisappear.anim
+- Assets/Prefabs/Components/TextInputFieldItem.prefab
+- Assets/Animations/ConfigMenuNotification/ConfigMenuNotification.controller
+- Assets/Prefabs/ConfigMenuManager.prefab
+- Assets/Prefabs/Components/Elements/ConfigNameLabel.prefab
+- Assets/Font/3270-Regular.ttf
+- Assets/AudioClips/HoverSFX.ogg
+- Assets/AudioClips/ChangeValueSFX.ogg
+- Assets/Prefabs/ModListItem.prefab
+- Assets/Prefabs/Components/FloatStepSliderItem.prefab
+- Assets/Prefabs/Components/BoolCheckBoxItem.prefab
+- Assets/Prefabs/Components/FloatSliderItem.prefab
+- Assets/Sprite/DialogueBoxSimple.png
+- Assets/Prefabs/Components/FloatInputFieldItem.prefab
+- Assets/Prefabs/Components/IntInputFieldItem.prefab
+- Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Font Asset Icon.psd
+- Assets/Animations/ConfigMenuNotification/NotificationClosed.anim
+- Assets/Animations/ConfigMenu/ConfigMenuNormal.anim
+- Assets/Animations/ConfigMenu/ConfigMenuDisappear.anim
+- Assets/Prefabs/Components/Elements/ResetToDefaultButton.prefab
+- Assets/Sprite/DialogueBoxSimple 1.png
+- Assets/Sprite/unknown-icon.png
+- Assets/Prefabs/ConfigMenu.prefab
+- Assets/Animations/ConfigMenu/ConfigMenu.controller
+- Assets/AudioClips/ConfirmSFX.ogg
+Dependencies: []

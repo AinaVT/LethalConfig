@@ -1,9 +1,3 @@
-## Version 1.4.3
-- Added config item to add a "show/hide" button to section headers.
-- Adjusted header appearance slightly (smaller & will now add ellipses to sections that have too long of a name)
-- Made it so string configs with "acceptable values" now correctly create dropdown config buttons automatically
-- Added some methods for adding config files that were generated later than awake (such as LLL & LethalConstellations)
-
 ## Version 1.4.2
 - Reverted changes to most config item's constructors from #42, as it was an unintentional breaking change. (#47)
 

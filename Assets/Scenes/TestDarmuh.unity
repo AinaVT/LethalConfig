@@ -4998,12 +4998,12 @@ RectTransform:
   - {fileID: 1830241832}
   - {fileID: 672905722}
   - {fileID: 151644980}
-  - {fileID: 1965009017}
+  - {fileID: 2010530799}
   - {fileID: 134920837}
   - {fileID: 1337994166}
+  - {fileID: 1965009017}
   - {fileID: 1132082939}
   - {fileID: 1872619475}
-  - {fileID: 2010530799}
   - {fileID: 1193641442}
   m_Father: {fileID: 842245713834924097}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -70,7 +70,7 @@ MonoBehaviour:
   Name: LethalConfig
   Description: Provides an in-game config menu for players to edit their configs,
     and an API for other mods to use and customize their entries.
-  Version: 1.4.2
+  Version: 1.4.3
   Dependencies:
   - {fileID: 11400000, guid: 93f32f19b4b23484b83d50013fee18e8, type: 2}
 --- !u!114 &4587465158208312100

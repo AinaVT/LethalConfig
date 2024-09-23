@@ -27,7 +27,7 @@ namespace LethalConfig.Patches
 
         private static void InjectToMainMenu()
         {
-            LogUtils.LogInfo("Injecting mod config menu into main menu...");
+            LogUtils.LogDebug("Injecting mod config menu into main menu...");
 
             var menuContainer = GameObject.Find("MenuContainer");
             if (!menuContainer) return;

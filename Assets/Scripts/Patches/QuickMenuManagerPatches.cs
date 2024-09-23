@@ -22,7 +22,7 @@ namespace LethalConfig.Patches
         [HarmonyPostfix]
         public static void StartPostFix(QuickMenuManager __instance)
         {
-            LogUtils.LogInfo("Injecting mod config menu into quick menu...");
+            LogUtils.LogDebug("Injecting mod config menu into quick menu...");
             var quickMenu = __instance.menuContainer;
             if (!quickMenu) return;
 

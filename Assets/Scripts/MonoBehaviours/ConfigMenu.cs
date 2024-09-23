@@ -74,8 +74,8 @@ namespace LethalConfig.MonoBehaviours
 
             ConfigMenuManager.Instance.menuAudio.PlayConfirmSfx();
 
-            LogUtils.LogInfo($"Saved config values for {itemsToSave.Count} items.");
-            LogUtils.LogInfo($"Modified {restartRequiredItems.Count} item(s) that requires a restart.");
+            LogUtils.LogDebug($"Saved config values for {itemsToSave.Count} items.");
+            LogUtils.LogDebug($"Modified {restartRequiredItems.Count} item(s) that requires a restart.");
             if (restartRequiredItems.Count > 0)
                 // Show alert
                 ConfigMenuManager.DisplayNotification(

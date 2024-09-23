@@ -58,7 +58,7 @@ namespace LethalConfig.Utils
                 LoadAsset("sprite/unknown-icon.png", out DefaultModIcon);
                 LoadAsset("icon.png", out LethalConfigModIcon);
 
-                LogUtils.LogInfo("Finished loading assets.");
+                LogUtils.LogDebug("Finished loading assets.");
             }
         }
 

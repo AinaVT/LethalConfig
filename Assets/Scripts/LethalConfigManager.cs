@@ -64,8 +64,8 @@ namespace LethalConfig
                     AddConfigItemForAssembly(config, assembly);
             }
 
-            LogUtils.LogInfo($"Generated {generatedModEntries.Length} mod entries.");
-            LogUtils.LogInfo(
+            LogUtils.LogDebug($"Generated {generatedModEntries.Length} mod entries.");
+            LogUtils.LogDebug(
                 $"Generated {generatedConfigs.Length} configs, of which {missingConfigs.SelectMany(kv => kv.Value).Count()} were missing and registered.");
         }
 
@@ -75,7 +75,7 @@ namespace LethalConfig
         public static void AddConfigItem(BaseConfigItem configItem)
         {
             if (AddConfigItemForAssembly(configItem, Assembly.GetCallingAssembly()))
-                LogUtils.LogInfo($"Registered config \"{configItem}\"");
+                LogUtils.LogDebug($"Registered config \"{configItem}\"");
         }
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace LethalConfig
         public static void AddConfigItem(BaseConfigItem configItem, Assembly assembly)
         {
             if (AddConfigItemForAssembly(configItem, assembly))
-                LogUtils.LogInfo($"Registered config \"{configItem}\"");
+                LogUtils.LogDebug($"Registered config \"{configItem}\"");
         }
 
         private static bool AddConfigItemForAssembly(BaseConfigItem configItem, Assembly assembly)

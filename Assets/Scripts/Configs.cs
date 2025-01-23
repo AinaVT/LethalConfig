@@ -10,6 +10,7 @@ namespace LethalConfig
         internal static ConfigEntry<bool> IsLethalConfigHidden { get; private set; }
         internal static ConfigEntry<bool> AddSectionButtons { get; private set; }
         internal static ConfigEntry<bool> SectionsDefaultClosed { get; private set; }
+        internal static ConfigEntry<bool> HideSearchBars { get; private set; }
 
         internal static void Initialize(ConfigFile config)
         {
@@ -27,6 +28,9 @@ namespace LethalConfig
             SectionsDefaultClosed = config.Bind("General", "SectionsDefaultClosed", false,
                 "Hides all config items by default when AddSectionButtons is enabled.");
             LethalConfigManager.AddConfigItem(new BoolCheckBoxConfigItem(SectionsDefaultClosed, false));
+            HideSearchBars = config.Bind("General", "HideSearchBars", false,
+                "Hides all search bars.");
+            LethalConfigManager.AddConfigItem(new BoolCheckBoxConfigItem(HideSearchBars, false));
         }
 
         private static void CreateExampleConfigs(ConfigFile config)

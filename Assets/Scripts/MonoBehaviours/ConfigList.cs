@@ -5,6 +5,7 @@ using LethalConfig.Mods;
 using LethalConfig.MonoBehaviours.Components;
 using LethalConfig.MonoBehaviours.Managers;
 using LethalConfig.Utils;
+using TMPro;
 using UnityEngine;
 
 namespace LethalConfig.MonoBehaviours
@@ -13,8 +14,23 @@ namespace LethalConfig.MonoBehaviours
     {
         public GameObject listContainerObject;
         public DescriptionBox descriptionBox;
+        public GameObject searchBarObject;
+        public TMP_InputField searchInputField;
         public static List<string> disabledSections = new();
         public static List<SectionButton> sectionButtons = new();
+
+        private List<(SectionHeader, List<ModConfigController>)> _sections = new();
+
+        private void OnEnable()
+        {
+            Configs.HideSearchBars.SettingChanged += (object sender, System.EventArgs e) => UpdateSearchBarVisibility();
+            UpdateSearchBarVisibility();
+        }
+
+        private void OnDisable()
+        {
+            Configs.HideSearchBars.SettingChanged -= (object sender, System.EventArgs e) => UpdateSearchBarVisibility();
+        }
 
         internal void LoadConfigsForMod(Mod mod)
         {
@@ -34,14 +50,31 @@ namespace LethalConfig.MonoBehaviours
                 if(thisButton != null)
                     sectionButtons.Add(thisButton);
 
+                List<ModConfigController> items = new();
+
                 foreach (var configItem in section)
                 {
-                    CreateMenuItem(configItem, thisButton);
+                    var controller = CreateMenuItem(configItem, thisButton);
+
+                    if (controller != null)
+                    {
+                        items.Add(controller);
+                    }
                 }
+
+                if (items.Any())
+                {
+                    _sections.Add((header.GetComponent<SectionHeader>(), items));
+                }
+            }
+
+            if (searchInputField != null && !Configs.HideSearchBars.Value)
+            {
+                OnSearchValueChanged(searchInputField.text);
             }
         }
 
-        private void CreateMenuItem(BaseConfigItem configItem, SectionButton button = null)
+        private ModConfigController CreateMenuItem(BaseConfigItem configItem, SectionButton button = null)
         {
             var configItemObject = configItem.CreateGameObjectForConfig();
             var controller = configItemObject.GetComponent<ModConfigController>();
@@ -49,7 +82,7 @@ namespace LethalConfig.MonoBehaviours
             if (!result)
             {
                 DestroyImmediate(configItemObject);
-                return;
+                return null;
             }
 
             configItemObject.transform.SetParent(listContainerObject.transform);
@@ -75,7 +108,8 @@ namespace LethalConfig.MonoBehaviours
                     
                 button.AddTransform(configItemObject.transform);
             }
-            
+
+            return controller;
         }
 
 
@@ -85,6 +119,67 @@ namespace LethalConfig.MonoBehaviours
 
             sectionButtons.Clear();
             disabledSections.Clear();
+            _sections.Clear();
+        }
+
+        private void UpdateSearchBarVisibility()
+        {
+            if (searchBarObject == null) return;
+
+            bool visible = !Configs.HideSearchBars.Value;
+
+            searchBarObject.SetActive(visible);
+
+            if (visible)
+            {
+                OnSearchValueChanged(searchInputField != null ? searchInputField.text : string.Empty);
+            }
+            else
+            {
+                OnSearchValueChanged(string.Empty);
+            }
+        }
+
+        public void OnSearchValueChanged(string value)
+        {
+            foreach (var section in _sections)
+            {
+                bool showSection = false;
+
+                if (string.IsNullOrWhiteSpace(value) || CanShowSection(value, section))
+                {
+                    showSection = true;
+                }
+
+                section.Item1.gameObject.SetActive(showSection);
+
+                foreach (var item in section.Item2)
+                {
+                    item.gameObject.SetActive(showSection);
+                }
+            }
+        }
+
+        private bool CanShowSection(string value, (SectionHeader, List<ModConfigController>) section)
+        {
+            string sectionName = section.Item1.textMesh.text;
+
+            if (sectionName.Contains(value, System.StringComparison.OrdinalIgnoreCase))
+            {
+                return true;
+            }
+
+            foreach (var item in section.Item2)
+            {
+                string itemName = item.nameTextComponent.text;
+
+                if (itemName.Contains(value, System.StringComparison.OrdinalIgnoreCase))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }

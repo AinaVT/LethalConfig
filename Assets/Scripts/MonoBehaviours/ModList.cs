@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using LethalConfig.Mods;
 using LethalConfig.MonoBehaviours.Managers;
+using TMPro;
 using UnityEngine;
 
 namespace LethalConfig.MonoBehaviours
@@ -10,6 +11,8 @@ namespace LethalConfig.MonoBehaviours
     {
         public GameObject modItemPrefab;
         public GameObject listContainerObject;
+        public GameObject searchBarObject;
+        public TMP_InputField searchInputField;
 
         public ConfigList configList;
         public DescriptionBox descriptionBox;
@@ -20,6 +23,17 @@ namespace LethalConfig.MonoBehaviours
         {
             _items = new List<ModListItem>();
             BuildModList();
+        }
+
+        private void OnEnable()
+        {
+            Configs.HideSearchBars.SettingChanged += (object sender, System.EventArgs e) => UpdateSearchBarVisibility();
+            UpdateSearchBarVisibility();
+        }
+
+        private void OnDisable()
+        {
+            Configs.HideSearchBars.SettingChanged -= (object sender, System.EventArgs e) => UpdateSearchBarVisibility();
         }
 
         private void BuildModList()
@@ -59,6 +73,41 @@ namespace LethalConfig.MonoBehaviours
 
             foreach (var item in _items.Where(i => i.Mod != mod))
                 item.SetSelected(false);
+        }
+
+        private void UpdateSearchBarVisibility()
+        {
+            if (searchBarObject == null) return;
+
+            bool visible = !Configs.HideSearchBars.Value;
+
+            searchBarObject.SetActive(visible);
+
+            if (visible)
+            {
+                OnSearchValueChanged(searchInputField != null ? searchInputField.text : string.Empty);
+            }
+            else
+            {
+                OnSearchValueChanged(string.Empty);
+            }
+        }
+
+        public void OnSearchValueChanged(string value)
+        {
+            foreach (var item in _items)
+            {
+                string modName = item.Mod.ModInfo.Name;
+
+                if (modName.Contains(value, System.StringComparison.OrdinalIgnoreCase) || string.IsNullOrWhiteSpace(value))
+                {
+                    item.gameObject.SetActive(true);
+                }
+                else
+                {
+                    item.gameObject.SetActive(false);
+                }
+            }
         }
     }
 }

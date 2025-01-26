@@ -1,3 +1,6 @@
+## Version 1.4.4
+- Added search bar for mods list and config settings.
+
 ## Version 1.4.3
 - Added config item to add a "show/hide" button to section headers. (#53)
 - Adjusted header appearance slightly (smaller & will now add ellipses to sections that have too long of a name) (#53)

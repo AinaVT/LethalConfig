@@ -4,7 +4,7 @@ using LethalConfig.Utils;
 
 namespace LethalConfig
 {
-    internal static class PluginInfo
+    public static class PluginInfo
     {
         public const string Guid = "ainavt.lc.lethalconfig";
         public const string Name = "LethalConfig";

@@ -1,5 +1,6 @@
 ## Version 1.4.4
-- Added search bar for mods list and config settings.
+- Added search bar for mods list and config setting. (#55)
+- Changed `PluginInfo` class from `internal` to `public`.
 
 ## Version 1.4.3
 - Added config item to add a "show/hide" button to section headers. (#53)

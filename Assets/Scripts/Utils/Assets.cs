@@ -8,6 +8,7 @@ namespace LethalConfig.Utils
 
         internal static GameObject ConfigMenuManagerPrefab;
         internal static GameObject ConfigMenuNotificationPrefab;
+        internal static GameObject ConfigMenuColorPickerPrefab;
         internal static GameObject ConfigMenuPrefab;
         internal static GameObject ModListItemPrefab;
         internal static GameObject SectionHeaderPrefab;
@@ -18,6 +19,7 @@ namespace LethalConfig.Utils
         internal static GameObject EnumDropDownPrefab;
         internal static GameObject TextDropDownPrefab;
         internal static GameObject TextInputFieldPrefab;
+        internal static GameObject HexColorInputFieldPrefab;
         internal static GameObject IntInputFieldPrefab;
         internal static GameObject FloatInputFieldPrefab;
         internal static GameObject GenericButtonPrefab;
@@ -37,6 +39,7 @@ namespace LethalConfig.Utils
                 // UI Prefabs
                 LoadAsset("prefabs/ConfigMenuManager.prefab", out ConfigMenuManagerPrefab);
                 LoadAsset("prefabs/ConfigMenuNotification.prefab", out ConfigMenuNotificationPrefab);
+                LoadAsset("prefabs/ConfigMenuColorPicker.prefab", out ConfigMenuColorPickerPrefab);
                 LoadAsset("prefabs/ConfigMenu.prefab", out ConfigMenuPrefab);
                 LoadAsset("prefabs/ModListItem.prefab", out ModListItemPrefab);
                 if(Configs.AddSectionButtons.Value) //swap out prefabs based on config item
@@ -50,6 +53,7 @@ namespace LethalConfig.Utils
                 LoadAsset("prefabs/components/EnumDropDownItem.prefab", out EnumDropDownPrefab);
                 LoadAsset("prefabs/components/TextDropDownItem.prefab", out TextDropDownPrefab);
                 LoadAsset("prefabs/components/TextInputFieldItem.prefab", out TextInputFieldPrefab);
+                LoadAsset("prefabs/components/HexColorInputFieldItem.prefab", out HexColorInputFieldPrefab);
                 LoadAsset("prefabs/components/IntInputFieldItem.prefab", out IntInputFieldPrefab);
                 LoadAsset("prefabs/components/FloatInputFieldItem.prefab", out FloatInputFieldPrefab);
                 LoadAsset("prefabs/components/GenericButtonItem.prefab", out GenericButtonPrefab);

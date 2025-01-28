@@ -29,6 +29,13 @@ namespace LethalConfig.Utils
             notification.transform.localRotation = Quaternion.identity;
             notification.SetActive(false);
 
+            // Adding notification ui to scene
+            var colorPicker = Object.Instantiate(Assets.ConfigMenuColorPickerPrefab, parentTransform, false);
+            colorPicker.transform.localPosition = Vector3.zero;
+            colorPicker.transform.localScale = Vector3.one;
+            colorPicker.transform.localRotation = Quaternion.identity;
+            colorPicker.SetActive(false);
+
             // Cloning main menu button for opening our menu
             var clonedButton = Object.Instantiate(quitButton, mainButtonsTransform);
             clonedButton.GetComponent<Button>().onClick.RemoveAllListeners();

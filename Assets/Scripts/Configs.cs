@@ -59,6 +59,8 @@ namespace LethalConfig
             var textInputDropdown = config.Bind("Example", "Text Input Dropdown", "Two",
                 new ConfigDescription("This is a text input with an acceptable value list.",
                     new AcceptableValueList<string>("One", "Two", "HL:Alyx")));
+            var hexColorInputField = config.Bind("Example", "Hex Color Input", "#FFFFFF",
+                "This is a hex color input field. You can preview the color and it includes a color picker!");
             var intInput = config.Bind("Example", "Int Input", 50, "This is an integer input field.");
             var floatInput = config.Bind("Example", "Float Input", 0.5f, "This is a float input field.");
 
@@ -74,12 +76,10 @@ namespace LethalConfig
                 NumberOfLines = 0,
                 TrimText = true
             }));
-            LethalConfigManager.AddConfigItem(new GenericButtonConfigItem("Example", "Button",
-                "This is a test button with a callback", "Open", () =>
-                {
-                    if (ConfigMenuManager.Instance)
-                        ConfigMenuManager.DisplayNotification("This is a test notification", "OK");
-                }));
+            LethalConfigManager.AddConfigItem(new TextDropDownConfigItem(textInputDropdown,
+                new TextDropDownOptions { RequiresRestart = false }));
+            LethalConfigManager.AddConfigItem(new HexColorInputFieldConfigItem(hexColorInputField,
+                new HexColorInputFieldOptions { RequiresRestart = false }));
             LethalConfigManager.AddConfigItem(new IntInputFieldConfigItem(intInput, new IntInputFieldOptions
             {
                 Max = 150
@@ -88,8 +88,12 @@ namespace LethalConfig
             {
                 Max = 2.5f
             }));
-            LethalConfigManager.AddConfigItem(new TextDropDownConfigItem(textInputDropdown,
-                new TextDropDownOptions { RequiresRestart = false }));
+            LethalConfigManager.AddConfigItem(new GenericButtonConfigItem("Example", "Button",
+                "This is a test button with a callback", "Open", () =>
+                {
+                    if (ConfigMenuManager.Instance)
+                        ConfigMenuManager.DisplayNotification("This is a test notification", "OK");
+                }));
         }
 
         private enum TestEnum

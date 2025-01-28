@@ -1,4 +1,6 @@
+using LethalConfig.MonoBehaviours.ColorPicker;
 using LethalConfig.Utils;
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -45,6 +47,19 @@ namespace LethalConfig.MonoBehaviours.Managers
             menuNotification.SetNotificationContent(message, button);
             menuNotification.Open();
             EventSystem.current.SetSelectedGameObject(menuNotification.GetComponentInChildren<Button>().gameObject);
+        }
+
+        public static void ShowColorPicker(string name, string hexColor, Action<string> colorSelectedCallback)
+        {
+            var menuColorPicker = FindObjectOfType<ConfigMenuColorPicker>(true);
+            if (!menuColorPicker)
+            {
+                LogUtils.LogWarning("ColorPicker object not found");
+                return;
+            }
+
+            menuColorPicker.SetColorPickerContent(name, hexColor, colorSelectedCallback);
+            menuColorPicker.Open();
         }
     }
 }

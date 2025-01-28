@@ -35,7 +35,6 @@ namespace LethalConfig
 
         private static void CreateExampleConfigs(ConfigFile config)
         {
-            
             var intSlider = config.Bind("Example", "Int Slider", 30,
                 new ConfigDescription(
                     "This is an integer slider. You can also type a value in the input field to the right of the slider.",
@@ -60,7 +59,7 @@ namespace LethalConfig
                 new ConfigDescription("This is a text input with an acceptable value list.",
                     new AcceptableValueList<string>("One", "Two", "HL:Alyx")));
             var hexColorInputField = config.Bind("Example", "Hex Color Input", "#FFFFFF",
-                "This is a hex color input field. You can preview the color and it includes a color picker!");
+                "This is a hex color input field. You can preview the color and open the color picker by clicking the color!");
             var intInput = config.Bind("Example", "Int Input", 50, "This is an integer input field.");
             var floatInput = config.Bind("Example", "Float Input", 0.5f, "This is a float input field.");
 

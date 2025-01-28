@@ -153,6 +153,11 @@ namespace LethalConfig.MonoBehaviours
 
                 section.Item1.gameObject.SetActive(showSection);
 
+                if (disabledSections.Contains(section.Item1.sectionName))
+                {
+                    continue;
+                }
+
                 foreach (var item in section.Item2)
                 {
                     item.gameObject.SetActive(showSection);

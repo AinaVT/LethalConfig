@@ -68,8 +68,18 @@ namespace LethalConfig.MonoBehaviours.Components
         private IEnumerator RemoveNewLineFromSubmitDelayed(int caretPosition)
         {
             yield return null;
-            textInputField.text =
-                textInputField.text.Remove(Mathf.Clamp(caretPosition, 0, textInputField.text.Length - 1), 1);
+
+            string text = textInputField.text;
+            int textLength = text.Length;
+
+            if (textLength == 0 || !text.EndsWith("\n"))
+            {
+                yield break;
+            }
+
+            int startIndex = Mathf.Clamp(caretPosition, 0, textLength - 1);
+
+            textInputField.text = text.Remove(startIndex, count: 1);
         }
     }
 }

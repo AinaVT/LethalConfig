@@ -137,6 +137,13 @@ namespace LethalConfig.AutoConfig
             if (configEntry.Description?.AcceptableValues is AcceptableValueList<string>)
                 return new TextDropDownConfigItem(configEntry); //Make strings with acceptablevalues dropdowns by default
 
+            string defaultValue = configEntry.DefaultValue.ToString();
+
+            if (defaultValue.StartsWith("#") && defaultValue.Length == 7)
+            {
+                return new HexColorInputFieldConfigItem(configEntry);
+            }
+
             return new TextInputFieldConfigItem(configEntry);
         }
 

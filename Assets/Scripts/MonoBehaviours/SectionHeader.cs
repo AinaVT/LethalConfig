@@ -15,8 +15,11 @@ namespace LethalConfig.MonoBehaviours
         public Button sectionButton;
         public TextMeshProUGUI buttonTextMesh;
 
+        public string sectionName { get; private set; }
+
         public void SetSectionName(string sectionName)
         {
+            this.sectionName = sectionName;
             textMesh.text = $"[{sectionName}]";
         }
 

@@ -35,7 +35,6 @@ namespace LethalConfig
 
         private static void CreateExampleConfigs(ConfigFile config)
         {
-            
             var intSlider = config.Bind("Example", "Int Slider", 30,
                 new ConfigDescription(
                     "This is an integer slider. You can also type a value in the input field to the right of the slider.",
@@ -59,6 +58,8 @@ namespace LethalConfig
             var textInputDropdown = config.Bind("Example", "Text Input Dropdown", "Two",
                 new ConfigDescription("This is a text input with an acceptable value list.",
                     new AcceptableValueList<string>("One", "Two", "HL:Alyx")));
+            var hexColorInputField = config.Bind("Example", "Hex Color Input", "#FFFFFF",
+                "This is a hex color input field. You can preview the color and open the color picker by clicking the color!");
             var intInput = config.Bind("Example", "Int Input", 50, "This is an integer input field.");
             var floatInput = config.Bind("Example", "Float Input", 0.5f, "This is a float input field.");
 
@@ -74,12 +75,10 @@ namespace LethalConfig
                 NumberOfLines = 0,
                 TrimText = true
             }));
-            LethalConfigManager.AddConfigItem(new GenericButtonConfigItem("Example", "Button",
-                "This is a test button with a callback", "Open", () =>
-                {
-                    if (ConfigMenuManager.Instance)
-                        ConfigMenuManager.DisplayNotification("This is a test notification", "OK");
-                }));
+            LethalConfigManager.AddConfigItem(new TextDropDownConfigItem(textInputDropdown,
+                new TextDropDownOptions { RequiresRestart = false }));
+            LethalConfigManager.AddConfigItem(new HexColorInputFieldConfigItem(hexColorInputField,
+                new HexColorInputFieldOptions { RequiresRestart = false }));
             LethalConfigManager.AddConfigItem(new IntInputFieldConfigItem(intInput, new IntInputFieldOptions
             {
                 Max = 150
@@ -88,8 +87,12 @@ namespace LethalConfig
             {
                 Max = 2.5f
             }));
-            LethalConfigManager.AddConfigItem(new TextDropDownConfigItem(textInputDropdown,
-                new TextDropDownOptions { RequiresRestart = false }));
+            LethalConfigManager.AddConfigItem(new GenericButtonConfigItem("Example", "Button",
+                "This is a test button with a callback", "Open", () =>
+                {
+                    if (ConfigMenuManager.Instance)
+                        ConfigMenuManager.DisplayNotification("This is a test notification", "OK");
+                }));
         }
 
         private enum TestEnum

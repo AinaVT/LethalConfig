@@ -1,3 +1,8 @@
+## Version 1.4.5
+- Added new `HexColorInputFieldConfigItem` for hex color code strings with previews. (#56)
+- Fixed the config search bar showing sections that were hidden using the "show/hide" button when updating the search value. (#56)
+- Fixed the `TextInputFieldConfigItem` multi-line deleting the last character when clicking on another input field and fixed an error when the input field is empty and clicking on another input field. (#56)
+
 ## Version 1.4.4
 - Added search bar for mods list and config setting. (#55)
 - Changed `PluginInfo` class from `internal` to `public`.

@@ -21,6 +21,7 @@ Inspired by Rune580's [RiskOfOptions](https://github.com/Rune580/RiskOfOptions)
   - [Customizing mod's icon and description](#customizing-mods-icon-and-description)
 - [Building LethalConfig](#building-lethalconfig)
 - [Issues and Suggestions](#issues-and-suggestions)
+- [Credits](#credits)
 
 
 ## Supported Types
@@ -35,6 +36,7 @@ Currently, LethalConfig allows developers to add the following types of interfac
 | Float Step Slider | `float` | `FloatStepSliderConfigItem` |
 | Float Input Field | `float` | `FloatInputFieldConfigItem` |
 | Text Input Field | `string` | `TextInputFieldConfigItem` |
+| Hex Color Input Field | `string` | `HexColorInputFieldConfigItem` |
 | Enum Dropdown | `Enum` | `EnumDropDownConfigItem<>` |
 | Boolean Checkbox | `Enum` | `BoolCheckBoxConfigItem` |
 | Generic Button | `-` | `GenericButtonConfigItem`

@@ -46,13 +46,13 @@ namespace LethalConfig.MonoBehaviours.ColorPicker
 
         private void CreateHueImage()
         {
-            _hueTexture = new Texture2D(1, 16);
+            _hueTexture = new Texture2D(1, 16, TextureFormat.RGBA32, false);
             _hueTexture.wrapMode = TextureWrapMode.Clamp;
             _hueTexture.name = "HueTexture";
 
             for (int i = 0; i < _hueTexture.height; i++)
             {
-                _hueTexture.SetPixel(0, i, Color.HSVToRGB(i / (float)_hueTexture.height, 1, 0.95f));
+                _hueTexture.SetPixel(0, i, Color.HSVToRGB(i / (float)_hueTexture.height, 1f, 1f));
             }
 
             _hueTexture.Apply();
@@ -63,7 +63,7 @@ namespace LethalConfig.MonoBehaviours.ColorPicker
 
         private void CreateSatValImage()
         {
-            _satValTexture = new Texture2D(16, 16);
+            _satValTexture = new Texture2D(16, 16, TextureFormat.RGBA32, false);
             _satValTexture.wrapMode = TextureWrapMode.Clamp;
             _satValTexture.name = "SatValTexture";
 
@@ -84,7 +84,7 @@ namespace LethalConfig.MonoBehaviours.ColorPicker
 
         private void CreatePreviousOutputImage()
         {
-            _previousOutputTexture = new Texture2D(1, 16);
+            _previousOutputTexture = new Texture2D(1, 16, TextureFormat.RGBA32, false);
             _previousOutputTexture.wrapMode = TextureWrapMode.Clamp;
             _previousOutputTexture.name = "PreviousOutputTexture";
 
@@ -101,7 +101,7 @@ namespace LethalConfig.MonoBehaviours.ColorPicker
 
         private void CreateCurrentOutputImage()
         {
-            _currentOutputTexture = new Texture2D(1, 16);
+            _currentOutputTexture = new Texture2D(1, 16, TextureFormat.RGBA32, false);
             _currentOutputTexture.wrapMode = TextureWrapMode.Clamp;
             _currentOutputTexture.name = "CurrentOutputTexture";
 

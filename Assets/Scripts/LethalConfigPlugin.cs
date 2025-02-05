@@ -8,7 +8,7 @@ namespace LethalConfig
     {
         public const string Guid = "ainavt.lc.lethalconfig";
         public const string Name = "LethalConfig";
-        public const string Version = "1.4.5";
+        public const string Version = "1.4.6";
     }
 
     [BepInPlugin(PluginInfo.Guid, PluginInfo.Name, PluginInfo.Version)]

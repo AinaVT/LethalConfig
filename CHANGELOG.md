@@ -1,3 +1,7 @@
+## Version 1.4.6
+- Fixed the color picker menu not working in the lobby. (#57)
+- Fixed long config item names stretching the color picker menu. (#57)
+
 ## Version 1.4.5
 - Added new `HexColorInputFieldConfigItem` for hex color code strings with previews. (#56)
 - Fixed the config search bar showing sections that were hidden using the "show/hide" button when updating the search value. (#56)

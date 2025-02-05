@@ -1,5 +1,4 @@
-﻿using LethalConfig.Utils;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
@@ -25,6 +24,16 @@ namespace LethalConfig.MonoBehaviours.ColorPicker
 
         private void UpdateColor(PointerEventData eventData)
         {
+            if (_rectTransform == null)
+            {
+                _rectTransform = GetComponent<RectTransform>();
+            }
+
+            if (_pickerTransform == null)
+            {
+                _pickerTransform = _pickerImage.GetComponent<RectTransform>();
+            }
+
             RectTransformUtility.ScreenPointToLocalPointInRectangle(_rectTransform, eventData.position, eventData.pressEventCamera, out Vector2 localPosition);
 
             Vector2 clampedPosition = new Vector2(
@@ -54,6 +63,16 @@ namespace LethalConfig.MonoBehaviours.ColorPicker
 
         public void SetPickerLocation(float saturation, float value)
         {
+            if (_rectTransform == null)
+            {
+                _rectTransform = GetComponent<RectTransform>();
+            }
+
+            if (_pickerTransform == null)
+            {
+                _pickerTransform = _pickerImage.GetComponent<RectTransform>();
+            }
+
             float x = (saturation * _rectTransform.rect.width) - (_rectTransform.rect.width * 0.5f);
             float y = (value * _rectTransform.rect.height) - (_rectTransform.rect.height * 0.5f);
 

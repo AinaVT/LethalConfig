@@ -1,6 +1,6 @@
 ![LethalConfig Icon](https://github.com/AinaVT/LethalConfig/blob/main/.github/images/icon.png?raw=true "LethalConfig icon")
 
-# NOTICE <!-- omit in toc -->
+# ⚠️ NOTICE <!-- omit in toc -->
 This project is not maintained anymore. I have no interest in Lethal Company anymore and want to use the little free time I have for other projects. You are free to fork and modify it yourself if you feel brave enough to deal with this mess of a codebase.
 
 # LethalConfig <!-- omit in toc -->
